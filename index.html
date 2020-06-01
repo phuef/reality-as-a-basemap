@@ -26,12 +26,9 @@
      embedded arjs
      arjs="sourceType: webcam; debugUIEnabled: false;"
    >
-       <a-text id="output"
-               value="Regen: 20 ml."
-               look-at="[gps-camera]"
-               scale="75 75 75"
-               position="0 0 1"
-             ></a-text>
+   <a-entity  line="start: 0, 1, 0; end: 2 0 -5; color: red"
+              line__2="start: -2, 4, 5; end: 0 4 -3; color: green">
+    </a-entity>
      <a-camera gps-camera rotation-reader></a-camera>
    </a-scene>
  </body>
