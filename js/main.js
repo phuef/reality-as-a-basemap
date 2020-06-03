@@ -65,8 +65,13 @@ if (window.DeviceOrientationEvent) {
         handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
     }, true);
 }
+
+
 // changes  the shown elements when the devices orientation changes
 var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
+  var checked= document.getElementById("checkboxSwitchView").checked;
+  if(checked){}
+    else{
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
@@ -84,6 +89,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         document.getElementById("dummerSlider").style.display="flex";
         mapview = false;
     }
+  }
 }
 
 function kelvinInCelsius(kelvin){
