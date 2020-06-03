@@ -39,9 +39,8 @@ function locate() {
 map.locate({ setView: true, maxZoom: 20 });
 
 // call locate every 5 seconds... forever
-//setInterval(init, 5000);
 $(document).ready(() => {
-    init();
+    setInterval(init, 5000);
 });
 
 function init() {
