@@ -71,7 +71,7 @@ function createLine(arr) {
 }
 
 function drawToAR(lines) {
-    var line = document.createElement('a-entity');
-    line.outerHTML = '<a-entity' + lines + '></<a-entity>';
-    console.log(line.attributes());
+    var object = '<a-entity' + lines + '></<a-entity>';
+    var line = document.createElement(object);
+    scene.appendChild(line);
 }
