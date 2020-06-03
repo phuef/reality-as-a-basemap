@@ -1,12 +1,6 @@
 #map {
   height: 100%;
   width: 100%;
-  z-index: -1;
-}
-#returnToPositionButton {
-  position: fixed;
-  bottom: 0;
-  right: 0;
 }
 #mapview{
   height: 100%;
