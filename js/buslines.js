@@ -72,6 +72,6 @@ function createLine(arr) {
 
 function drawToAR(lines) {
     var line = document.createElement('a-entity');
-    line.innerHTML = lines;
+    line.outerHTML = '<a-entity' + lines + '></<a-entity>';
     console.log(line);
 }
