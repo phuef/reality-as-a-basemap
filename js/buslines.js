@@ -68,6 +68,7 @@ function createLine(arr) {
         result.concat(line);
     }
 
+    console.log(result);
     //drawToAR(finalArr);
 }
 
