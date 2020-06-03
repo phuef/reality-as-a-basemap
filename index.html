@@ -40,20 +40,21 @@
     <button type="button"><img src="img/crosshairs-gps.png"></button>
     <div id="map"></div>
   </div>
- <a-scene
-     id= "scene"
+  <div id = "scene">
+    <a-scene
      vr-mode-ui="enabled: false"
      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
      raycaster="objects: [clickhandler];"
      embedded arjs
      arjs="sourceType: webcam; debugUIEnabled: false;"
-   >
+     >
       <div class="container fixed-bottom justify-content-center" id="ui">
           <!-- Range Slider -->
           <input type="range" class="slider" id="slider"></input>
       </div>
      <a-camera gps-camera rotation-reader></a-camera>
    </a-scene>
+  </div>
  </body>
   <script src="config/token.js"></script>
  <script src="js/leaflet-provider.js"></script>
