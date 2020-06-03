@@ -64,7 +64,5 @@ function getXZ(direct, distance) {
         x = Math.sqrt(Math.pow(distance, 2) - Math.pow(z, 2)) * (-1);
     }
 
-    console.log(x, z);
-
     return [x, z];
 }
