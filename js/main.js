@@ -46,7 +46,7 @@ function init() {
     // hier werden die anderen Methoden aufgerufen
     initVenues(lat, lon);
     initBusstops(lat, lon)
-    initBusLines(lat, lon)
+    initBuslines(lat, lon)
 }
 //adds a button to the map that relocates to the current position
 L.easyButton('<img src="img/crosshairs-gps.png">', function (btn, map) {
