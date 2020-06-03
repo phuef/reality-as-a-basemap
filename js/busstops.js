@@ -43,8 +43,8 @@ function busstopsToAR(busstops) {
 
 function filterBusstops(busstops) {
     busstops.forEach((busstop) => {
-        var lat1 = position.coords.latitude;
-        var lon1 = position.coords.longitude;
+        var lat1 = latitude;
+        var lon1 = longitude;
         var lat2 = busstop.geometry.coordinates[1];
         var lon2 = busstop.geometry.coordinates[0];
 

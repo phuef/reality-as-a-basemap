@@ -45,8 +45,8 @@ function LineStringToAR(linestring) {
     var arr = [];
     linestring.geometry.coordinates.forEach((coordinate) => {
 
-        var lat1 = position.coords.latitude;
-        var lon1 = position.coords.longitude;
+        var lat1 = latitude;
+        var lon1 = longitude;
         var lat2 = coordinate[1];
         var lon2 = coordinate[0];
 
