@@ -70,7 +70,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
-        document.getElementById("map").style.display="flex";
+        document.getElementById("mapview").style.display="flex";
         if (!mapview)
         {
           map.locate({setView: true, maxZoom: 20});
@@ -78,7 +78,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         mapview=true;
     }
     else{
-        document.getElementById("map").style.display="none";
+        document.getElementById("mapview").style.display="none";
         document.getElementById("scene").style.display="flex";
         mapview = false;
     }
