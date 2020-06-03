@@ -46,7 +46,7 @@ function init(){
     // initBusLines(lat, lon)
 }
 //adds a button to the map that relocates to the current position
-L.easyButton('<img src="crosshairs-gps.png">', function(btn, map){
+L.easyButton('<img src="img/crosshairs-gps.png">', function(btn, map){
     map.setView([lat,lon]);
 }).addTo(map);
 
