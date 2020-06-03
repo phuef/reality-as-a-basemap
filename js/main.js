@@ -33,7 +33,7 @@ map.on('locationerror', onLocationError);
 //relocates to the current position on the map
 function locate(){
   if(mapview){
-    map.locate({setView: true, maxZoom: 20});
+    //map.locate({setView: true, maxZoom: 20});
   }
 }
 map.locate({setView: true, maxZoom: 20});
