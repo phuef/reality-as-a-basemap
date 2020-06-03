@@ -2,6 +2,11 @@
   height: 100%;
   width: 100%;
 }
+#returnToPositionButton {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
 #mapview{
   height: 100%;
   width: 100%;
