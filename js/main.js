@@ -33,10 +33,10 @@ map.on('locationerror', onLocationError);
 //relocates to the current position on the map
 function locate(){
   if(mapview){
-    map.locate({setView: true, maxZoom: 20});
+    map.locate();
   }
 }
-map.locate({setView: true, maxZoom: 20});
+
 
 // call locate every 5 seconds... forever
 setInterval(init, 5000);
@@ -72,7 +72,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         scene.setAttribute('display', "none");
         document.getElementById("map").style.display="flex";
         mapview=true;
-
+        map.locate({setView: true, maxZoom: 20});
     }
     else{
         document.getElementById("map").style.display="none";
