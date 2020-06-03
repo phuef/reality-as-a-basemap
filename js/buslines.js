@@ -52,13 +52,14 @@ function LineStringToAR(linestring) {
 
         var distance = getDistance(lat1, lon1, lat2, lon2);
         var direction = getDirection(lat1, lon1, lat2, lon2);
-        var x = getXZ(direction, distance);
+        var xz = getXZ(direction, distance);
 
         console.log(x);
 
-        //arr.push([x, 1, z]);
+        arr.push([xz[0], 1, xz[1]]);
     });
 
+    console.log(arr);
     //createLine(arr);
 };
 
