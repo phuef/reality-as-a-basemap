@@ -41,25 +41,27 @@ function getDirection(lat1, lon1, lat2, lon2) {
 }
 
 function getXZ(direct, distance) {
-    console.log(direct, distance);
+    var alpha, x, z = null;
+
     if (direct <= 90) {
-        var x = Math.sin(alpha) * distance
-        var z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2)));
+        alpha = direct;
+        x = Math.sin(alpha) * distance
+        z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2)));
     }
     else if (direct <= 180) {
-        var alpha = direct - 90;
-        var z = (Math.sin(alpha) * distance) * (-1);
-        var x = Math.sqrt((Math.pow(distance, 2) - Math.pow(z, 2)));
+        alpha = direct - 90;
+        z = (Math.sin(alpha) * distance) * (-1);
+        x = Math.sqrt((Math.pow(distance, 2) - Math.pow(z, 2)));
     }
     else if (direct <= 270) {
-        var alpha = direct - 180;
-        var x = (Math.sin(alpha) * distance) * (-1);
-        var z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2))) * (-1);
+        alpha = direct - 180;
+        x = (Math.sin(alpha) * distance) * (-1);
+        z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2))) * (-1);
     }
     else {
-        var alpha = direct - 270;
-        var z = (Math.sin(alpha) * distance);
-        var x = Math.sqrt(Math.pow(distance, 2) - Math.pow(z, 2)) * (-1);
+        alpha = direct - 270;
+        z = (Math.sin(alpha) * distance);
+        x = Math.sqrt(Math.pow(distance, 2) - Math.pow(z, 2)) * (-1);
     }
 
     console.log(x, z);
