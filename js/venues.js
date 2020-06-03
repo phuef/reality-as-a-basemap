@@ -5,6 +5,8 @@ function initVenues(lat, lon) {
     longitude = lon;
     scene = $('a-scene');
     getVenues();
+
+    console.log(latitude, longitude);
 }
 
 function getVenues() {
