@@ -67,7 +67,8 @@ function createLine(arr) {
         result.concat(line);
     }
 
-    console.log(result);
+    var teststring = 'Hallo ';
+    console.log(teststring.concat('Judith'));
     //drawToAR(finalArr);
 }
 
