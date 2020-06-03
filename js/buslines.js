@@ -1,8 +1,9 @@
-var position, scene = null;
+var latitude, longitude, scene = null;
 
-function initBuslines(p, s) {
-    position = p;
-    scene = s;
+function initBuslines(lat, lon) {
+    latitude = lat;
+    longitude = lon;
+    scene = $('a-scene');
     getBuslines();
 }
 

@@ -1,8 +1,9 @@
-var position, scene = null;
+var latitude, longitude, scene = null;
 
-function initVenues(p, s) {
-    position = p;
-    scene = s;
+function initVenues(lat, lon) {
+    latitude = lat;
+    longitude = lon;
+    scene = $('a-scene');
     getVenues();
 }
 
@@ -11,7 +12,7 @@ function getVenues() {
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
         '&v=20200528' +
-        '&ll=' + position.coords.latitude + ',' + position.coords.longitude;
+        '&ll=' + latitude + ',' + longitude;
 
     $.ajax({
         dataType: "json",
@@ -29,11 +30,11 @@ function getVenues() {
 
 function venuesToAR(venues) {
     venues.forEach((venue) => {
-        var latitude = venue.location.lat;
-        var longitude = venue.location.lng;
+        var lat = venue.location.lat;
+        var lon = venue.location.lng;
         var icon = document.createElement('a-image');
 
-        icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+        icon.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${lon}`);
         icon.setAttribute('src', 'img/star-icon.png');
         icon.setAttribute('look-at', '[gps-camera]');
         icon.setAttribute('scale', '10 10')
