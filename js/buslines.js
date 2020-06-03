@@ -73,8 +73,7 @@ function createLine(arr) {
 function drawToAR(lines) {
     var entity = document.createElement('a-entity');
     lines.forEach((line, index) => {
-        console.log(line);
-        $(entity).attr("Test" + index, "Hallo");
+        $(entity).attr("Test" + index, line);
     });
     scene.appendChild(entity);
 }
