@@ -67,14 +67,9 @@ function createLine(arr) {
         result += line;
     }
 
-    console.log(result);
-    //drawToAR(finalArr);
+    drawToAR(result);
 }
 
 function drawToAR(lines) {
-    lines.forEach((line) => {
-        console.log(line[0]);
-        var line = document.createElement('a-entity');
-        line.innerHTML = "";
-    });
+    console.log(lines);
 }
