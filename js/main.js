@@ -36,8 +36,15 @@ function locate() {
 locate();
 
 // call locate every 5 seconds... forever
-setInterval(locate, 5000);
+setInterval(init, 5000);
 
+function init(){
+    locate();
+    // hier werden die anderen Methoden aufgerufen
+    // initVenues(lat,lon)
+    // initBusstops(lat, lon)
+    // initBusLines(lat, lon)
+}
 //adds a button to the map that relocates to the current position
 L.easyButton('<img src="./crosshairs-gps.png">', function(btn, map){
     map.setView([lat,lon]);
