@@ -3,7 +3,7 @@ var latitude, longitude, scene = null;
 function initBuslines(lat, lon) {
     latitude = lat;
     longitude = lon;
-    scene = $('a-scene');
+    scene = $('a-scene')[0];
 }
 
 function getBuslines(busstop) {
