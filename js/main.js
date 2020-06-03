@@ -71,8 +71,11 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("map").style.display="flex";
+        if (!mapview)
+        {
+          map.locate({setView: true, maxZoom: 20});
+        }
         mapview=true;
-        map.locate({setView: true, maxZoom: 20});
     }
     else{
         document.getElementById("map").style.display="none";
