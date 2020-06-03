@@ -1,5 +1,7 @@
 #map {
   height: 100%;
   width: 100%;
+}
+#mapview{
   display:none;
 }
