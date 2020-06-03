@@ -20,7 +20,7 @@ function onLocationFound(e) {
     var latLngs = [ current_position.getLatLng() ];
     lat=latLngs[0].lat;
     lon=latLngs[0].lng;
-    map.panTo(new L.LatLng(lat, lon));
+    //map.panTo(new L.LatLng(lat, lon));
 
 }
 
@@ -33,7 +33,7 @@ map.on('locationerror', onLocationError);
 //relocates to the current position on the map
 function locate(){
   if(mapview){
-    //map.locate({setView: true, maxZoom: 20});
+    map.locate({setView: true, maxZoom: 20});
   }
 }
 map.locate({setView: true, maxZoom: 20});
