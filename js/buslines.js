@@ -65,7 +65,7 @@ function createLine(arr) {
     for (i = 0; i < arr.length; i++) {
         //var line = 'line__' + [i] + '="start: ' + arr[i] + '; end: ' + arr[i + 1] + '; color: red" ';
         var line = 'Test ';
-        result.concat(line);
+        result += line;
     }
 
     console.log(result);
