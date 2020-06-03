@@ -54,8 +54,6 @@ function LineStringToAR(linestring) {
         var direction = getDirection(lat1, lon1, lat2, lon2);
         var xz = getXZ(direction, distance);
 
-        console.log(x);
-
         arr.push([xz[0], 1, xz[1]]);
     });
 
