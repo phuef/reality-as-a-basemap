@@ -63,9 +63,9 @@ function LineStringToAR(linestring) {
 function createLine(arr) {
     var result = '';
     for (i = 0; i < arr.length; i++) {
-        var line = 'line__' + [i] + '="start: ' + arr[i] + '; end: ' + arr[i + 1] + '; color: red" ';
-        console.log(typeof (line));
-        //result.concat(line);
+        //var line = 'line__' + [i] + '="start: ' + arr[i] + '; end: ' + arr[i + 1] + '; color: red" ';
+        var line = 'Test ';
+        result.concat(line);
     }
 
     //drawToAR(finalArr);
