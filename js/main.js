@@ -48,10 +48,6 @@ function init(){
     // initBusstops(lat, lon)
     // initBusLines(lat, lon)
 }
-//adds a button to the map that relocates to the current position
-L.easyButton('<img src="img/crosshairs-gps.png">', function(btn, map){
-    map.setView([lat,lon]);
-}).addTo(map);
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener("deviceorientation", function(event) {
