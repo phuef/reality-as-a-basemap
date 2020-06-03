@@ -31,12 +31,12 @@ map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
 //relocates to the current position on the map
-function locate() {
+function locate(){
   if(mapview){
     map.locate({setView: true, maxZoom: 20});
   }
 }
-locate();
+map.locate({setView: true, maxZoom: 20});
 
 // call locate every 5 seconds... forever
 setInterval(init, 5000);
