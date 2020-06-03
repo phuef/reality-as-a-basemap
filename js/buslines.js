@@ -61,17 +61,15 @@ function LineStringToAR(linestring) {
 };
 
 function createLine(arr) {
-    var result = '';
+    var result = [];
     for (i = 0; i < arr.length; i++) {
         var line = 'line__' + [i] + '="start: ' + arr[i] + '; end: ' + arr[i + 1] + '; color: red" ';
-        result += line;
+        result.push(line);
     }
 
     drawToAR(result);
 }
 
 function drawToAR(lines) {
-    var object = '<a-entity' + lines + '></<a-entity>';
-    var line = document.createElement(object);
-    scene.appendChild(line);
+    console.log(lines);
 }
