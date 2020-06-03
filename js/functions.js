@@ -41,6 +41,7 @@ function getDirection(lat1, lon1, lat2, lon2) {
 }
 
 function getXZ(direct, distance) {
+    console.log(direct, distance);
     if (direct <= 90) {
         var x = Math.sin(alpha) * distance
         var z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2)));

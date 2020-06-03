@@ -57,7 +57,7 @@ function LineStringToAR(linestring) {
         arr.push([xz[0], 1, xz[1]]);
     });
 
-    console.log(arr);
+    //console.log(arr);
     //createLine(arr);
 };
 
