@@ -65,16 +65,12 @@ if (window.DeviceOrientationEvent) {
 // changes  the shown elements when the devices orientation changes
 var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
-        var weatherText = document.querySelector('a-text');
-        weatherText.setAttribute('value', "vertical");
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("map").style.display="flex";
 
     }
     else{
-        var weatherText = document.querySelector('a-text');
-        weatherText.setAttribute('value', "horizontal");
         document.getElementById("map").style.display="none";
         document.getElementById("scene").style.display="flex";
     }
