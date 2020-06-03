@@ -70,6 +70,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
+        document.getElementById("dummerSlider").style.display="none";
         document.getElementById("mapview").style.display="flex";
         if (!mapview)
         {
@@ -80,6 +81,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     else{
         document.getElementById("mapview").style.display="none";
         document.getElementById("scene").style.display="flex";
+        document.getElementById("dummerSlider").style.display="flex";
         mapview = false;
     }
 }
