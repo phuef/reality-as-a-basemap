@@ -36,8 +36,11 @@
   </head>
 
   <body style="margin : 0px; overflow: hidden;">
-  <div id="map"></div>
-  <a-scene
+  <div id="mapview">
+    <button type="button"><img src="img/crosshairs-gps.png"></button>
+    <div id="map"></div>
+  </div>
+ <a-scene
      id= "scene"
      vr-mode-ui="enabled: false"
      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
