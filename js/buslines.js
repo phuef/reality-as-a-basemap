@@ -50,14 +50,16 @@ function LineStringToAR(linestring) {
         var lat2 = coordinate[1];
         var lon2 = coordinate[0];
 
-        var z = getDistance(lat1, lon1, lat2, lon2);
-        var direct = direc(lat1, lon1, lat2, lon2);
-        var x = getX(direct, z);
+        var distance = getDistance(lat1, lon1, lat2, lon2);
+        var direction = getDirection(lat1, lon1, lat2, lon2);
+        var x = getXZ(direction, distance);
 
-        arr.push([x, 1, z]);
+        console.log(x);
+
+        //arr.push([x, 1, z]);
     });
 
-    createLine(arr);
+    //createLine(arr);
 };
 
 function createLine(arr) {
