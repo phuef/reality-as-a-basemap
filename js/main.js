@@ -19,7 +19,7 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-var layerControl = L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
+var layerControl = L.control.layers(null, baseMaps, {position:'bottomleft'}).addTo(map);
 //L.control.layers(baseMaps).addTo(map);
 
 
