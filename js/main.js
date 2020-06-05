@@ -6,7 +6,7 @@ var mapview=false;
 var map = L.map('map')
 mapLink = '<a href="http://www.esri.com/">Esri</a>';
 L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; '+mapLink+', '+wholink,
+    attribution: '&copy; '+mapLink,
     maxZoom: 20,
 }).addTo(map);
 
