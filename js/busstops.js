@@ -67,7 +67,10 @@ function busStopsToAR(busStops) {
  */
 function busStopsToMap(busStops) {
     console.log(busStops);
-    console.log(map);
+    busStops.forEach((busStop) => {
+
+
+    });
 }
 
 /**
