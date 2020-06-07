@@ -81,5 +81,5 @@ function filterBusStops(busStops) {
         return a.properties.distance - b.properties.distance;
     });
 
-    return busstops.slice(0, 5); //Return only the 5 nearest bus stops
+    return busStops.slice(0, 5); //Return only the 5 nearest bus stops
 }
