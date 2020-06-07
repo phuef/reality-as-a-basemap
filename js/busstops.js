@@ -82,8 +82,6 @@ function busStopsToMap(busStops) {
         L.marker([lat, lon], { icon: marker })
             .bindPopup(popup)
             .addTo(map); //Bind the popup to the marker and add it to map
-
-        $('.leaflet-popup-content').addClass('justify-content-center');
     });
 }
 
@@ -92,9 +90,9 @@ function busStopToPopup(busStop) {
     var direction = busStop.properties.richtung;
     var distance = busStop.properties.distance;
 
-    var html = '<i class="fas fa-bus fa-3x"></i><br><h5>' + name
-        + '</h5><br><i class="fas fa-map-signs fa-2x"></i> ' + direction
-        + '<br><i class="fas fa-ruler fa-2x"></i> ' + distance;
+    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h5>' + name
+        + '</h5><br><i class="fas fa-map-signs fa-2x"></i>  ' + direction
+        + '<br><i class="fas fa-ruler fa-2x"></i>  ' + distance + ' m';
 
     return html;
 }
