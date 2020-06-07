@@ -90,7 +90,7 @@ function busStopToPopup(busStop) {
     var direction = busStop.properties.richtung;
     var distance = busStop.properties.distance;
 
-    return '<h3>Bushaltestelle</h3><br>';
+    return '<h4>Bushaltestelle</h4><br><h5>' + name + '</h5><br>';
 }
 
 /**
