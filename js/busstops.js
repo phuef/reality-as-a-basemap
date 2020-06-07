@@ -65,7 +65,6 @@ function busStopsToAR(busStops) {
  * @param {*} busStops 
  */
 function busStopsToMap(busStops) {
-    console.log(map);
     busStops.forEach((busStop) => {
         var marker = L.ExtraMarkers.icon({
             icon: 'fa-star',
