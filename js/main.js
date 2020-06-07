@@ -1,21 +1,9 @@
-var map;
 var current_position;
 var lat, lon;
 var mapview = false;
 
 $(document).ready(() => {
-    //initialize leaflet map
-    map = L.map('map')
-    mapLink = '<a href="http://www.esri.com/">Esri</a>';
-    wholink = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: '&copy; ' + mapLink + ', ' + wholink,
-        maxZoom: 20,
-    }).addTo(map);
-
     locate();
-
-    addButton();
 });
 
 function onLocationFound(e) {
@@ -35,6 +23,8 @@ function onLocationFound(e) {
 function onLocationError(e) {
     alert(e.message);
 }
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
 
 //relocates to the current position on the map
 function locate() {
@@ -43,33 +33,31 @@ function locate() {
     }
 }
 
+map.locate({ setView: true, maxZoom: 20 });
+
 function init() {
     // hier werden die anderen Methoden aufgerufen
     initVenues(lat, lon);
     initBusstops(lat, lon);
     initBuslines(lat, lon);
 }
+//adds a button to the map that relocates to the current position
+L.easyButton('<img src="img/crosshairs-gps.png">', function (btn, map) {
+    map.setView([lat, lon]);
+}).addTo(map);
 
-function addButton() {
-    //adds a button to the map that relocates to the current position
-    L.easyButton('<img src="img/crosshairs-gps.png">', function (btn, map) {
-        map.setView([lat, lon]);
-    }).addTo(map);
+if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", function (event) {
+        // alpha: rotation around z-axis
+        var rotateDegrees = event.alpha;
+        // gamma: left to right
+        var leftToRight = event.gamma;
+        // beta: front back motion
+        var frontToBack = event.beta;
 
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", function (event) {
-            // alpha: rotation around z-axis
-            var rotateDegrees = event.alpha;
-            // gamma: left to right
-            var leftToRight = event.gamma;
-            // beta: front back motion
-            var frontToBack = event.beta;
-
-            handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
-        }, true);
-    }
+        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+    }, true);
 }
-
 // changes  the shown elements when the devices orientation changes
 var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack < 30 && frontToBack > -30) {
