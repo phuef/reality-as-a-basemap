@@ -21,6 +21,7 @@ function getVenues() {
         success: function (data) {
             var venues = data.response.venues;
             venuesToAR(venues);
+            venuesToMap(venues);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -40,5 +41,23 @@ function venuesToAR(venues) {
         icon.setAttribute('scale', '10 10')
 
         scene.appendChild(icon);
+    });
+}
+
+function venuesToMap(venues) {
+    venues.forEach((venue) => {
+        console.log(venue);
+        //Create new marker for each venue
+        var marker = L.ExtraMarkers.icon({
+            icon: 'fa-star', //Font Awesome Icon
+            markerColor: 'yellow',
+            prefix: 'far' //Font Awesome Prefix
+        });
+
+        //Bus stop location
+        var lat = venue.geometry.coordinates[1];
+        var lon = venue.geometry.coordinates[0];
+
+        L.marker([lat, lon], { icon: marker }).addTo(map); //Add marker to map
     });
 }
