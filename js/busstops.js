@@ -9,7 +9,6 @@ var latitude, longitude, scene = null;
  * @param {Number} lon - Longitude of the current position
  */
 function initBusstops(lat, lon) {
-    console.log(typeof (lat, lon));
     latitude = lat;
     longitude = lon;
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
@@ -42,36 +41,45 @@ function getBusStops() {
  * @param {GeoJSON} busStops - Nearest bus stops to visualize in AR
  */
 function busStopsToAR(busStops) {
-    busstops.forEach((busstop) => {
-        var latitude = busstop.geometry.coordinates[1];
-        var longitude = busstop.geometry.coordinates[0];
+    busStops.forEach((busStop) => {
+        //Store the position for each bus stop
+        var latitude = busStop.geometry.coordinates[1];
+        var longitude = busStop.geometry.coordinates[0];
+        //Create a new marker in AR
         var icon = document.createElement('a-image');
-
-        icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
-        icon.setAttribute('src', 'img/busstop.png');
-        icon.setAttribute('look-at', '[gps-camera]');
-        icon.setAttribute('scale', '20 20')
-
+        //Set the necessary attributes for the marker
+        icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`); //The marker's location
+        icon.setAttribute('src', 'img/busstop.png'); //Image for the marker
+        icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
+        icon.setAttribute('scale', '20 20'); //The marker's size
+        //Add the marker to the scene
         scene.appendChild(icon);
-
+        //Get the affiliated bus lines for each bus stop
         getBuslines(busstop);
     });
 }
 
-function filterBusStops(busstops) {
-    busstops.forEach((busstop) => {
+/**
+ * This function filters the downloaded bus stops, so only the nearest five ones are shown.
+ * @param {Array} busStops 
+ */
+function filterBusStops(busStops) {
+    busStops.forEach((busStop) => {
+        //The user's current position
         var lat1 = latitude;
         var lon1 = longitude;
-        var lat2 = busstop.geometry.coordinates[1];
-        var lon2 = busstop.geometry.coordinates[0];
+        //The bus stop's location
+        var lat2 = busStop.geometry.coordinates[1];
+        var lon2 = busStop.geometry.coordinates[0];
 
-        var distance = getDistance(lat1, lon1, lat2, lon2);
-        busstop.properties.distance = distance;
+        var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
+        busstop.properties.distance = distance; //Store the distance within the GeoJSON object
     });
 
-    busstops.sort((a, b) => {
+    //Sort all bus stops for their distances to the user
+    busStops.sort((a, b) => {
         return a.properties.distance - b.properties.distance;
     });
 
-    return busstops.slice(0, 5);
+    return busstops.slice(0, 5); //Return only the 5 nearest bus stops
 }
