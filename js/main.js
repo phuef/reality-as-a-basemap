@@ -2,6 +2,10 @@ var current_position;
 var lat, lon;
 var mapview = false;
 
+$(document).ready(() => {
+    locate();
+});
+
 //initialize leaflet map
 var map = L.map('map')
 mapLink = '<a href="http://www.esri.com/">Esri</a>';
@@ -22,6 +26,7 @@ function onLocationFound(e) {
     lon = latLngs[0].lng;
     map.panTo(new L.LatLng(lat, lon));
 
+    init();
 }
 
 function onLocationError(e) {
@@ -36,16 +41,10 @@ function locate() {
         map.locate({ setView: true, maxZoom: 20 });
     }
 }
+
 map.locate({ setView: true, maxZoom: 20 });
 
-// call locate every 5 seconds... forever
-$(document).ready(() => {
-    //setInterval(init, 5000);
-    init();
-});
-
 function init() {
-    locate();
     // hier werden die anderen Methoden aufgerufen
     initVenues(lat, lon);
     initBusstops(lat, lon);
