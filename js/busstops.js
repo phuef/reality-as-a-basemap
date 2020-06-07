@@ -1,30 +1,47 @@
+//Make the current position and the A-Frame scene object globally available
 var latitude, longitude, scene = null;
 
+/**
+ * This function gets called by the main script every time the user changes his position.
+ * It makes the user's position globally available to the script, sets the A-Frame scene object 
+ * and downloads busstops through Conterra's Bus API for Muenster.
+ * @param {Number} lat - Latitude of the current position
+ * @param {Number} lon - Longitude of the current position
+ */
 function initBusstops(lat, lon) {
+    console.log(typeof (lat, lon));
     latitude = lat;
     longitude = lon;
-    scene = $('a-scene')[0];
-    getBusstops();
+    scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
+    getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
 
-function getBusstops() {
-    const conterra_url = 'https://rest.busradar.conterra.de/prod/haltestellen';
+/**
+ * This function calls Conterra's Bus API to download all bus stops for Muenster in JSON format.
+ */
+function getBusStops() {
+    const url = 'https://rest.busradar.conterra.de/prod/haltestellen';
 
     $.ajax({
         dataType: "json",
-        url: conterra_url,
+        url: url,
         data: {},
         success: function (data) {
-            var busstops = filterBusstops(data.features);
-            busstopsToAR(busstops);
+            var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
+            busStopsToAR(busStops); //Visualize the bus stops in AR
+            busStopsToMap(busStops); //Visualize the bus stops in the 2D map
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+            console.log(textStatus, errorThrown); //Throw an error if the API call fails
         }
     });
 }
 
-function busstopsToAR(busstops) {
+/**
+ * 
+ * @param {GeoJSON} busStops - Nearest bus stops to visualize in AR
+ */
+function busStopsToAR(busStops) {
     busstops.forEach((busstop) => {
         var latitude = busstop.geometry.coordinates[1];
         var longitude = busstop.geometry.coordinates[0];
@@ -41,7 +58,7 @@ function busstopsToAR(busstops) {
     });
 }
 
-function filterBusstops(busstops) {
+function filterBusStops(busstops) {
     busstops.forEach((busstop) => {
         var lat1 = latitude;
         var lon1 = longitude;
