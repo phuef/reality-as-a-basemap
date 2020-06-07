@@ -3,17 +3,17 @@ var lat, lon;
 var mapview = false;
 
 $(document).ready(() => {
+    //initialize leaflet map
+    var map = L.map('map')
+    mapLink = '<a href="http://www.esri.com/">Esri</a>';
+    wholink = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; ' + mapLink + ', ' + wholink,
+        maxZoom: 20,
+    }).addTo(map);
+
     locate();
 });
-
-//initialize leaflet map
-var map = L.map('map')
-mapLink = '<a href="http://www.esri.com/">Esri</a>';
-wholink = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; ' + mapLink + ', ' + wholink,
-    maxZoom: 20,
-}).addTo(map);
 
 function onLocationFound(e) {
     if (current_position) {
@@ -32,8 +32,6 @@ function onLocationFound(e) {
 function onLocationError(e) {
     alert(e.message);
 }
-map.on('locationfound', onLocationFound);
-map.on('locationerror', onLocationError);
 
 //relocates to the current position on the map
 function locate() {
