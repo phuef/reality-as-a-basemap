@@ -28,7 +28,7 @@ function getBusStops() {
         data: {},
         success: function (data) {
             var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
-            busStopsToAR(busStops); //Visualize the bus stops in AR
+            //busStopsToAR(busStops); //Visualize the bus stops in AR
             busStopsToMap(busStops); //Visualize the bus stops in the 2D map
         },
         error: function (jqXHR, textStatus, errorThrown) {
