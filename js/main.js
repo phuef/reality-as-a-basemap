@@ -41,8 +41,6 @@ function locate() {
     }
 }
 
-map.locate({ setView: true, maxZoom: 20 });
-
 function init() {
     // hier werden die anderen Methoden aufgerufen
     initVenues(lat, lon);
