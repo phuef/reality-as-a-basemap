@@ -66,16 +66,18 @@ function busStopsToAR(busStops) {
  */
 function busStopsToMap(busStops) {
     busStops.forEach((busStop) => {
+        //Create new marker for each bus stop
         var marker = L.ExtraMarkers.icon({
-            icon: 'fa-bus',
-            markerColor: 'yellow',
-            prefix: 'fas'
+            icon: 'fa-bus', //Font Awesome Icon
+            markerColor: 'green',
+            prefix: 'fas' //Font Awesome Prefix
         });
 
+        //Bus stop location
         var lat = busStop.geometry.coordinates[1];
         var lon = busStop.geometry.coordinates[0];
 
-        L.marker([lat, lon], { icon: marker }).addTo(map);
+        L.marker([lat, lon], { icon: marker }).addTo(map); //Add marker to map
     });
 }
 
