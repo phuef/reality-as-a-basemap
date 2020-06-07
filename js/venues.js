@@ -46,7 +46,6 @@ function venuesToAR(venues) {
 
 function venuesToMap(venues) {
     venues.forEach((venue) => {
-        console.log(venue);
         //Create new marker for each venue
         var marker = L.ExtraMarkers.icon({
             icon: 'fa-star', //Font Awesome Icon
