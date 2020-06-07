@@ -79,7 +79,7 @@ function busStopsToMap(busStops) {
 
         busStopToPopup(busStop);
 
-        L.marker([lat, lon], { icon: marker }).bindPopup().addTo(map); //Add marker to map
+        L.marker([lat, lon], { icon: marker }).bindPopup().addTo(map); //Bind the popup to the marker and add it to map
     });
 }
 
