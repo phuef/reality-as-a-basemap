@@ -11,7 +11,7 @@ var latitude, longitude, scene = null;
 function initBusstops(lat, lon) {
     latitude = lat;
     longitude = lon;
-    console.log(latitude, longitude);
+    //console.log(latitude, longitude);
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
@@ -38,7 +38,7 @@ function getBusStops() {
 }
 
 /**
- * 
+ * This function visualizes the bus stops as markers in AR
  * @param {GeoJSON} busStops - Nearest bus stops to visualize in AR
  */
 function busStopsToAR(busStops) {
@@ -61,11 +61,11 @@ function busStopsToAR(busStops) {
 }
 
 /**
- * 
+ * This function visualizes the bus stops as markers on the 2D map
  * @param {*} busStops 
  */
 function busStopsToMap(busStops) {
-
+    console.log(busStops);
 }
 
 /**
