@@ -54,9 +54,10 @@ function venuesToMap(venues) {
             prefix: 'far' //Font Awesome Prefix
         });
 
-        //Bus stop location
-        var lat = venue.geometry.coordinates[1];
-        var lon = venue.geometry.coordinates[0];
+        //Venue location
+        var lat = venue.location.lat;
+        var lon = venue.location.lng;
+
 
         L.marker([lat, lon], { icon: marker }).addTo(map); //Add marker to map
     });
