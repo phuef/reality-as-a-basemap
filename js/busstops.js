@@ -82,6 +82,8 @@ function busStopsToMap(busStops) {
         L.marker([lat, lon], { icon: marker })
             .bindPopup(popup)
             .addTo(map); //Bind the popup to the marker and add it to map
+
+        $('.leaflet-popup-content').addClass('justify-content-center');
     });
 }
 
