@@ -13,7 +13,7 @@ function initBusstops(lat, lon) {
     longitude = lon;
     //console.log(latitude, longitude);
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
-    map = $('#map'); //Store the Leaflet map object to add objects later on
+    map = $('#map')[0]; //Store the Leaflet map object to add objects later on
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
 
