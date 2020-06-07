@@ -72,7 +72,10 @@ function busStopsToMap(busStops) {
             prefix: 'far'
         });
 
-        L.marker(busStop.geometry.coordinates, { icon: marker }).addTo(map);
+        var lat = busStop.geometry.coordinates[1];
+        var lon = busStop.geometry.coordinates[0];
+
+        L.marker([lat, lon], { icon: marker }).addTo(map);
     });
 }
 
