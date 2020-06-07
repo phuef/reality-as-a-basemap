@@ -60,6 +60,14 @@ function busStopsToAR(busStops) {
 }
 
 /**
+ * 
+ * @param {*} busStops 
+ */
+function busStopsToMap(busStops) {
+
+}
+
+/**
  * This function filters the downloaded bus stops, so only the nearest five ones are shown.
  * @param {Array} busStops 
  */
