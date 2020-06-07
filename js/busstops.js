@@ -77,9 +77,9 @@ function busStopsToMap(busStops) {
         var lat = busStop.geometry.coordinates[1];
         var lon = busStop.geometry.coordinates[0];
 
-        L.marker([lat, lon], { icon: marker }).addTo(map); //Add marker to map
-
         busStopToPopup(busStop);
+
+        L.marker([lat, lon], { icon: marker }).bindPopup().addTo(map); //Add marker to map
     });
 }
 
