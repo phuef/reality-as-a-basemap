@@ -91,8 +91,8 @@ function busStopToPopup(busStop) {
     var distance = busStop.properties.distance;
 
     var html = '<i class="fas fa-bus fa-3x"></i><br><h5>' + name
-        + '</h5><br><h6>Richtung: ' + direction
-        + '</h6><br><h6>Entfernung: ' + distance;
+        + '</h5><br><i class="fas fa-map-signs"></i>' + direction
+        + '<br><i class="fas fa-ruler"></i>' + distance;
 
     return html;
 }
