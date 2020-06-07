@@ -14,6 +14,8 @@ $(document).ready(() => {
     }).addTo(map);
 
     locate();
+
+    addButton();
 });
 
 function onLocationFound(e) {
@@ -47,23 +49,27 @@ function init() {
     initBusstops(lat, lon);
     initBuslines(lat, lon);
 }
-//adds a button to the map that relocates to the current position
-L.easyButton('<img src="img/crosshairs-gps.png">', function (btn, map) {
-    map.setView([lat, lon]);
-}).addTo(map);
 
-if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", function (event) {
-        // alpha: rotation around z-axis
-        var rotateDegrees = event.alpha;
-        // gamma: left to right
-        var leftToRight = event.gamma;
-        // beta: front back motion
-        var frontToBack = event.beta;
+function addButton() {
+    //adds a button to the map that relocates to the current position
+    L.easyButton('<img src="img/crosshairs-gps.png">', function (btn, map) {
+        map.setView([lat, lon]);
+    }).addTo(map);
 
-        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
-    }, true);
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function (event) {
+            // alpha: rotation around z-axis
+            var rotateDegrees = event.alpha;
+            // gamma: left to right
+            var leftToRight = event.gamma;
+            // beta: front back motion
+            var frontToBack = event.beta;
+
+            handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+        }, true);
+    }
 }
+
 // changes  the shown elements when the devices orientation changes
 var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack < 30 && frontToBack > -30) {
