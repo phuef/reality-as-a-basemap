@@ -95,14 +95,22 @@ function venueToPopup(venue) {
     console.log(venue);
 
     var name = venue.name;
-    var category = venue.categeories;
-    console.log(category);
+    var category = null;
     var street = venue.location.formattedAddress[0];
     var city = venue.location.formattedAddress[1];
     var country = venue.location.formattedAddress[2];
 
+    if (venue.categories.length <= 0) {
+        category = "unbekannt";
+    } else {
+        category = venue.categories[0].name;
+    }
+
     var html = '<i class="fas fa-star fa-3x"></i><br><br><h5>' + name
-        + '</h5><br>';
+        + '</h5><br><h3>' + category
+        + '</h3><br><h3>' + street
+        + '</h3><br><h3>' + city
+        + '</h3><br><h3>' + country;
 
     return html;
 }
