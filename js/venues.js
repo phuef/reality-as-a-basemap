@@ -101,8 +101,7 @@ function venueToPopup(venue) {
     var country = venue.location.formattedAddress[2];
 
     var html = '<i class="fas fa-star fa-3x"></i><br><br><h5>' + name
-        + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
-        + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m';
+        + '</h5><br>';
 
     return html;
 }
