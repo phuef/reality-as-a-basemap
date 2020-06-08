@@ -98,5 +98,5 @@ function venueToPopup(venue) {
           + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
           + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m'; */
 
-    return html;
+    //return html;
 }
