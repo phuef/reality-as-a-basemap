@@ -95,9 +95,9 @@ function busStopToPopup(busStop) {
     var direction = busStop.properties.richtung;
     var distance = busStop.properties.distance;
 
-    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h5>' + name
-        + '</h5><br><i class="fas fa-map-signs fa-2x"></i><h3>stadt' + direction
-        + '</h3><br><i class="fas fa-walking fa-2x"></i><h3>' + distance + ' m</h3>';
+    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h3>' + name
+        + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>stadt' + direction
+        + '</h5><br><i class="fas fa-walking fa-2x"></i><h5>' + distance + ' m</h5>';
 
     return html;
 }

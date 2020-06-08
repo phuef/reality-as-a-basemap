@@ -106,11 +106,11 @@ function venueToPopup(venue) {
         category = venue.categories[0].name;
     }
 
-    var html = '<i class="fas fa-star fa-3x"></i><br><br><h5>' + name
-        + '</h5><br><h3>' + category
-        + '</h3><br><h3>' + street
-        + '</h3><br><h3>' + city
-        + '</h3><br><h3>' + country;
+    var html = '<i class="fas fa-star fa-3x"></i><br><br><h3>' + name
+        + '</h3><br><h5>' + category
+        + '</h5><br><h5>' + street
+        + '</h5><br><h5>' + city
+        + '</h5><br><h5>' + country;
 
     return html;
 }
