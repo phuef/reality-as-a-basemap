@@ -94,9 +94,15 @@ function venuesToMap(venues) {
 function venueToPopup(venue) {
     console.log(venue);
 
-    /*   var html = '<i class="fas fa-bus fa-3x"></i><br><br><h5>' + name
-          + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
-          + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m'; */
+    var name = venue.name;
+    var category = venue.categeories[0].name;
+    var street = venue.location.formattedAddress[0];
+    var city = venue.location.formattedAddress[1];
+    var country = venue.location.formattedAddress[2];
 
-    //return html;
+    var html = '<i class="fas fa-star fa-3x"></i><br><br><h5>' + name
+        + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
+        + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m';
+
+    return html;
 }
