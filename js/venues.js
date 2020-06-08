@@ -96,6 +96,7 @@ function venueToPopup(venue) {
 
     var name = venue.name;
     var category = venue.categeories;
+    console.log(category);
     var street = venue.location.formattedAddress[0];
     var city = venue.location.formattedAddress[1];
     var country = venue.location.formattedAddress[2];
