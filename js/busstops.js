@@ -62,11 +62,11 @@ function busStopsToAR(busStops) {
 
 /**
  * This function visualizes the bus stops as markers on the 2D map
- * @param {*} busStops 
+ * @param {Array} busStops 
  */
 function busStopsToMap(busStops) {
     busStops.forEach((busStop) => {
-        //Create new marker for each bus stop
+        //Define a new marker for each bus stop
         var marker = L.ExtraMarkers.icon({
             icon: 'fa-bus', //Font Awesome Icon
             markerColor: 'green',
@@ -79,12 +79,17 @@ function busStopsToMap(busStops) {
 
         var popup = busStopToPopup(busStop);
 
+        //Create a new Leaflet marker and bind a popup to it
         L.marker([lat, lon], { icon: marker })
             .bindPopup(popup)
-            .addTo(map); //Bind the popup to the marker and add it to map
+            .addTo(map);
     });
 }
 
+/**
+ * This function takes a single bus stop and creates the html content to show within the marker's popup
+ * @param {GeoJSON} busStop - A single bus stop in GeoJSON format
+ */
 function busStopToPopup(busStop) {
     var name = busStop.properties.lbez;
     var direction = busStop.properties.richtung;
