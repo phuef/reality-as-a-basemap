@@ -93,13 +93,10 @@ function venuesToMap(venues) {
  */
 function venueToPopup(venue) {
     console.log(venue);
-    var name = venue.properties.lbez;
-    var direction = venue.properties.richtung;
-    var distance = venue.properties.distance;
 
-    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h5>' + name
-        + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
-        + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m';
+    /*   var html = '<i class="fas fa-bus fa-3x"></i><br><br><h5>' + name
+          + '</h5><br><i class="fas fa-map-signs fa-2x"></i>stadt' + direction
+          + '<br><i class="fas fa-walking fa-2x"></i>' + distance + ' m'; */
 
     return html;
 }
