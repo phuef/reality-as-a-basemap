@@ -39,6 +39,8 @@ function busLineToMap(busLine) {
         },
         style: lineStyle
     }).addTo(map);
+
+    console.log(busLine);
 }
 
 function getLineString(fahrtbezeichner) {
