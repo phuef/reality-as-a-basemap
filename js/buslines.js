@@ -16,16 +16,18 @@ function getBuslines(busstop) {
         data: {},
         success: function (data) {
             if (data.length > 0) {
-                console.log(data);
                 var fahrtbezeichner = data[0].fahrtbezeichner;
-                //getLineString(fahrtbezeichner);
-                busLinesToMap();
+                getLineString(fahrtbezeichner);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
         }
     });
+}
+
+function busLineToMap(busLine) {
+    console.log(busLine);
 }
 
 function getLineString(fahrtbezeichner) {
@@ -36,6 +38,7 @@ function getLineString(fahrtbezeichner) {
         data: {},
         success: function (data) {
             LineStringToAR(data);
+            busLineToMap(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
