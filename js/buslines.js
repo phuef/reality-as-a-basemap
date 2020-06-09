@@ -54,7 +54,7 @@ function busLineToPopup(busLine) {
 
     var html = '<i class="fas fa-bus fa-3x"></i><br><br><h3>' + id
         + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>' + direction
-        + '</h5><br><i class="far fa-clock fa-2x"></i><h5>' + delay + ' m</h5>';
+        + '</h5><br><i class="far fa-clock fa-2x"></i><h5>' + delay + ' </h5>';
 
     return html;
 }
