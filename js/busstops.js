@@ -53,20 +53,14 @@ function busStopsToAR(busStops) {
         icon.setAttribute('src', 'img/busstop.png'); //Image for the marker
         icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         icon.setAttribute('scale', '50 50'); //The marker's size
-        icon.setAttribute('clickhandler', true);
+        //icon.setAttribute('clickhandler', true);
         //Add the marker to the scene
         scene.appendChild(icon);
         //Get the affiliated bus lines for each bus stop
         getBuslines(busStop);
     });
 
-    AFRAME.registerComponent("clickhandler", {
-        init: function () {
-            this.el.addEventListener("click", () => {
-                alert("TEST BUS STOP");
-            });
-        }
-    });
+    console.log($('a-image'));
 }
 
 /** 
