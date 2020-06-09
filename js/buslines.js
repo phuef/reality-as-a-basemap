@@ -53,8 +53,8 @@ function busLineToPopup(busLine) {
     var delay = busLine.properties.delay;
 
     var html = '<i class="fas fa-bus fa-3x"></i><br><br><h3>' + id
-        + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>stadt' + direction
-        + '</h5><br><i class="fas fa-walking fa-2x"></i><h5>' + delay + ' m</h5>';
+        + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>' + direction
+        + '</h5><br><i class="far fa-clock fa-2x"></i><h5>' + delay + ' m</h5>';
 
     return html;
 }
