@@ -60,7 +60,9 @@ function busStopsToAR(busStops) {
         getBuslines(busStop);
     });
 
-    console.log($('a-image'));
+    $('a-image').addEventListener('click', () => {
+        alert("Angeklickt!");
+    });
 }
 
 /** 
