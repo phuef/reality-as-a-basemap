@@ -92,8 +92,6 @@ function venuesToMap(venues) {
  * @param {GeoJSON} busStop - A single venue in GeoJSON format
  */
 function venueToPopup(venue) {
-    console.log(venue);
-
     var name = venue.name;
     var category = null;
     var street = venue.location.formattedAddress[0];

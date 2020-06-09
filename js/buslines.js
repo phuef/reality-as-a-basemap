@@ -18,6 +18,8 @@ function getBuslines(busstop) {
             if (data.length > 0) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
                 getLineString(fahrtbezeichner);
+                console.log(data);
+                busLinesToMap();
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
