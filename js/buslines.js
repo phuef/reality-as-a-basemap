@@ -37,7 +37,7 @@ function busLineToMap(busLine) {
 
     L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
-            line.bindPopup("Testpopup");
+            line.bindPopup(popup);
         },
         style: lineStyle
     }).addTo(map);
