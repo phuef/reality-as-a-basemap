@@ -16,9 +16,9 @@ function getBuslines(busstop) {
         data: {},
         success: function (data) {
             if (data.length > 0) {
-                var fahrtbezeichner = data[0].fahrtbezeichner;
-                getLineString(fahrtbezeichner);
                 console.log(data);
+                var fahrtbezeichner = data[0].fahrtbezeichner;
+                //getLineString(fahrtbezeichner);
                 busLinesToMap();
             }
         },
