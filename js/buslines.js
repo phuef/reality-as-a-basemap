@@ -27,10 +27,17 @@ function getBuslines(busstop) {
 }
 
 function busLineToMap(busLine) {
+    const lineStyle = {
+        "color": "green",
+        "weight": 5,
+        "opacity": 0.65
+    }
+
     L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
             line.bindPopup("Testpopup");
-        }
+        },
+        style: lineStyle
     }).addTo(map);
 }
 
