@@ -27,7 +27,7 @@ function getBuslines(busstop) {
 }
 
 function busLineToMap(busLine) {
-    console.log(busLine);
+    L.geoJSON(busLine).addTo(map);
 }
 
 function getLineString(fahrtbezeichner) {
