@@ -59,10 +59,6 @@ function busStopsToAR(busStops) {
         //Get the affiliated bus lines for each bus stop
         getBuslines(busStop);
     });
-
-    $('a-image').on('click', () => {
-        alert("Angeklickt!");
-    });
 }
 
 /** 
