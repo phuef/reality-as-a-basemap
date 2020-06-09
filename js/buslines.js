@@ -119,7 +119,7 @@ function drawToAR(lines) {
     AFRAME.registerComponent("clickhandler", {
         init: function () {
             this.el.addEventListener("click", () => {
-                alert("TEST");
+                alert("TEST LINIE");
             });
         }
     });
