@@ -108,6 +108,19 @@ function drawToAR(lines) {
     var entity = document.createElement('a-entity');
     lines.forEach((line, index) => {
         $(entity).attr("line__" + index, line);
+        $(entity).attr("color", "green");
+        $(entity).attr('look-at', '[gps-camera]');
+        $(entity).attr('scale', '20 20');
+        $(entity).attr('clickhandler', true);
     });
+
     scene.appendChild(entity);
+
+    AFRAME.registerComponent("clickhandler", {
+        init: function () {
+            this.el.addEventListener("click", () => {
+                alert("TEST");
+            });
+        }
+    });
 }
