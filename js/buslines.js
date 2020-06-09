@@ -33,14 +33,30 @@ function busLineToMap(busLine) {
         "opacity": 0.9
     }
 
+    var popup = busLineToPopup(busLine);
+
     L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
             line.bindPopup("Testpopup");
         },
         style: lineStyle
     }).addTo(map);
+}
 
-    console.log(busLine);
+/**
+ * This function takes a single bus line and creates the html content to show within the marker's popup
+ * @param {GeoJSON} busStop - A single bus stop in GeoJSON format
+ */
+function busLineToPopup(busLine) {
+    var id = busLine.properties.linienid;
+    var direction = busLine.properties.richtungstext;
+    var delay = busLine.properties.delay;
+
+    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h3>' + id
+        + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>stadt' + direction
+        + '</h5><br><i class="fas fa-walking fa-2x"></i><h5>' + delay + ' m</h5>';
+
+    return html;
 }
 
 function getLineString(fahrtbezeichner) {
