@@ -111,12 +111,12 @@ function drawToAR(lines) {
         $(entity).attr("color", "green");
         $(entity).attr('look-at', '[gps-camera]');
         $(entity).attr('scale', '20 20');
-        $(entity).attr('clickhandler', true);
+        $(entity).attr('clickhandler_busLines', true);
     });
 
     scene.appendChild(entity);
 
-    AFRAME.registerComponent("clickhandler", {
+    AFRAME.registerComponent("clickhandler_busLines", {
         init: function () {
             this.el.addEventListener("click", () => {
                 alert("TEST LINIE");
