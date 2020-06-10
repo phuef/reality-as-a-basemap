@@ -46,9 +46,9 @@ L.LeafletControlBoilerplate = L.Control.extend({
 
 });
 
-//L.leafletControlBoilerplate = function(options) {
-//  return new L.LeafletControlBoilerplate(options);
-//};
+L.leafletControlBoilerplate = function(options) {
+  return new L.LeafletControlBoilerplate(options);
+};
 L.leafletControlBoilerplate.addTo(map);
 //var layerControl = L.control.layers(null, baseMaps).addTo(map);
 var initialised=false;
