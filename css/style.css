@@ -1,11 +1,13 @@
 #map {
   height: 100%;
   width: 100%;
+  z-index: 1;
 }
 #settings{
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 2;
 }
 #checkboxSwitchView{
    transform: scale(2);
