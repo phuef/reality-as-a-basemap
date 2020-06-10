@@ -111,7 +111,6 @@ function drawToAR(lines) {
         $(entity).attr("color", "green");
         $(entity).attr('look-at', '[gps-camera]');
         $(entity).attr('scale', '20 20');
-        //$(entity).attr('clickhandler', true);
     });
 
     scene.appendChild(entity);
