@@ -50,6 +50,8 @@ function busStopsToAR(busStops) {
         var name = busStop.properties.lbez;
         var direction = busStop.properties.richtung;
         var distance = busStop.properties.distance;
+
+        console.log(name, direction, distance);
         //Create a new marker in AR
         var icon = document.createElement('a-image');
         //Set the necessary attributes for the marker
