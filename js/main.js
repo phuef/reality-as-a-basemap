@@ -20,11 +20,25 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-var layerControl = L.control.layers(null, baseMaps, {position:'topright'}).addTo(map);
-//L.control.layers(baseMaps).addTo(map);
+var layerControl = L.control.layers(null, baseMaps).addTo(map);
+
+onAdd: function(map) {
+  var controlElementTag = 'div';
+  var controlElementClass = 'leaflet-control-example';
+  var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
+
+  document.getElementsByClassName('leaflet-control-example').style.position = "fixed";
+  document.getElementsByClassName('leaflet-control-example').style.top = "0";
+  document.getElementsByClassName('leaflet-control-example').style.left = "0";
+
+  // Hier können noch weitere Elemente hinzugefügt werden.
+  // Außerdem können Sie hier einem Element Events hinzufügen.
+
+  return controlElement;
+}
+
 
 var initialised=false;
-
 
 function onLocationFound(e) {
     if (current_position) {
