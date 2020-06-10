@@ -72,7 +72,7 @@ function busStopsToAR(busStops) {
 
 function busStopToInfobox(event) {
     var infobox = $("#infobox")[0];
-    infobox.innerHTML = event.target.getAttribute('name') + '<br>'
+    infobox.innerHTML = '' + event.target.getAttribute('name') + '<br>'
         + event.target.getAttribute('direction') + '<br>'
         + event.taregt.getAttribute('distance');
 }
