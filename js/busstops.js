@@ -49,6 +49,7 @@ function busStopsToAR(busStops) {
 
         var name = busStop.properties.lbez;
         var direction = busStop.properties.richtung;
+        console.log(typeof (direction));
         var distance = busStop.properties.distance;
 
         console.log(name, direction, distance);
