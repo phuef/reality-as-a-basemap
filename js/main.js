@@ -5,10 +5,10 @@ var mapview = false;
 deviceheight= window.innerHeight;
 devicewidth= window.innerWidth;
 console.log(devicewidth);
-document.getElementById("mapview").style.width=devicewidth;
-document.getElementById("mapview").style.height=deviceheight;
-document.getElementById("map").style.width=devicewidth;
-document.getElementById("map").style.height=deviceheight;
+document.getElementById("mapview").style.width= devicewidth +"px";
+document.getElementById("mapview").style.height=deviceheight +"px";
+document.getElementById("map").style.width=devicewidth +"px";
+document.getElementById("map").style.height=deviceheight +"px";
 
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
