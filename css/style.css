@@ -1,6 +1,11 @@
 #map {
-  height: 90%;
+  height: 100%;
   width: 100%;
+}
+#settings{
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 #checkboxSwitchView{
    transform: scale(2);

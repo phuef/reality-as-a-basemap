@@ -46,13 +46,15 @@
   <div class="container fixed-top justify-content-space-between" id="ui1">
     <input type="checkbox" id="checkboxSwitchView">
 
-    <button id= "settings" onclick="getSettings" type="button"><img src="img/cog-outline.png"></button>
+
   </div>
+
   <div id="mapview">
     <div class="container fixed-bottom justify-content-center" id="ui2">
     <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
       </div>
     <div id="map"></div>
+    <button id= "settings" onclick="getSettings" type="button"><img src="img/cog-outline.png"></button>
   </div>
   <div id = "scene">
     <a-scene
