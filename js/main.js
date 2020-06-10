@@ -20,25 +20,37 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-var layerControl = L.control.layers(null, baseMaps).addTo(map);
-onAdd();
 
-function onAdd(map) {
-  var controlElementTag = 'div';
-  var controlElementClass = 'leaflet-control-example';
-  var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
+L.LeafletControlBoilerplate = L.Control.extend({
+  options: {
+    position: 'topright'
+  },
 
-  document.getElementsByClassName('leaflet-control-example').style.position = "fixed";
-  document.getElementsByClassName('leaflet-control-example').style.top = "0";
-  document.getElementsByClassName('leaflet-control-example').style.left = "0";
+  initialize: function(options) {
+    L.Util.setOptions(this, options);
+    // ...
 
-  // Hier können noch weitere Elemente hinzugefügt werden.
-  // Außerdem können Sie hier einem Element Events hinzufügen.
+  },
 
-  return controlElement;
-}
+  onAdd: function(map) {
+    var controlElementTag = 'div';
+    var controlElementClass = 'leaflet-control-boilerplate';
+    var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
+    // ...
+    return controlElement;
+  },
 
+  onRemove: function(map) {
+    // ...
+  },
 
+});
+
+//L.leafletControlBoilerplate = function(options) {
+//  return new L.LeafletControlBoilerplate(options);
+//};
+L.leafletControlBoilerplate.addTo(map);
+//var layerControl = L.control.layers(null, baseMaps).addTo(map);
 var initialised=false;
 
 function onLocationFound(e) {
@@ -102,6 +114,9 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
+        document.getElementbyClassName('leaflet-control-boilerplate').style.position = "fixed";
+        document.getElementbyClassName('leaflet-control-boilerplate').style.right = "0";
+        document.getElementbyClassName('leaflet-control-boilerplate').style.top = "0";
         document.getElementById("dummerSlider").style.display="none";
         document.getElementById("mapview").style.display="flex";
         if (!mapview)
