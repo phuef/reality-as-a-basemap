@@ -1,18 +1,3 @@
-AFRAME.registerComponent('change-color-on-hover', {
-    init: function () {
-        var data = this.data;
-        var el = this.el;  // <a-box>
-
-        el.addEventListener('mouseenter', function () {
-            alert("Hallo!");
-        });
-
-        /*  el.addEventListener('mouseleave', function () {
-             el.setAttribute('color', defaultColor);
-         }); */
-    }
-});
-
 //Make the current position and the A-Frame scene object globally available
 var latitude, longitude, scene = null;
 
