@@ -4,10 +4,11 @@ var mapview = false;
 
 deviceheight= window.innerHeight;
 devicewidth= window.innerWidth;
-document.getElementById("mapview").width=devicewidth;
-document.getElementById("mapview").height=deviceheight;
-document.getElementById("map").width=devicewidth;
-document.getElementById("map").height=deviceheight;
+console.log(devicewidth);
+document.getElementById("mapview").style.width=devicewidth;
+document.getElementById("mapview").style.height=deviceheight;
+document.getElementById("map").style.width=devicewidth;
+document.getElementById("map").style.height=deviceheight;
 
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
