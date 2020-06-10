@@ -2,13 +2,6 @@ var current_position;
 var lat, lon;
 var mapview = false;
 
-deviceheight= window.innerHeight;
-devicewidth= window.innerWidth;
-console.log(devicewidth);
-document.getElementById("mapview").style.width= devicewidth +"px";
-document.getElementById("mapview").style.height=deviceheight +"px";
-document.getElementById("map").style.width=devicewidth +"px";
-document.getElementById("map").style.height=deviceheight +"px";
 
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -92,6 +85,15 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   if(checked){}
     else{
     if (frontToBack<30 && frontToBack>-30){
+
+      var deviceheight= window.innerHeight;
+      var devicewidth= window.innerWidth;
+      console.log(devicewidth);
+      console.log(deviceheight);
+      document.getElementById("mapview").style.width= devicewidth +"px";
+      document.getElementById("mapview").style.height=deviceheight +"px";
+      document.getElementById("map").style.width=devicewidth +"px";
+      document.getElementById("map").style.height=deviceheight +"px";
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("dummerSlider").style.display="none";
