@@ -62,7 +62,7 @@ function busStopsToAR(busStops) {
         icon.setAttribute('name', name);
         icon.setAttribute('direction', direction);
         icon.setAttribute('distance', distance);
-        icon.setAttribute('cursorOnBusStop', true);
+        icon.setAttribute('cursoronbusstop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
         //Get the affiliated bus lines for each bus stop
