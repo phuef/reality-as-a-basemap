@@ -30,14 +30,6 @@ function getBusStops() {
             var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
             busStopsToMap(busStops); //Visualize the bus stops in the 2D map
-            AFRAME.registerComponent('cursor_busstop', {
-                init: (el) => {
-                    console.log(el);
-                    this.el.addEventListener('mouseenter', () => {
-                        alert("TEST");
-                    });
-                }
-            });
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown); //Throw an error if the API call fails
@@ -66,6 +58,16 @@ function busStopsToAR(busStops) {
         scene.appendChild(icon);
         //Get the affiliated bus lines for each bus stop
         getBuslines(busStop);
+    });
+
+    AFRAME.registerComponent('cursor_busstop', {
+        init: () => {
+            var el = this.el;
+            console.log(el);
+            el.addEventListener('mouseenter', () => {
+                alert("TEST");
+            });
+        }
     });
 }
 
