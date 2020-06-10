@@ -62,7 +62,7 @@ function busStopsToAR(busStops) {
         icon.setAttribute('name', name);
         icon.setAttribute('direction', direction);
         icon.setAttribute('distance', distance);
-        icon.setAttribute('cursor_busstop', true);
+        icon.setAttribute('cursorOnBusStop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
         //Get the affiliated bus lines for each bus stop
@@ -72,7 +72,9 @@ function busStopsToAR(busStops) {
 
 function busStopToInfobox(event) {
     var infobox = $("#infobox")[0];
-    infobox.innerHTML = event.target.getAttribute('name');
+    infobox.innerHTML = event.target.getAttribute('name') + '<br>'
+        + event.target.getAttribute('direction') + '<br>'
+        + event.taregt.getAttribute('distance');
 }
 
 /** 

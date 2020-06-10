@@ -1,4 +1,4 @@
-AFRAME.registerComponent('cursor_busstop', {
+AFRAME.registerComponent('cursorOnBusStop', {
     init: function () {
         this.el.addEventListener('mouseenter', busStopToInfobox);
     }
