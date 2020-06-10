@@ -50,8 +50,9 @@ L.leafletControlBoilerplate = function(options) {
   return new L.LeafletControlBoilerplate(options);
 };
 
-var layercontrol = L.leafletControlBoilerplate({position: 'topright'}).addTo(map);
+var layercontrol = L.leafletControlBoilerplate(null, baseMaps, {position: 'topright'}).addTo(map);
 //var layerControl = L.control.layers(null, baseMaps).addTo(map);
+//L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
 
 
 var initialised=false;
