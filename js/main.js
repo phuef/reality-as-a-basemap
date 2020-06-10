@@ -21,6 +21,7 @@ var baseMaps = {
   "Topographic": topoMap
 };
 var layerControl = L.control.layers(null, baseMaps).addTo(map);
+onAdd();
 
 function onAdd(map) {
   var controlElementTag = 'div';
