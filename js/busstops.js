@@ -47,12 +47,12 @@ function busStopsToAR(busStops) {
         var latitude = busStop.geometry.coordinates[1];
         var longitude = busStop.geometry.coordinates[0];
         //Create a new marker in AR
-        var icon = document.createElement('a-image');
+        var icon = document.createElement('a-entity');
         //Set the necessary attributes for the marker
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`); //The marker's location
-        icon.setAttribute('src', 'img/busstop.png'); //Image for the marker
         icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         icon.setAttribute('scale', '20 20'); //The marker's size
+        icon.setAttribute('dialog-popup', 'openIconImage: ../img/busstop.img');
         icon.setAttribute('cursor_busstop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
