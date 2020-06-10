@@ -22,7 +22,7 @@ var baseMaps = {
 var layerControl = L.control.layers(null, baseMaps, {position:'topright'}).addTo(map);
 //L.control.layers(baseMaps).addTo(map);
 
-
+var initialised=false;
 
 
 function onLocationFound(e) {
@@ -35,7 +35,10 @@ function onLocationFound(e) {
     lat=latLngs[0].lat;
     lon=latLngs[0].lng;
     //map.panTo(new L.LatLng(lat, lon));
-    init()
+    if(!initialised){
+        init();
+        initialised=true;
+    }
 
 }
 
