@@ -2,15 +2,16 @@ AFRAME.registerComponent('cursor_busstop', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
-            var name = ""
-            var direction = "";
-            var distance = "";
+            var name = $(e.target).attr('name')
+            var direction = $(e.target).attr('direction');
+            var distance = $(e.target).attr('distance');
+
             infobox.innerHTML = '<i class="fas fa-bus fa-3x"></i><br>'
-                + $(e.target).attr('name') + '<br><br>'
+                + name + '<br><br>'
                 + '<i class="fas fa-map-signs fa-2x"></i> stadt'
-                + e.target.getAttribute('direction') + '<br>'
+                + direction + '<br>'
                 + '<i class="fas fa-walking fa-2x"></i> '
-                + e.target.getAttribute('distance');
+                + distance;
         });
 
         this.el.addEventListener('mouseleave', () => {
