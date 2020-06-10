@@ -90,10 +90,8 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
       var devicewidth= window.innerWidth;
       console.log(devicewidth);
       console.log(deviceheight);
-      document.getElementById("mapview").style.width= devicewidth +"px";
-      document.getElementById("mapview").style.height= deviceheight +"px";
-      document.getElementById("map").style.width=devicewidth +"px";
-      document.getElementById("map").style.height=deviceheight +"px";
+      document.getElementsByTagName("BODY")[0].style.width= devicewidth +"px";
+      document.getElementsByTagName("BODY")[0].style.height= deviceheight +"px";
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("dummerSlider").style.display="none";
