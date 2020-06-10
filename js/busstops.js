@@ -70,6 +70,15 @@ function busStopsToAR(busStops) {
     });
 }
 
+/**
+ * 
+ * @param {*} event 
+ */
+function busStopToInfobox(event) {
+    var infobox = $("#infobox")[0];
+    infobox.innerHTML = e.target.getAttribute('name');
+}
+
 /** 
  * This function visualizes the bus stops as markers on the 2D map
  * @param {Array} busStops 
