@@ -1,13 +1,7 @@
-#map {
-  height: 100%;
-  width: 100%;
-}
 #checkboxSwitchView{
    transform: scale(2);
 }
 #mapview{
-  height: 100%;
-  width: 100%;
   display:none;
 }
 #scene{
