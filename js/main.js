@@ -20,7 +20,7 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-var layerControl = L.control.layers(null, baseMaps, {position:'topright'}).addTo(map);
+var layerControl = L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
 //L.control.layers(baseMaps).addTo(map);
 
 var initialised=false;
@@ -85,13 +85,6 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   if(checked){}
     else{
     if (frontToBack<30 && frontToBack>-30){
-
-      var deviceheight= window.innerHeight;
-      var devicewidth= window.innerWidth;
-      console.log(devicewidth);
-      console.log(deviceheight);
-      document.getElementsByTagName("BODY")[0].style.width= devicewidth +"px";
-      document.getElementsByTagName("BODY")[0].style.height= deviceheight +"px";
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("dummerSlider").style.display="none";
