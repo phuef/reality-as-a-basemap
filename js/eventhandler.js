@@ -7,7 +7,7 @@ AFRAME.registerComponent('cursor_busstop', {
                 + '<i class="fas fa-map-signs fa-2x"></i> stadt'
                 + e.target.getAttribute('direction') + '<br>'
                 + '<i class="fas fa-walking fa-2x"></i> '
-                + e.target.getAttribute('distance');
+                + e.target.getAttribute('distance').slice(0, 2);
         });
 
         this.el.addEventListener('mouseleave', () => {
