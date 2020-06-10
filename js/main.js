@@ -1,6 +1,6 @@
 var current_position;
-var lat,lon;
-var mapview=false;
+var lat, lon;
+var mapview = false;
 
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -58,9 +58,9 @@ setInterval(init, 5000);
 function init(){
     locate();
     // hier werden die anderen Methoden aufgerufen
-    // initVenues(lat,lon)
-    // initBusstops(lat, lon)
-    // initBusLines(lat, lon)
+    initVenues(lat, lon);
+    initBusstops(lat, lon);
+    initBuslines(lat, lon);
 }
 
 if (window.DeviceOrientationEvent) {
@@ -75,8 +75,6 @@ if (window.DeviceOrientationEvent) {
         handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
     }, true);
 }
-
-
 // changes  the shown elements when the devices orientation changes
 var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   var checked= document.getElementById("checkboxSwitchView").checked;

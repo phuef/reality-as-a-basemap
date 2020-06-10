@@ -18,7 +18,7 @@ function getDistance(lat1, lon1, lat2, lon2) {
     return d;
 }
 
-var direc = function (lat1, lon1, lat2, lon2) {
+function getDirection(lat1, lon1, lat2, lon2) {
     //degrees to radiants
     var R = 6371e3; // metres
     var φ1 = lat1 * (Math.PI / 180);
@@ -40,29 +40,29 @@ var direc = function (lat1, lon1, lat2, lon2) {
     return brng;
 }
 
-function getX(direct, z) {
-    var x = null;
+function getXZ(direct, distance) {
+    var alpha, x, z = null;
+
     if (direct <= 90) {
-        var alpha = Math.abs(direct - 90);
-        x = Math.sin(alpha) * z
+        alpha = direct;
+        x = Math.sin(alpha) * distance
+        z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2)));
     }
     else if (direct <= 180) {
-        var direct_2 = 90 - (180 - direct);
-        var alpha = Math.abs(direct_2 - 90);
-        x = (Math.sin(alpha) * z);
+        alpha = direct - 90;
+        z = (Math.sin(alpha) * distance) * (-1);
+        x = Math.sqrt((Math.pow(distance, 2) - Math.pow(z, 2)));
     }
     else if (direct <= 270) {
-        var direct_3 = 90 - (direct - 180);
-        var alpha = Math.abs(direct_3 - 90);
-        x = (Math.sin(alpha) * z) * (-1);
+        alpha = direct - 180;
+        x = (Math.sin(alpha) * distance) * (-1);
+        z = Math.sqrt((Math.pow(distance, 2) - Math.pow(x, 2))) * (-1);
     }
     else {
-        var direct_4 = 90 - (360 - direct);
-        //console.log(direct_4);
-        var alpha = Math.abs(direct_4 - 90)
-        //console.log(alpha);
-        x = (Math.sin(alpha) * z) * (-1);
+        alpha = direct - 270;
+        z = (Math.sin(alpha) * distance);
+        x = Math.sqrt(Math.pow(distance, 2) - Math.pow(z, 2)) * (-1);
     }
 
-    return x;
+    return [x, z];
 }
