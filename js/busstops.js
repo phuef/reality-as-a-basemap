@@ -61,8 +61,8 @@ function busStopsToAR(busStops) {
     });
 
     AFRAME.registerComponent('cursor_busstop', {
-        init: () => {
-            console.log(this.el);
+        init: (el) => {
+            console.log(el);
             this.el.addEventListener('mouseenter', () => {
                 alert("TEST");
             });
