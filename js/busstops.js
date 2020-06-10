@@ -46,6 +46,10 @@ function busStopsToAR(busStops) {
         //Store the position for each bus stop
         var latitude = busStop.geometry.coordinates[1];
         var longitude = busStop.geometry.coordinates[0];
+
+        var name = busStop.properties.lbez;
+        var direction = busStop.properties.richtung;
+        var distance = busStop.properties.distance;
         //Create a new marker in AR
         var icon = document.createElement('a-image');
         //Set the necessary attributes for the marker
@@ -53,6 +57,9 @@ function busStopsToAR(busStops) {
         icon.setAttribute('src', 'img/busstop.png'); //Image for the marker
         icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         icon.setAttribute('scale', '20 20'); //The marker's size
+        icon.setAttribute('name', name);
+        icon.setAttribute('direction', direction);
+        icon.setAttribute('distance', distance);
         icon.setAttribute('cursor_busstop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
