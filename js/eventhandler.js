@@ -6,6 +6,7 @@ AFRAME.registerComponent('cursor_busstop', {
                 + e.target.getAttribute('name') + '<br>'
                 + '<i class="fas fa-map-signs fa-2x"></i> stadt'
                 + e.target.getAttribute('direction') + '<br>'
+                + '<i class="fas fa-walking fa-2x"></i>'
                 + e.target.getAttribute('distance');
         });
 
