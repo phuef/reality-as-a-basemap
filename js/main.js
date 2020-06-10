@@ -118,9 +118,9 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
-        document.getElementsByClassName('leaflet-control-boilerplate').style.position = "fixed";
-        document.getElementsByClassName('leaflet-control-boilerplate').style.right = "0";
-        document.getElementsByClassName('leaflet-control-boilerplate').style.top = "0";
+        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.position = "fixed";
+        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.right = "0";
+        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.top = "0";
         document.getElementById("dummerSlider").style.display="none";
         document.getElementById("mapview").style.display="flex";
         if (!mapview)
