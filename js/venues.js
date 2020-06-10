@@ -31,7 +31,7 @@ function getVenues() {
         data: {},
         success: function (data) {
             var venues = data.response.venues; //Extract venues
-            //venuesToAR(venues); //Visualize venues in AR
+            venuesToAR(venues); //Visualize venues in AR
             venuesToMap(venues); //Visualize venues in 2D
         },
         error: function (jqXHR, textStatus, errorThrown) {
