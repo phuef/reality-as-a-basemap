@@ -2,6 +2,13 @@ var current_position;
 var lat, lon;
 var mapview = false;
 
+deviceheight= window.innerHeight;
+devicewidth= window.innerWidth;
+document.getElementById("mapview").width=devicewidth;
+document.getElementById("mapview").height=deviceheight;
+document.getElementById("map").width=devicewidth;
+document.getElementById("map").height=deviceheight;
+
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
