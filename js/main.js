@@ -35,6 +35,7 @@ function onLocationFound(e) {
     lat=latLngs[0].lat;
     lon=latLngs[0].lng;
     //map.panTo(new L.LatLng(lat, lon));
+    init()
 
 }
 
@@ -54,7 +55,6 @@ function locate(){
 
 // call locate every 5 seconds... forever
 //setInterval(init, 5000);
-init()
 function init(){
     locate();
     // hier werden die anderen Methoden aufgerufen
