@@ -49,8 +49,11 @@ L.LeafletControlBoilerplate = L.Control.extend({
 L.leafletControlBoilerplate = function(options) {
   return new L.LeafletControlBoilerplate(options);
 };
-L.leafletControlBoilerplate({ position: 'bottomright' }).addTo(map);
+
+var layercontrol = L.leafletControlBoilerplate({position: 'topright'}).addTo(map);
 //var layerControl = L.control.layers(null, baseMaps).addTo(map);
+
+
 var initialised=false;
 
 function onLocationFound(e) {
