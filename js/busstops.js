@@ -59,16 +59,6 @@ function busStopsToAR(busStops) {
         //Get the affiliated bus lines for each bus stop
         getBuslines(busStop);
     });
-
-    AFRAME.registerComponent('cursor_busstop', {
-        init: () => {
-            var el = this.el;
-            console.log(el);
-            el.addEventListener('mouseenter', () => {
-                alert("TEST");
-            });
-        }
-    });
 }
 
 /** 
