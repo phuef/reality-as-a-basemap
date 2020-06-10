@@ -6,14 +6,11 @@
    transform: scale(2);
 }
 #mapview{
+  height: 100%;
+  width: 100%;
   display:none;
 }
 #scene{
   height: 100%;
   width: 100%;
-}
-
-body, html{
-  height: 100%;
-  width: 100%
 }

@@ -91,7 +91,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
       console.log(devicewidth);
       console.log(deviceheight);
       document.getElementById("mapview").style.width= devicewidth +"px";
-      document.getElementById("mapview").style.height=deviceheight +"px";
+      document.getElementById("mapview").style.height= deviceheight +"px";
       document.getElementById("map").style.width=devicewidth +"px";
       document.getElementById("map").style.height=deviceheight +"px";
         var scene = document.querySelector('a-scene');
