@@ -53,8 +53,8 @@ function locate(){
 
 
 // call locate every 5 seconds... forever
-setInterval(init, 5000);
-
+//setInterval(init, 5000);
+init()
 function init(){
     locate();
     // hier werden die anderen Methoden aufgerufen
