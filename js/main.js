@@ -22,7 +22,7 @@ var baseMaps = {
 };
 var layerControl = L.control.layers(null, baseMaps).addTo(map);
 
-onAdd: function(map) {
+function onAdd(map) {
   var controlElementTag = 'div';
   var controlElementClass = 'leaflet-control-example';
   var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
