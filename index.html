@@ -53,7 +53,16 @@
     <div class="container fixed-bottom justify-content-center" id="ui2">
     <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
       </div>
-      <button id= "settings" onclick="getSettings" type="button"><img src="img/cog-outline.png"></button>
+      <button id= "settings" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
+        <div id="myNav" class="overlay">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="overlay-content">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
     <div id="map"></div>
   </div>
   <div id = "scene">
