@@ -1,10 +1,9 @@
-var current_position;
-var lat, lon;
+var current_position; //the current position on the map as a marker
+var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 
-
+//initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
-
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: '&copy; '+mapLink,
     maxZoom: 20,
@@ -12,7 +11,7 @@ var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/servi
 var topoMap= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
 });
-//initialize leaflet map
+
 var map = L.map('map', {
   layers: [satelliteMap]
 })
@@ -20,55 +19,24 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-/**
-L.LeafletControlBoilerplate = L.Control.extend({
-  options: {
-    position: 'topright'
-  },
-
-  initialize: function(options) {
-    L.Util.setOptions(this, options);
-    // ...
-
-  },
-
-  onAdd: function(map) {
-    var controlElementTag = 'div';
-    var controlElementClass = 'leaflet-control-boilerplate';
-    var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
-    // ...
-    return controlElement;
-  },
-
-  onRemove: function(map) {
-    // ...
-  },
-
-});
-
-L.leafletControlBoilerplate = function(options) {
-  return new L.LeafletControlBoilerplate(options);
-};
-
-var layercontrol = L.leafletControlBoilerplate(null, baseMaps, {position: 'topright'}).addTo(map);
-*/
 
 var layerControl = L.control.layers(null, baseMaps).addTo(map);
-//L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
 
 
 var initialised=false;
 
+/**
+ * @desc deletes the old marker and creates a new one for the updated location
+ *
+ */
 function onLocationFound(e) {
     if (current_position) {
         map.removeLayer(current_position);
     }
     current_position= L.marker(e.latlng).addTo(map);
-
     var latLngs = [ current_position.getLatLng() ];
     lat=latLngs[0].lat;
     lon=latLngs[0].lng;
-    //map.panTo(new L.LatLng(lat, lon));
     if(!initialised){
         init();
         initialised=true;
@@ -77,12 +45,16 @@ function onLocationFound(e) {
 }
 
 function onLocationError(e) {
-    alert(e.message);
+    console.log(e.message);
+    //alert(e.message);
 }
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
-//relocates to the current position on the map
+/**
+ * @desc Function to relocate to the current position on the map
+ *
+ */
 function locate(){
   if(mapview){
     map.locate();
@@ -90,8 +62,13 @@ function locate(){
 }
 
 
-// call locate every 5 seconds... forever
+// call init every 5 seconds... forever
 //setInterval(init, 5000);
+
+/**
+ * @desc Function to initiate everything
+ *
+ */
 function init(){
     locate();
     // hier werden die anderen Methoden aufgerufen
@@ -112,7 +89,10 @@ if (window.DeviceOrientationEvent) {
         handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
     }, true);
 }
-// changes  the shown elements when the devices orientation changes
+/**
+ * @desc changes  the shown elements when the devices orientation changes
+ *
+ */
 var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   var checked= document.getElementById("checkboxSwitchView").checked;
   if(checked){}
@@ -126,6 +106,9 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         {
           map.locate({setView: true, maxZoom: 20});
         }
+        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.position= 'fixed';
+        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.right= '0';
+        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.top= '0';
         mapview=true;
     }
     else{
@@ -135,8 +118,4 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         mapview = false;
     }
   }
-}
-
-function kelvinInCelsius(kelvin){
-    return kelvin-273.15;
 }
