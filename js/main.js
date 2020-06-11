@@ -20,7 +20,7 @@ var baseMaps = {
   "Satellite": satelliteMap,
   "Topographic": topoMap
 };
-
+/**
 L.LeafletControlBoilerplate = L.Control.extend({
   options: {
     position: 'topright'
@@ -51,7 +51,9 @@ L.leafletControlBoilerplate = function(options) {
 };
 
 var layercontrol = L.leafletControlBoilerplate(null, baseMaps, {position: 'topright'}).addTo(map);
-//var layerControl = L.control.layers(null, baseMaps).addTo(map);
+*/
+
+var layerControl = L.control.layers(null, baseMaps).addTo(map);
 //L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
 
 
@@ -118,9 +120,6 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     if (frontToBack<30 && frontToBack>-30){
         var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
-        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.position = "fixed";
-        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.right = "0";
-        document.getElementsByClassName('leaflet-control-boilerplate leaflet-control').style.top = "0";
         document.getElementById("dummerSlider").style.display="none";
         document.getElementById("mapview").style.display="flex";
         if (!mapview)
