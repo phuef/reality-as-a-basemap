@@ -17,7 +17,14 @@
   width: 100%;
   display:none;
 }
+
 #scene{
   height: 100%;
   width: 100%;
+}
+.leaflet-top
+.leaflet-right{
+  top: 0;
+  right: 0;
+  z-index: 2;
 }
