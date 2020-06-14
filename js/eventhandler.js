@@ -11,8 +11,8 @@ AFRAME.registerComponent('cursor_busstop', {
                 + '<i class="fas fa-map-signs fa-2x"></i> stadt'
                 + direction + '<br>'
                 + '<i class="fas fa-walking fa-2x"></i> '
-                + distance + '<br>'
-                + '<a class="btn btn-success" href="#"><i class="fas fa-crosshairs"></i> Navigate</a>';
+                + distance + '<br><br>'
+                + '<a class="btn btn-success" href="#" onclick="navigate()"><i class="fas fa-crosshairs"></i> Navigate</a>';
         });
 
         this.el.addEventListener('mouseleave', () => {
@@ -20,3 +20,7 @@ AFRAME.registerComponent('cursor_busstop', {
         });
     }
 });
+
+function navigate() {
+    alert("Navigate!");
+}
