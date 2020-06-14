@@ -51,7 +51,6 @@ function busStopsToAR(busStops) {
         var direction = busStop.properties.richtung;
         var distance = busStop.properties.distance;
 
-        console.log(name, direction, distance);
         //Create a new marker in AR
         var icon = document.createElement('a-image');
         //Set the necessary attributes for the marker
@@ -65,6 +64,7 @@ function busStopsToAR(busStops) {
         icon.setAttribute('cursor_busstop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
+        console.log(icon);
         //Get the affiliated bus lines for each bus stop
         //getBuslines(busStop);
     });
