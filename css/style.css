@@ -1,6 +1,7 @@
 #map {
   height: 100%;
   width: 100%;
+  z-index: 1;
 }
 #settings{
   position: fixed;
@@ -71,5 +72,5 @@
   }
 }
 #myNav{
-  z-index: 2000
+  z-index: 2000;
 }
