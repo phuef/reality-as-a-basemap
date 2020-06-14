@@ -4,7 +4,7 @@ AFRAME.registerComponent('cursor_busstop', {
         this.el.addEventListener('mouseenter', (e) => {
             var name = $(e.target).attr('name')
             var direction = $(e.target).attr('direction');
-            var distance = $(e.target).attr('distance');
+            var distance = $(e.target).attr('distancemsg');
             var latlon = $(e.target).attr('latlon');
 
             infobox.innerHTML = '<i class="fas fa-bus fa-3x"></i><br>'

@@ -49,7 +49,6 @@ function busStopsToAR(busStops) {
 
         var name = busStop.properties.lbez;
         var direction = busStop.properties.richtung;
-        var distance = busStop.properties.distance;
 
         //Create a new marker in AR
         var icon = document.createElement('a-image');
@@ -60,7 +59,6 @@ function busStopsToAR(busStops) {
         icon.setAttribute('scale', '20 20'); //The marker's size
         icon.setAttribute('name', name);
         icon.setAttribute('direction', direction);
-        icon.setAttribute('distance', distance);
         icon.setAttribute('latlon', `${latitude},${longitude}`);
         icon.setAttribute('cursor_busstop', true);
         //Add the marker to the scene
