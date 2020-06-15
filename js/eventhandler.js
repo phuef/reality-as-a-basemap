@@ -13,7 +13,7 @@ AFRAME.registerComponent('cursor_busstop', {
                 + direction + '<br>'
                 + '<i class="fas fa-walking fa-2x"></i> '
                 + distance + '<br><br>'
-                + '<a class="btn btn-success" href="#" onclick="navigate(' + latlon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>`;
+                + '<a class="btn btn-success" href="#" onclick="navigate(' + latlon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>';
         });
 
         this.el.addEventListener('mouseleave', () => {
