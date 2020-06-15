@@ -24,5 +24,17 @@ AFRAME.registerComponent('cursor_busstop', {
 });
 
 function navigate(lat, lon) {
-    console.log(lat, lon);
+    const url = 'https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62485b4d99f492634e078eae109d10bc2cf2&start=8.681495,49.41461&end=' + lon + ',' + lat;
+
+    $.ajax({
+        dataType: "json",
+        url: url,
+        data: {},
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown); //Throw an error if the API call fails
+        }
+    });
 }
