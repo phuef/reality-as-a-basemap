@@ -31,7 +31,7 @@ function navigate(lat, lon) {
         url: url,
         data: {},
         success: function (data) {
-            console.log(data);
+            console.log(latitide, longitude);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown); //Throw an error if the API call fails
