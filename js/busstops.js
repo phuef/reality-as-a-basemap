@@ -59,7 +59,8 @@ function busStopsToAR(busStops) {
         icon.setAttribute('scale', '20 20'); //The marker's size
         icon.setAttribute('name', name);
         icon.setAttribute('direction', direction);
-        icon.setAttribute('latlon', `${latitude},${longitude}`);
+        icon.setAttribute('lat', `${latitude}`);
+        icon.setAttribute('lon', `${longitude}`);
         icon.setAttribute('cursor_busstop', true);
         //Add the marker to the scene
         scene.appendChild(icon);
