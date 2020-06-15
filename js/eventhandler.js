@@ -6,6 +6,7 @@ AFRAME.registerComponent('cursor_busstop', {
             var direction = $(e.target).attr('direction');
             var distance = $(e.target).attr('distancemsg');
             var latlon = $(e.target).attr('latlon');
+            console.log(latlon);
 
             infobox.innerHTML = '<i class="fas fa-bus fa-3x"></i><br>'
                 + name + '<br><br>'
