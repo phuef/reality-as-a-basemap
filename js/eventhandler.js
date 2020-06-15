@@ -23,5 +23,5 @@ AFRAME.registerComponent('cursor_busstop', {
 });
 
 function navigate(latlon) {
-    alert(latlon);
+    console.log(latlon);
 }
