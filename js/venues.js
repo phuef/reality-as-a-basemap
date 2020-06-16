@@ -93,24 +93,16 @@ function venuesToMap(venues) {
  */
 function venueToPopup(venue) {
     var name = venue.name;
-    var category = null;
-    var street = venue.location.formattedAddress[0];
-    var city = venue.location.formattedAddress[1];
-    var country = venue.location.formattedAddress[2];
-
-    console.log(name, category, street, city, country);
-
-    if (venue.categories.length <= 0) {
-        category = "unbekannt";
-    } else {
-        category = venue.categories[0].name;
-    }
+    /*  var category = null;
+     var street = venue.location.formattedAddress[0];
+     var city = venue.location.formattedAddress[1];
+     var country = venue.location.formattedAddress[2]; */
 
     var html = '<i class="fas fa-star fa-3x"></i><br><br><h3>' + name
-        + '</h3><br><h5>' + category
-        + '</h5><br><h5>' + street
-        + '</h5><br><h5>' + city
-        + '</h5><br><h5>' + country;
+    /*  + '</h3><br><h5>' + category
+     + '</h5><br><h5>' + street
+     + '</h5><br><h5>' + city
+     + '</h5><br><h5>' + country; */
 
     return html;
 }
