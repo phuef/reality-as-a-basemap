@@ -45,7 +45,7 @@ AFRAME.registerComponent('cursor_venue', {
     }
 });
 
-AFRAME.registerComponent('cursor_venue', {
+AFRAME.registerComponent('cursor_busline', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {

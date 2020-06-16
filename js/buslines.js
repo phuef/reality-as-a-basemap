@@ -84,6 +84,8 @@ function LineStringToAR(linestring) {
         var lat2 = coordinate[1];
         var lon2 = coordinate[0];
 
+        console.log(linestring);
+
         var distance = getDistance(lat1, lon1, lat2, lon2);
         var direction = getDirection(lat1, lon1, lat2, lon2);
         var xz = getXZ(direction, distance);
@@ -105,12 +107,12 @@ function createLine(arr) {
 }
 
 function drawToAR(lines) {
-    console.log(lines);
     var entity = document.createElement('a-entity');
     lines.forEach((line, index) => {
         $(entity).attr("line__" + index, line);
         $(entity).attr('look-at', '[gps-camera]');
         $(entity).attr('scale', '20 20');
+        $(entity).attr('cursor_busline', true);
     });
 
     scene.appendChild(entity);
