@@ -58,8 +58,8 @@ AFRAME.registerComponent('cursor_busline', {
             console.log(id, direction, delay);
 
             infobox.innerHTML = '<i class="fas fa-star fa-3x"></i><br>'
-                + name + '<br><br>'
-                + '<i class="fas fa-map-signs fa-2x"></i> stadt'
+                + id + '<br><br>'
+                + '<i class="fas fa-map-signs fa-2x"></i>'
                 + direction + '<br>'
                 + '<i class="far fa-clock fa-2x"></i>'
                 + delay + '<br>'
