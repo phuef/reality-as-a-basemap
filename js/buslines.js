@@ -77,14 +77,13 @@ function getLineString(fahrtbezeichner) {
 
 function LineStringToAR(linestring) {
     var arr = [];
+    console.log(linestring);
     linestring.geometry.coordinates.forEach((coordinate) => {
 
         var lat1 = latitude;
         var lon1 = longitude;
         var lat2 = coordinate[1];
         var lon2 = coordinate[0];
-
-        console.log(linestring);
 
         var distance = getDistance(lat1, lon1, lat2, lon2);
         var direction = getDirection(lat1, lon1, lat2, lon2);
