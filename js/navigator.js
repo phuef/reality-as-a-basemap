@@ -16,7 +16,7 @@ function initNavigator(lat, lon) {
 }
 
 function getRoute(lat, lon) {
-    const url = 'https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62485b4d99f492634e078eae109d10bc2cf2&start=' + longitude + ',' + latitude + '&end=' + lon + ',' + lat;
+    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${OPENROUTESERVICE_KEY}&start=${longitude},${latitude}&end=${lon},${lat}`;
 
     $.ajax({
         dataType: "json",
