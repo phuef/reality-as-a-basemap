@@ -56,6 +56,9 @@ function venuesToAR(venues) {
         icon.setAttribute('src', 'img/star-icon.png'); //Image for the marker
         icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         icon.setAttribute('scale', '10 10') //The marker's size
+        icon.setAttribute('lat', `${latitude}`);
+        icon.setAttribute('lon', `${longitude}`);
+        icon.setAttribute('cursor_venue', true);
         //Add the marker to the scene
         scene.appendChild(icon);
     });

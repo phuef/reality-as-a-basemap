@@ -59,7 +59,7 @@ function init() {
   locate();
   // hier werden die anderen Methoden aufgerufen
   initVenues(lat, lon);
-  initBusstops(lat, lon);
+  //initBusstops(lat, lon);
   initBuslines(lat, lon);
 }
 
