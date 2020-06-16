@@ -59,8 +59,10 @@ AFRAME.registerComponent('cursor_busline', {
 
             infobox.innerHTML = '<i class="fas fa-star fa-3x"></i><br>'
                 + name + '<br><br>'
-                + '<i class="fas fa-walking fa-2x"></i> '
-                + distance + '<br><br>'
+                + '<i class="fas fa-map-signs fa-2x"></i> stadt'
+                + direction + '<br>'
+                + '<i class="far fa-clock fa-2x"></i>'
+                + delay + '<br>'
                 + '<a class="btn btn-success" href="#" onclick="navigate(' + lat + ', ' + lon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>';
         });
 
