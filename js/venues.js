@@ -49,13 +49,16 @@ function venuesToAR(venues) {
         //Store the position for each venue
         var lat = venue.location.lat;
         var lon = venue.location.lng;
+
+        console.log(venue);
         //Create a new marker in AR
         var icon = document.createElement('a-image');
         //Set the necessary attributes for the marker
         icon.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${lon}`); //The marker's location
         icon.setAttribute('src', 'img/star-icon.png'); //Image for the marker
         icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
-        icon.setAttribute('scale', '10 10') //The marker's size
+        icon.setAttribute('scale', '20 20') //The marker's size
+        icon.setAttribute('name', name);
         icon.setAttribute('lat', `${latitude}`);
         icon.setAttribute('lon', `${longitude}`);
         icon.setAttribute('cursor_venue', true);
