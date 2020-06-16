@@ -58,8 +58,8 @@ function locate() {
 function init() {
   locate();
   // hier werden die anderen Methoden aufgerufen
-  initVenues(lat, lon);
-  //initBusstops(lat, lon);
+  //initVenues(lat, lon);
+  initBusstops(lat, lon);
   initBuslines(lat, lon);
 }
 
