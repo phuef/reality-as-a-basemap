@@ -61,7 +61,7 @@ function busStopsToAR(busStops) {
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_busstop', true); //Handle hovering event
         //Add the marker to the scene
-        scene.appendChild(icon);
+        scene.appendChild(marker);
     });
     //Add the bus stops to the 2D map
     busStopsToMap(busStops);
