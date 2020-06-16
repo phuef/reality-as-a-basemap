@@ -3,7 +3,7 @@ AFRAME.registerComponent('cursor_busstop', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
-            infobox.innerHTML = generateBusStopPopup(e.target);
+            infobox.innerHTML = generateBusStopInfobox(e.target);
         });
 
         this.el.addEventListener('mouseleave', () => {
@@ -17,16 +17,7 @@ AFRAME.registerComponent('cursor_venue', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
-            var name = $(e.target).attr('name')
-            var distance = $(e.target).attr('distancemsg');
-            var lat = $(e.target).attr('lat');
-            var lon = $(e.target).attr('lon');
-
-            infobox.innerHTML = '<i class="fas fa-star fa-3x"></i><br>'
-                + name + '<br><br>'
-                + '<i class="fas fa-walking fa-2x"></i> '
-                + distance + '<br><br>'
-                + '<a class="btn btn-success" href="#" onclick="navigate(' + lat + ', ' + lon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>';
+            infobox.innerHTML = generateVenueInfobox(e.target);
         });
 
         this.el.addEventListener('mouseleave', () => {
