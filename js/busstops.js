@@ -84,29 +84,13 @@ function busStopsToMap(busStops) {
         var b_lat = busStop.geometry.coordinates[1];
         var b_lon = busStop.geometry.coordinates[0];
 
-        var popup = busStopToPopup(busStop);
+        var popup = generateBusStopPopup(busStop);
 
         //Create a new Leaflet marker and bind a popup to it
         L.marker([b_lat, b_lon], { icon: marker })
             .bindPopup(popup)
             .addTo(map);
     });
-}
-
-/**
- * This function takes a single bus stop and creates the html content to show within the marker's popup
- * @param {GeoJSON} busStop - A single bus stop in GeoJSON format
- */
-function busStopToPopup(busStop) {
-    var name = busStop.properties.lbez;
-    var direction = busStop.properties.richtung;
-    var distance = busStop.properties.distance;
-
-    var html = '<i class="fas fa-bus fa-3x"></i><br><br><h3>' + name
-        + '</h3><br><i class="fas fa-map-signs fa-2x"></i><h5>stadt' + direction
-        + '</h5><br><i class="fas fa-walking fa-2x"></i><h5>' + distance + ' m</h5>';
-
-    return html;
 }
 
 /**

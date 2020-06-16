@@ -86,31 +86,11 @@ function venuesToMap(venues) {
         var v_lat = venue.location.lat;
         var v_lon = venue.location.lng;
 
-        var popup = venueToPopup(venue);
+        var popup = generateVenuePopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
         L.marker([v_lat, v_lon], { icon: marker })
             .bindPopup(popup)
             .addTo(map);
     });
-}
-
-/**
- * This function takes a single venue and creates the html content to show within the marker's popup
- * @param {GeoJSON} busStop - A single venue in GeoJSON format
- */
-function venueToPopup(venue) {
-    var name = venue.name;
-    /*  var category = null;
-     var street = venue.location.formattedAddress[0];
-     var city = venue.location.formattedAddress[1];
-     var country = venue.location.formattedAddress[2]; */
-
-    var html = '<i class="fas fa-star fa-3x"></i><br><br><h3>' + name
-    /*  + '</h3><br><h5>' + category
-     + '</h5><br><h5>' + street
-     + '</h5><br><h5>' + city
-     + '</h5><br><h5>' + country; */
-
-    return html;
 }

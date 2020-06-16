@@ -1,3 +1,19 @@
+function generateBusStopPopup(busStop) {
+    var name = busStop.properties.lbez;
+    var direction = busStop.properties.richtung;
+    var distance = busStop.properties.distance;
+
+    return (`<i class="fas fa-bus fa-3x"></i><br> ${name}<br><br>`
+        + `<i class="fas fa-map-signs fa-2x"></i> ${direction}<br>`
+        + `<i class="fas fa-walking fa-2x"></i> ${distance}<br><br>`);
+}
+
+function generateVenuePopup(venue) {
+    var name = venue.name;
+
+    return (`<i class="fas fa-bus fa-3x"></i><br> ${name}<br><br>`);
+}
+
 function generateBusStopInfobox(busStop) {
     var name = $(busStop).attr('name');
     var direction = `stadt${$(busStop).attr('direction')}`;
