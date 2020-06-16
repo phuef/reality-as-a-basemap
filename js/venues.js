@@ -98,6 +98,8 @@ function venueToPopup(venue) {
     var city = venue.location.formattedAddress[1];
     var country = venue.location.formattedAddress[2];
 
+    console.log(name, category, street, city, country);
+
     if (venue.categories.length <= 0) {
         category = "unbekannt";
     } else {
