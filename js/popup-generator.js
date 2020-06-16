@@ -1,18 +1,17 @@
 function generateBusStopPopup(busStop) {
-    console.log(busStop);
-    /* var name = $(e.target).attr('name')
-    var direction = $(e.target).attr('direction');
-    var distance = $(e.target).attr('distancemsg');
-    var lat = $(e.target).attr('lat');
-    var lon = $(e.target).attr('lon');
+    var name = busStop.name;
+    var direction = `stadt${busStop.direction}`;
+    var distance = busStop.distancemsg;
+    var lat = busStop.lat;
+    var lon = busStop.lon;
 
-    infobox.innerHTML = '<i class="fas fa-bus fa-3x"></i><br>'
+    return (`<i class="fas fa-bus fa-3x"></i><br>'
         + name + '<br><br>'
         + '<i class="fas fa-map-signs fa-2x"></i> stadt'
         + direction + '<br>'
         + '<i class="fas fa-walking fa-2x"></i> '
         + distance + '<br><br>'
-        + '<a class="btn btn-success" href="#" onclick="navigate(' + lat + ', ' + lon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>'; */
+        + '<a class="btn btn-success" href="#" onclick="navigate(' + lat + ', ' + lon + ')"><i class="fas fa-crosshairs"></i> Navigate</a>'`);
 }
 
 function generateVenuePopup(venue) {
