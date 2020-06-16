@@ -77,9 +77,9 @@ function getLineString(fahrtbezeichner) {
 
 function LineStringToAR(linestring) {
     var arr = [];
-    var id = busLine.properties.linienid;
-    var direction = busLine.properties.richtungstext;
-    var delay = busLine.properties.delay;
+    var id = linestring.properties.linienid;
+    var direction = linestring.properties.richtungstext;
+    var delay = linestring.properties.delay;
 
     linestring.geometry.coordinates.forEach((coordinate) => {
 
