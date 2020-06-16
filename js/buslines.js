@@ -113,7 +113,7 @@ function drawToAR(lines, id, direction, delay) {
     lines.forEach((line, index) => {
         $(entity).attr("line__" + index, line);
         $(entity).attr('look-at', '[gps-camera]');
-        $(entity).attr('scale', '50 50');
+        //$(entity).attr('scale', '50 50');
         $(entity).attr('id', id);
         $(entity).attr('direction', direction);
         $(entity).attr('delay', delay);
