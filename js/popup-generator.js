@@ -5,9 +5,9 @@ function generateBusStopInfobox(busStop) {
     var lat = $(busStop).attr('lat');
     var lon = $(busStop).attr('lon');
 
-    return (`<i class="fas fa-bus fa-3x"></i><br>${name}<br><br>`
-        + `<i class="fas fa-map-signs fa-2x"></i>${direction}<br>`
-        + `<i class="fas fa-walking fa-2x"></i>${distance}<br><br>`
+    return (`<i class="fas fa-bus fa-3x"></i><br> ${name}<br><br>`
+        + `<i class="fas fa-map-signs fa-2x"></i> ${direction}<br>`
+        + `<i class="fas fa-walking fa-2x"></i> ${distance}<br><br>`
         + `<a class="btn btn-success" href="#" onclick="navigate(${lat},${lon})"><i class="fas fa-crosshairs"></i> Navigate</a>`);
 }
 
@@ -17,7 +17,7 @@ function generateVenueInfobox(venue) {
     var lat = $(venue).attr('lat');
     var lon = $(venue).attr('lon');
 
-    return (`<i class="fas fa-star fa-3x"></i><br>${name}<br><br>`
-        + `<i class="fas fa-walking fa-2x"></i>${distance}<br><br>`
+    return (`<i class="fas fa-star fa-3x"></i><br> ${name}<br><br>`
+        + `<i class="fas fa-walking fa-2x"></i> ${distance}<br><br>`
         + `<a class="btn btn-success" href="#" onclick="navigate(${lat},${lon})"><i class="fas fa-crosshairs"></i> Navigate</a>`);
 }
