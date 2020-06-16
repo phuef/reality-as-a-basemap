@@ -49,10 +49,13 @@ AFRAME.registerComponent('cursor_busline', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
-            var name = $(e.target).attr('name')
+            var id = $(e.target).attr('id');
+            var direction = $(e.target).attr('direction');
             var delay = $(e.target).attr('delay');
             var lat = $(e.target).attr('lat');
             var lon = $(e.target).attr('lon');
+
+            console.log(id, direction, delay);
 
             infobox.innerHTML = '<i class="fas fa-star fa-3x"></i><br>'
                 + name + '<br><br>'

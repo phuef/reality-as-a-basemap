@@ -77,7 +77,10 @@ function getLineString(fahrtbezeichner) {
 
 function LineStringToAR(linestring) {
     var arr = [];
-    console.log(linestring);
+    var id = busLine.properties.linienid;
+    var direction = busLine.properties.richtungstext;
+    var delay = busLine.properties.delay;
+
     linestring.geometry.coordinates.forEach((coordinate) => {
 
         var lat1 = latitude;
@@ -92,25 +95,28 @@ function LineStringToAR(linestring) {
         arr.push([xz[0], 1, xz[1]]);
     });
 
-    createLine(arr);
+    createLine(arr, id, direction, delay);
 };
 
-function createLine(arr) {
+function createLine(arr, id, direction, delay) {
     var result = [];
     for (i = 0; i < arr.length; i++) {
         var line = "start: " + arr[i] + "; end: " + arr[i + 1] + "; color: green";
         result.push(line);
     }
 
-    drawToAR(result);
+    drawToAR(result, id, direction, delay);
 }
 
-function drawToAR(lines) {
+function drawToAR(lines, id, direction, delay) {
     var entity = document.createElement('a-entity');
     lines.forEach((line, index) => {
         $(entity).attr("line__" + index, line);
         $(entity).attr('look-at', '[gps-camera]');
         $(entity).attr('scale', '20 20');
+        $(entity).attr('id', id);
+        $(entity).attr('direction', direction);
+        $(entity).attr('delay', delay);
         $(entity).attr('cursor_busline', true);
     });
 
