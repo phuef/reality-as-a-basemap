@@ -65,7 +65,7 @@ function busStopsToAR(busStops) {
         //Add the marker to the scene
         scene.appendChild(icon);
         //Get the affiliated bus lines for each bus stop
-        //getBuslines(busStop);
+        getBuslines(busStop);
     });
 }
 
