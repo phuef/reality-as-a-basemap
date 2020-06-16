@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var latitude, longitude, scene = null;
+var current_position, scene = null;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -9,8 +9,7 @@ var latitude, longitude, scene = null;
  * @param {Number} lon - Longitude of the current position
  */
 function initVenues(lat, lon) {
-    latitude = lat;
-    longitude = lon;
+    current_position = [lat, lon];
     scene = $('a-scene')[0];
     getVenues();
 }
@@ -23,7 +22,7 @@ function getVenues() {
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
         '&v=20200528' +
-        '&ll=' + latitude + ',' + longitude;
+        '&ll=' + current_position[0] + ',' + current_position[1];
 
     $.ajax({
         dataType: "json",
@@ -32,10 +31,11 @@ function getVenues() {
         success: function (data) {
             var venues = data.response.venues; //Extract venues
             venuesToAR(venues); //Visualize venues in AR
-            venuesToMap(venues); //Visualize venues in 2D
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown); //Throw an error if the API call fails
+            //Throw an error if the API call fails
+            console.log(textStatus, errorThrown);
+            alert("Data acquisition failed (See console for details).");
         }
     });
 }
@@ -47,24 +47,26 @@ function getVenues() {
 function venuesToAR(venues) {
     venues.forEach((venue) => {
         //Store the position for each venue
-        var lat = venue.location.lat;
-        var lon = venue.location.lng;
-
+        var v_lat = venue.location.lat;
+        var v_lon = venue.location.lng;
+        //Store relevant attributes
         var name = venue.name;
         //Create a new marker in AR
-        var icon = document.createElement('a-image');
+        var marker = document.createElement('a-image');
         //Set the necessary attributes for the marker
-        icon.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${lon}`); //The marker's location
-        icon.setAttribute('src', 'img/star-icon.png'); //Image for the marker
-        icon.setAttribute('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
-        icon.setAttribute('scale', '20 20') //The marker's size
-        icon.setAttribute('name', name);
-        icon.setAttribute('lat', `${latitude}`);
-        icon.setAttribute('lon', `${longitude}`);
-        icon.setAttribute('cursor_venue', true);
+        $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
+        $(marker).attr('src', 'img/star-icon.png'); //Image for the marker
+        $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
+        $(marker).attr('scale', '20 20') //The marker's size
+        $(marker).attr('name', name); //Name of the venue
+        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
+        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('cursor_venue', true); //Handle hovering event
         //Add the marker to the scene
-        scene.appendChild(icon);
+        scene.appendChild(marker);
     });
+    //Visualize venues in 2D
+    venuesToMap(venues);
 }
 
 /**
@@ -81,13 +83,13 @@ function venuesToMap(venues) {
         });
 
         //Venue location
-        var lat = venue.location.lat;
-        var lon = venue.location.lng;
+        var v_lat = venue.location.lat;
+        var v_lon = venue.location.lng;
 
         var popup = venueToPopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
-        L.marker([lat, lon], { icon: marker })
+        L.marker([v_lat, v_lon], { icon: marker })
             .bindPopup(popup)
             .addTo(map);
     });

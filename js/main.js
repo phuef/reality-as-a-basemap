@@ -22,9 +22,6 @@ var baseMaps = {
 var layerControl = L.control.layers(null, baseMaps, { position: 'topright' }).addTo(map);
 //L.control.layers(baseMaps).addTo(map);
 
-
-
-
 function onLocationFound(e) {
   if (current_position) {
     map.removeLayer(current_position);
@@ -51,7 +48,6 @@ function locate() {
     map.locate();
   }
 }
-
 
 // call locate every 5 seconds... forever
 //setInterval(init, 5000);

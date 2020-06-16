@@ -110,7 +110,8 @@ function busStopToPopup(busStop) {
 }
 
 /**
- * This function filters the downloaded bus stops, so only the nearest five ones are shown. (Needs to be replaced by the radius later on!)
+ * This function filters the downloaded bus stops, so only the nearest five ones are shown. 
+ * (Needs to be replaced by the radius later on!)
  * @param {Array} busStops 
  */
 function filterBusStops(busStops) {
