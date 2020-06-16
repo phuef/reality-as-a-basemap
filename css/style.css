@@ -71,6 +71,12 @@
   right: 35px;
   }
 }
+#showRadius{
+  color: white;
+}
+#showRadiusP{
+  color: white;
+}
 #myNav{
   z-index: 2000;
 }

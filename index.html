@@ -58,7 +58,8 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div class="overlay-content">
             <a href="#">Radius</a>
-            <div id="menuLayers"></div>
+             <input type="range" id="radius" name="radius"  min="0" max="100" oninput="submitRadius()">
+              <p id="showRadiusP"><span id="showRadius">50</span> m</p>
           </div>
         </div>
     <div id="map"></div>

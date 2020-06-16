@@ -1,7 +1,7 @@
 var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
-
+var radius= 50;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -120,6 +120,16 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   }
 }
 
+function submitRadius(){
+   radius = document.getElementById('radius').value;
+   var showRadius= document.getElementById('showRadius');
+   showRadius.innerHTML= radius;
+   console.log(radius);
+}
+
+function createLayerControl(){
+   var node = document.createElement("LI");
+}
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }
