@@ -50,7 +50,7 @@ function venuesToAR(venues) {
         var lat = venue.location.lat;
         var lon = venue.location.lng;
 
-        console.log(venue);
+        var name = venue.name;
         //Create a new marker in AR
         var icon = document.createElement('a-image');
         //Set the necessary attributes for the marker
