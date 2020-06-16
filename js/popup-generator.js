@@ -1,4 +1,5 @@
 function generateBusStopPopup(busStop) {
+    console.log(busStop);
     var name = busStop.name;
     var direction = `stadt${busStop.direction}`;
     var distance = busStop.distancemsg;
