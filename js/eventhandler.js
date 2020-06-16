@@ -3,7 +3,7 @@ AFRAME.registerComponent('cursor_busstop', {
     init: function () {
         const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
-            generateBusStopPopup(e.target);
+            infobox.innerHTML = generateBusStopPopup(e.target);
         });
 
         this.el.addEventListener('mouseleave', () => {
