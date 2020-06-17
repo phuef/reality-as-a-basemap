@@ -33,7 +33,6 @@ function onLocationFound(e) {
   lon = latLngs[0].lng;
   //map.panTo(new L.LatLng(lat, lon));
   init()
-
 }
 
 function onLocationError(e) {
