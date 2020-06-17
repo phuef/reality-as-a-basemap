@@ -1,12 +1,16 @@
+const cursor = $('#cursor')[0];
+const infobox = $('#infobox')[0];
+
 //Register the event handler for the bus stops. Show information within an infobox on hover.
 AFRAME.registerComponent('cursor_busstop', {
     init: function () {
-        const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
+            cursor.attr('color', 'green');
             infobox.innerHTML = generateBusStopInfobox(e.target);
         });
 
         this.el.addEventListener('mouseleave', () => {
+            cursor.attr('color', 'black');
             infobox.innerHTML = "";
         });
     }
@@ -15,12 +19,13 @@ AFRAME.registerComponent('cursor_busstop', {
 //Register the event handler for the venues. Show information within an infobox on hover.
 AFRAME.registerComponent('cursor_venue', {
     init: function () {
-        const infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
+            cursor.attr('color', 'yellow');
             infobox.innerHTML = generateVenueInfobox(e.target);
         });
 
         this.el.addEventListener('mouseleave', () => {
+            cursor.attr('color', 'black');
             infobox.innerHTML = "";
         });
     }
