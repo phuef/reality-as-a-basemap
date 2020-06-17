@@ -21,10 +21,12 @@ AFRAME.registerComponent('cursor_venue', {
         var infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
             infobox.innerHTML = generateVenueInfobox(e.target);
+            $(cursor).attr('color', 'yellow');
         });
 
         this.el.addEventListener('mouseleave', () => {
             infobox.innerHTML = "";
+            $(cursor).attr('color', 'black');
         });
     }
 });
