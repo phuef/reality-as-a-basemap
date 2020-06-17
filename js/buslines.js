@@ -17,7 +17,7 @@ function getBuslines(busstop) {
         success: function (data) {
             if (data.length > 0) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
-                getLineString(fahrtbezeichner);
+                //getLineString(fahrtbezeichner);
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -77,6 +77,10 @@ function getLineString(fahrtbezeichner) {
 
 function LineStringToAR(linestring) {
     var arr = [];
+    var id = linestring.properties.linienid;
+    var direction = linestring.properties.richtungstext;
+    var delay = linestring.properties.delay;
+
     linestring.geometry.coordinates.forEach((coordinate) => {
 
         var lat1 = latitude;
@@ -91,27 +95,29 @@ function LineStringToAR(linestring) {
         arr.push([xz[0], 1, xz[1]]);
     });
 
-    createLine(arr);
+    createLine(arr, id, direction, delay);
 };
 
-function createLine(arr) {
+function createLine(arr, id, direction, delay) {
     var result = [];
     for (i = 0; i < arr.length; i++) {
-        var line = "start: " + arr[i] + "; end: " + arr[i + 1] + "; color: red";
+        var line = "start: " + arr[i] + "; end: " + arr[i + 1] + "; color: green";
         result.push(line);
     }
 
-    drawToAR(result);
+    drawToAR(result, id, direction, delay);
 }
 
-function drawToAR(lines) {
+function drawToAR(lines, id, direction, delay) {
     var entity = document.createElement('a-entity');
     lines.forEach((line, index) => {
         $(entity).attr("line__" + index, line);
-        $(entity).attr("color", "green");
         $(entity).attr('look-at', '[gps-camera]');
-        $(entity).attr('scale', '20 20');
-        //$(entity).attr('clickhandler', true);
+        //$(entity).attr('scale', '50 50');
+        $(entity).attr('id', id);
+        $(entity).attr('direction', direction);
+        $(entity).attr('delay', delay);
+        $(entity).attr('cursor_busline', true);
     });
 
     scene.appendChild(entity);

@@ -4,6 +4,7 @@ var mapview = false;
 var radius= 50;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
+
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: '&copy; '+mapLink,
     maxZoom: 20,
@@ -72,9 +73,9 @@ function locate(){
 function init(){
     locate();
     // hier werden die anderen Methoden aufgerufen
-    //initVenues(lat, lon);
-    //initBusstops(lat, lon);
-    //initBuslines(lat, lon);
+    initVenues(lat, lon);
+    initBusstops(lat, lon);
+    initBuslines(lat, lon);
 }
 
 if (window.DeviceOrientationEvent) {

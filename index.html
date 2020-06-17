@@ -26,6 +26,10 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
   <!-- Leaflet Extra Markers -->
   <script src="https://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.2.1/dist/js/leaflet.extra-markers.min.js"></script>
+  <!-- Popup Generator -->
+  <script src="js/popup-generator.js"></script>
+  <!-- Event Handler -->
+  <script src="js/eventhandler.js"></script>
   <!-- Embedding Stylesheets -->
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -42,13 +46,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-  <body style="margin : 0px; overflow: hidden;">
+<body style="margin : 0px; overflow: hidden;">
   <div class="container fixed-top justify-content-space-between" id="ui1">
     <input type="checkbox" id="checkboxSwitchView">
 
 
   </div>
-
   <div id="mapview">
     <div class="container fixed-bottom justify-content-center" id="ui2">
     <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
@@ -64,28 +67,26 @@
         </div>
     <div id="map"></div>
   </div>
-  <div id = "scene">
-    <a-scene
-     vr-mode-ui="enabled: false"
-     cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
-     raycaster="objects: [clickhandler];"
-     embedded arjs
-     arjs="sourceType: webcam; debugUIEnabled: false;"
-     >
-      <div id= "dummerSlider" class="container fixed-bottom justify-content-center" id="ui3">
-          <!-- Range Slider -->
-          <input type="range" class="slider" id="slider"></input>
+  <div id="scene">
+    <a-scene vr-mode-ui="enabled: false" cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+      raycaster="objects: [clickhandler];" embedded arjs arjs="sourceType: webcam; debugUIEnabled: false;">
+      <div id="infobox" class="container fixed-top"></div>
+      <div id="dummerSlider" class="container fixed-bottom justify-content-center">
+        <!-- Range Slider -->
+        <input type="range" class="slider" id="slider"></input>
       </div>
-     <a-camera gps-camera rotation-reader></a-camera>
-   </a-scene>
+      <a-camera gps-camera rotation-reader>
+        <a-cursor color="green"></a-cursor>
+      </a-camera>
+    </a-scene>
   </div>
- </body>
-  <script src="config/token.js"></script>
-  <script src="js/leaflet-provider.js"></script>
-  <script src="js/functions.js"></script>
-  <script src="js/venues.js"></script>
-  <script src="js/buslines.js"></script>
-  <script src="js/busstops.js"></script>
-  <script src="js/main.js"></script>
+</body>
+<script src="config/token.js"></script>
+<script src="js/leaflet-provider.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/venues.js"></script>
+<script src="js/buslines.js"></script>
+<script src="js/busstops.js"></script>
+<script src="js/main.js"></script>
 
 </html>
