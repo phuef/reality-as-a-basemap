@@ -128,9 +128,40 @@ function submitRadius(){
    console.log(radius);
 }
 
-function createLayerControl(){
-   var node = document.createElement("LI");
+function toggleBusstops(){
+  if(!document.getElementById("busstops").checked)
+   {
+     map.removeLayer(busstopsLayer);
+   }
+   else{
+     map.addLayer(busstopsLayer);
+   }
 }
+function toggleBuslines(){
+  if(!document.getElementById("buslines").checked)
+   {
+     map.removeLayer(buslinesLayer);
+   }
+   else{
+     map.addLayer(buslinesLayer);
+   }
+}
+function toggleVenues(){
+  if(!document.getElementById("venues").checked)
+   {
+     map.removeLayer(venuesLayer);
+   }
+   else{
+     map.addLayer(venuesLayer);
+   }
+}
+
+var layers = [];
+map.eachLayer(function(layer) {
+    if( layer instanceof L.TileLayer )
+        layers.push(layer);
+});
+console.log(layers);
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }

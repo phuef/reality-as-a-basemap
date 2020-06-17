@@ -70,6 +70,15 @@
   right: 35px;
   }
 }
+
+#layercontrolCheckboxes{
+  color: #818181;
+  text-align: center;
+  transform: scale(2);
+}
+label:hover{
+  color: white;
+}
 #showRadius{
   color: white;
 }

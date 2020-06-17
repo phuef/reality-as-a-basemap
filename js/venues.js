@@ -1,5 +1,6 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene = null;
+var venuesLayer=[];
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -59,8 +60,8 @@ function venuesToAR(venues) {
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('name', name); //Name of the venue
-        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
-        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation
+        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_venue', true); //Handle hovering event
         //Add the marker to the scene
         scene.appendChild(marker);
@@ -74,6 +75,7 @@ function venuesToAR(venues) {
  * @param {Array} venues
  */
 function venuesToMap(venues) {
+    var venuesArray=[];
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
@@ -89,8 +91,8 @@ function venuesToMap(venues) {
         var popup = generateVenuePopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
-        L.marker([v_lat, v_lon], { icon: marker })
-            .bindPopup(popup)
-            .addTo(map);
+        venuesArray.push(L.marker([v_lat, v_lon], { icon: marker })
+            .bindPopup(popup))
     });
+    venuesLayer = new L.LayerGroup(venuesArray).addTo(map);
 }

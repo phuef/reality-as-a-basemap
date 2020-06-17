@@ -1,9 +1,10 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene = null;
 
+var busstopsLayer=[];
 /**
  * This function gets called by the main script every time the user changes his position.
- * It makes the user's position globally available to the script, sets the A-Frame scene object 
+ * It makes the user's position globally available to the script, sets the A-Frame scene object
  * and downloads busstops through Conterra's Bus API for Muenster.
  * @param {Number} lat - Latitude of the current position
  * @param {Number} lon - Longitude of the current position
@@ -57,7 +58,7 @@ function busStopsToAR(busStops) {
         $(marker).attr('scale', '20 20'); //The marker's size
         $(marker).attr('name', name); //Name of the bus stop
         $(marker).attr('direction', direction); //Driving direction of the buses (inwards/outwards)
-        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation 
+        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_busstop', true); //Handle hovering event
         //Add the marker to the scene
@@ -67,11 +68,12 @@ function busStopsToAR(busStops) {
     busStopsToMap(busStops);
 }
 
-/** 
+/**
  * This function visualizes the bus stops as markers on the 2D map
- * @param {Array} busStops 
+ * @param {Array} busStops
  */
 function busStopsToMap(busStops) {
+    var busstopsArray=[];
     busStops.forEach((busStop) => {
         //Define a new marker for each bus stop
         var marker = L.ExtraMarkers.icon({
@@ -87,16 +89,18 @@ function busStopsToMap(busStops) {
         var popup = generateBusStopPopup(busStop);
 
         //Create a new Leaflet marker and bind a popup to it
-        L.marker([b_lat, b_lon], { icon: marker })
-            .bindPopup(popup)
-            .addTo(map);
+        busstopsArray.push(L.marker([b_lat, b_lon], { icon: marker })
+            .bindPopup(popup))
+
     });
+    console.log(busstopsArray);
+    busstopsLayer = new L.LayerGroup(busstopsArray).addTo(map);
 }
 
 /**
- * This function filters the downloaded bus stops, so only the nearest five ones are shown. 
+ * This function filters the downloaded bus stops, so only the nearest five ones are shown.
  * (Needs to be replaced by the radius later on!)
- * @param {Array} busStops 
+ * @param {Array} busStops
  */
 function filterBusStops(busStops) {
     busStops.forEach((busStop) => {
