@@ -65,6 +65,8 @@ function busStopsToAR(busStops) {
     });
     //Add the bus stops to the 2D map
     busStopsToMap(busStops);
+    //Get the buslines for the bus stop
+    getBuslines();
 }
 
 /** 
