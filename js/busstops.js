@@ -63,6 +63,9 @@ function busStopsToAR(busStops) {
         $(marker).attr('cursor_busstop', true); //Handle hovering event
         //Add the marker to the scene
         scene.appendChild(marker);
+
+        //Get the buslines for the bus stop
+        getBuslines(busStop);
     });
     //Add the bus stops to the 2D map
     busStopsToMap(busStops);
