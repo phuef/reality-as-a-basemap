@@ -5,12 +5,12 @@ AFRAME.registerComponent('cursor_busstop', {
         var cursor = $('#cursor')[0];
         this.el.addEventListener('mouseenter', (e) => {
             infobox.innerHTML = generateBusStopInfobox(e.target);
-            $(cursor).attr('style', 'color: green');
+            $(cursor).attr('color', 'green');
         });
 
         this.el.addEventListener('mouseleave', () => {
             infobox.innerHTML = "";
-            $(cursor).attr('style', 'color: black');
+            $(cursor).attr('color', 'black');
         });
     }
 });
