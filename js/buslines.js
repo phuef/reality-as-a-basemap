@@ -1,5 +1,5 @@
 var latitude, longitude, scene = null;
-var buslinesLayer;
+var buslinesLayer = new L.FeatureGroup();
 
 function initBuslines(lat, lon) {
     latitude = lat;
@@ -20,6 +20,7 @@ function getBuslines(busstop) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
                 getLineString(fahrtbezeichner);
             }
+            map.addLayer(buslinesLayer);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -36,12 +37,13 @@ function busLineToMap(busLine) {
 
     var popup = busLineToPopup(busLine);
 
-    buslinesLayer= L.geoJSON(busLine, {
+      buslinesLayer.addLayer(L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
             line.bindPopup(popup);
         },
         style: lineStyle
-    }).addTo(map);
+    }));
+
 }
 
 /**
