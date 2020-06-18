@@ -98,6 +98,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         scene.setAttribute('display', "none");
         document.getElementById("slider").style.display="none";
         document.getElementById("mapview").style.display="flex";
+        document.querySelector('a-image').style.display="none";
         if (!mapview)
         {
           map.locate({setView: true, maxZoom: 20});
@@ -111,6 +112,7 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         document.getElementById("mapview").style.display="none";
         document.getElementById("scene").style.display="flex";
         document.getElementById("slider").style.display="flex";
+         document.querySelector('a-image').style.display="flex";
         mapview = false;
     }
   }
