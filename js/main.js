@@ -93,12 +93,12 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   var checked= document.getElementById("checkboxSwitchView").checked;
   if(checked){}
     else{
+    var scene = document.querySelector('a-scene');
     if (frontToBack<30 && frontToBack>-30){
-        var scene = document.querySelector('a-scene');
         scene.setAttribute('display', "none");
         document.getElementById("slider").style.display="none";
         document.getElementById("mapview").style.display="flex";
-        document.querySelector('a-image').style.display="none";
+        //document.querySelector('a-image').style.display="none";
         if (!mapview)
         {
           map.locate({setView: true, maxZoom: 20});
@@ -110,9 +110,9 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     }
     else{
         document.getElementById("mapview").style.display="none";
-        document.getElementById("scene").style.display="flex";
+        scene.setAttribute('display', 'flex');
         document.getElementById("slider").style.display="flex";
-         document.querySelector('a-image').style.display="flex";
+        //document.querySelector('a-image').style.display="flex";
         mapview = false;
     }
   }
