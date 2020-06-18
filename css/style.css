@@ -37,6 +37,14 @@
   height: 100%;
   width: 100%;
 }
+#slider{
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
 .overlay {
   height: 100%;
   width: 0;
