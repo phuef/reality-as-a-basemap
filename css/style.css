@@ -29,7 +29,7 @@
   top: 0;
   left: 0;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0,0,0, 0.7);
   overflow-x: hidden;
   transition: 0.5s;
 }
@@ -103,7 +103,7 @@ label:hover{
   padding: 18px;
   border: none;
   outline: none;
-  font-size: 36px;
+  font-size: 30px;
   color: #818181;
   transition: 0.3s;
 }
