@@ -7,8 +7,7 @@ var oldRadius=null;
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; '+mapLink,
-    maxZoom: 20,
+    attribution: '&copy; '+mapLink
 });
 var topoMap= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
@@ -17,13 +16,6 @@ var topoMap= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/W
 var map = L.map('map', {
   layers: [satelliteMap]
 })
-var baseMaps = {
-  "Satellite": satelliteMap,
-  "Topographic": topoMap
-};
-
-var layerControl = L.control.layers(null, baseMaps).addTo(map);
-
 
 var initialised=false;
 
@@ -129,9 +121,9 @@ function radiusCircle(radius){
    }
    console.log(radius);
   oldRadius = L.circle([lat,lon], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
+    color: 'grey',
+    fillColor: 'grey',
+    fillOpacity: 0.4,
     radius: radius
 }).addTo(map);
 }
@@ -141,6 +133,7 @@ function submitRadius(){
    var showRadius= document.getElementById('showRadius');
    showRadius.innerHTML = radius;
    console.log(radius);
+   radiusCircle(radius);
 }
 
 function toggleBusstops(){
@@ -183,5 +176,35 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
-  radiusCircle(radius);
+}
+
+function switchBaselayer(layer){
+  if (document.getElementById(layer).checked){
+    switch (layer) {
+      case "topo":map.addLayer(topoMap);
+      map.removeLayer(satelliteMap); break;
+
+      case "satellite": map.addLayer(satelliteMap);
+                        map.removeLayer(topoMap);
+      break;
+      default:
+
+    }
+  }
+}
+
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
 }
