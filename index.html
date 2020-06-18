@@ -53,14 +53,13 @@
 
   </div>
   <div id="mapview">
-    <div class="container fixed-bottom justify-content-center" id="ui2">
+    <div id="locateButton">
     <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
       </div>
-      <button id= "settings" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
+      <button id= "settingsButton" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
         <div id="myNav" class="overlay">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div id="menu" class="overlay-content">
-
             <button type="button" class="collapsible">Change Radius</button>
             <div class="content">
               <input type="range" id="radius" name="radius"  min="0" max="100" oninput="submitRadius()">
