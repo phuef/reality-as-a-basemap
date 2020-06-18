@@ -40,9 +40,10 @@
 #slider{
   position: fixed;
   left: 50%;
-  bottom: 20px;
+  bottom: 10px;
   transform: translate(-50%, -50%);
   margin: 0 auto;
+  z-index: 2;
 }
 
 .overlay {
