@@ -2,6 +2,7 @@ var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius= 50;
+var oldRadius=null;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -72,6 +73,7 @@ function locate(){
  */
 function init(){
     locate();
+    radiusCircle(radius);
     // hier werden die anderen Methoden aufgerufen
     initVenues(lat, lon);
     initBusstops(lat, lon);
@@ -121,10 +123,23 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
   }
 }
 
+function radiusCircle(radius){
+  if(oldRadius!=null){
+      map.removeLayer(oldRadius);
+   }
+   console.log(radius);
+  oldRadius = L.circle([lat,lon], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: radius
+}).addTo(map);
+}
+
 function submitRadius(){
    radius = document.getElementById('radius').value;
    var showRadius= document.getElementById('showRadius');
-   showRadius.innerHTML= radius;
+   showRadius.innerHTML = radius;
    console.log(radius);
 }
 
@@ -168,4 +183,5 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
+  radiusCircle(radius);
 }
