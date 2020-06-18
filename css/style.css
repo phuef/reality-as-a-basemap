@@ -98,10 +98,9 @@ label:hover{
 }
 
 .collapsible {
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgba(0,0,0, 0);
   cursor: pointer;
   padding: 18px;
-  width: 40%;
   border: none;
   outline: none;
   font-size: 36px;
@@ -114,6 +113,7 @@ label:hover{
 }
 
 .content {
+  background-color: rgba(0,0,0, 0);
   padding: 0 18px;
   display: none;
   overflow: hidden;
