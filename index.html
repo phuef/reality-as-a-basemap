@@ -47,15 +47,13 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-  <div class="container fixed-top justify-content-space-between" id="ui1">
+  <!-- <div class="container fixed-top justify-content-space-between" id="ui1"> -->
     <input type="checkbox" id="checkboxSwitchView">
 
 
-  </div>
+  <!--</div>-->
   <div id="mapview">
-    <div id="locateButton">
     <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
-      </div>
       <button id= "settingsButton" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
         <div id="myNav" class="overlay">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>

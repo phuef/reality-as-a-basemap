@@ -3,6 +3,8 @@
   width: 100%;
   z-index: 1;
 }
+
+
 #settingsButton{
   position: fixed;
   bottom: 0;
@@ -10,7 +12,7 @@
   z-index: 2;
 }
 
-#locateButton{
+#returnToPositionButton{
   position: fixed;
   bottom: 0;
   left: 0;
@@ -18,7 +20,10 @@
 }
 
 #checkboxSwitchView{
-   transform: scale(2);
+  position: fixed;
+  top: 0;
+  left:  0;
+  z-index: 2;
 }
 #mapview{
   height: 100%;
