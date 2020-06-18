@@ -87,12 +87,6 @@
   }
 }
 
-#layercontrolCheckboxes{
-  color: #818181;
-}
-#basemapCheckboxes{
-  color: #818181;
-}
 label:hover{
   color: white;
 }
@@ -130,6 +124,7 @@ label:hover{
 
 .content {
   background-color: rgba(0,0,0, 0);
+  color: #818181;
   padding: 0 18px;
   display: none;
   overflow: hidden;

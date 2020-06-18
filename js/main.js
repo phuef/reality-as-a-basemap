@@ -117,16 +117,17 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
 }
 
 function radiusCircle(radius){
-  if(oldRadius!=null){
+    if(oldRadius!=null){
       map.removeLayer(oldRadius);
-   }
-   console.log(radius);
-  oldRadius = L.circle([lat,lon], {
-    color: 'grey',
-    fillColor: 'grey',
-    fillOpacity: 0.4,
-    radius: radius
-}).addTo(map);
+    }
+    if(document.getElementById("radiusShown").checked){
+      oldRadius = L.circle([lat,lon], {
+        color: 'grey',
+        fillColor: 'grey',
+        fillOpacity: 0.4,
+        radius: radius
+        }).addTo(map);
+      }
 }
 
 function submitRadius(){
@@ -193,7 +194,9 @@ function switchBaselayer(layer){
     }
   }
 }
-
+function toggleRadius(){
+  radiusCircle(radius);
+}
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
