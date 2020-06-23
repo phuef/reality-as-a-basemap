@@ -99,7 +99,7 @@ function venuesToMap(venues) {
  * This function filters the downloaded venues, so only the nearest five ones are shown. 
  * @param {Array} venues
  */
-function filterBusStops(venues) {
+function filterVenues(venues) {
     var result = [];
     venues.forEach((venue) => {
         //The user's current position
