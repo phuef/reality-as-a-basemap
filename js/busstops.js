@@ -27,8 +27,7 @@ function getBusStops() {
         data: {},
         success: function (data) {
             var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
-            console.log(busStops);
-            //busStopsToAR(busStops); //Visualize the bus stops in AR
+            busStopsToAR(busStops); //Visualize the bus stops in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
