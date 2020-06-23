@@ -1,7 +1,7 @@
 var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
-var radius = 50;
+var radius = 1000;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
