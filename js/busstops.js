@@ -122,6 +122,7 @@ function filterBusStops(busStops) {
 
         if (distance <= radius) {
             result.push(busStop);
+            console.log(result, radius);
         }
     });
 
