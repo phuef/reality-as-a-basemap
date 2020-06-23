@@ -15,6 +15,8 @@ function getDistance(lat1, lon1, lat2, lon2) {
     //distance
     var d = Math.round(R * c);
 
+    console.log(d);
+
     return d;
 }
 
