@@ -26,7 +26,8 @@ function getBusStops() {
         data: {},
         success: function (data) {
             var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
-            busStopsToAR(busStops); //Visualize the bus stops in AR
+            console.log(busStops);
+            //busStopsToAR(busStops); //Visualize the bus stops in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -102,6 +103,7 @@ function busStopsToMap(busStops) {
  * @param {Array} busStops 
  */
 function filterBusStops(busStops) {
+    var result = [];
     busStops.forEach((busStop) => {
         //The user's current position
         var lat1 = current_position[0];
@@ -112,7 +114,11 @@ function filterBusStops(busStops) {
 
         var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
         busStop.properties.distance = distance; //Store the distance within the GeoJSON object
+
+        if (distance <= radius) {
+            result.push(busStop);
+        }
     });
 
-    console.log(radius);
+    return result;
 }
