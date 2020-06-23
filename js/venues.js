@@ -106,9 +106,9 @@ function filterVenues(venues) {
         var lat1 = current_position[0];
         var lon1 = current_position[1];
         //The bus stop's location
-        console.log(venue);
-        var lat2 = venue.geometry.coordinates[1];
-        var lon2 = venue.geometry.coordinates[0];
+        console.log(venue.location);
+        var lat2 = null;
+        var lon2 = null;
 
         var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
         busStop.properties.distance = distance; //Store the distance within the GeoJSON object
