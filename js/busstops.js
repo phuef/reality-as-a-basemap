@@ -104,6 +104,7 @@ function busStopsToMap(busStops) {
  */
 function filterBusStops(busStops) {
     var result = [];
+    console.log(busStops);
     busStops.forEach((busStop) => {
         //The user's current position
         var lat1 = current_position[0];
