@@ -29,7 +29,7 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            var venues = data.response.venues; //Extract venues
+            var venues = filterVenues(data.response.venues); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -93,4 +93,30 @@ function venuesToMap(venues) {
             .bindPopup(popup)
             .addTo(map);
     });
+}
+
+/**
+ * This function filters the downloaded venues, so only the nearest five ones are shown. 
+ * @param {Array} venues
+ */
+function filterBusStops(venues) {
+    var result = [];
+    venues.forEach((venue) => {
+        //The user's current position
+        var lat1 = current_position[0];
+        var lon1 = current_position[1];
+        //The bus stop's location
+        console.log(venue.geometry);
+        var lat2 = venue.geometry.coordinates[1];
+        var lon2 = venue.geometry.coordinates[0];
+
+        var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
+        busStop.properties.distance = distance; //Store the distance within the GeoJSON object
+
+        if (distance <= radius) {
+            result.push(busStop);
+        }
+    });
+
+    return result;
 }
