@@ -109,16 +109,14 @@ function filterBusStops(busStops) {
         //The user's current position
         var lat1 = current_position[0];
         var lon1 = current_position[1];
-
-        console.log(lat2, lon2);
         //The bus stop's location
         var lat2 = busStop.geometry.coordinates[1];
         var lon2 = busStop.geometry.coordinates[0];
 
+        console.log(lat2, lon2);
+
         var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
         busStop.properties.distance = distance; //Store the distance within the GeoJSON object
-
-        console.log(distance);
 
         if (distance <= radius) {
             result.push(busStop);
