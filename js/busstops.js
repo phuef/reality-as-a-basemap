@@ -12,6 +12,7 @@ var scene = null;
 function initBusstops(lat, lon) {
     current_position = [lat, lon];
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
+    console.log(current_position);
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
 
