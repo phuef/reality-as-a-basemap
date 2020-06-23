@@ -126,7 +126,5 @@ function filterBusStops(busStops) {
         }
     });
 
-    //TEST
-
     return result;
 }
