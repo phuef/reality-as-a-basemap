@@ -111,7 +111,6 @@ function filterVenues(venues) {
         var lon2 = venue.location.lng;
 
         var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
-        venue.properties.distance = distance; //Store the distance within the GeoJSON object
 
         if (distance <= radius) {
             result.push(venue);
