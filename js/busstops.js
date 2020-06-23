@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position = [];
+var current_position = [51.93209429246291, 7.603869438171386];
 var scene = null;
 
 /**
@@ -10,7 +10,7 @@ var scene = null;
  * @param {Number} lon - Longitude of the current position
  */
 function initBusstops(lat, lon) {
-    current_position = [lat, lon];
+    //current_position = [lat, lon];
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
