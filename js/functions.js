@@ -1,5 +1,4 @@
 function getDistance(lat1, lon1, lat2, lon2) {
-    console.log(lat1, lon1, lat2, lon2);
     //degrees to radiants
     var R = 6371e3; // metres
     var φ1 = lat1 * (Math.PI / 180);
