@@ -106,7 +106,7 @@ function filterVenues(venues) {
         var lat1 = current_position[0];
         var lon1 = current_position[1];
         //The bus stop's location
-        console.log(venue.geometry);
+        console.log(venue);
         var lat2 = venue.geometry.coordinates[1];
         var lon2 = venue.geometry.coordinates[0];
 
