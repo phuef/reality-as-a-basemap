@@ -114,10 +114,5 @@ function filterBusStops(busStops) {
         busStop.properties.distance = distance; //Store the distance within the GeoJSON object
     });
 
-    //Sort all bus stops for their distances to the user
-    busStops.sort((a, b) => {
-        return a.properties.distance - b.properties.distance;
-    });
-
-    return busStops.slice(0, 5); //Return only the 5 nearest bus stops
+    console.log(radius);
 }
