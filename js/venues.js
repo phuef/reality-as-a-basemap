@@ -30,6 +30,7 @@ function getVenues() {
         data: {},
         success: function (data) {
             var venues = filterVenues(data.response.venues); //Extract venues
+            console.log(venues);
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -106,15 +107,14 @@ function filterVenues(venues) {
         var lat1 = current_position[0];
         var lon1 = current_position[1];
         //The bus stop's location
-        console.log(venue.location);
-        var lat2 = null;
-        var lon2 = null;
+        var lat2 = venue.location.lat;
+        var lon2 = venue.location.lng;
 
         var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
-        busStop.properties.distance = distance; //Store the distance within the GeoJSON object
+        venue.properties.distance = distance; //Store the distance within the GeoJSON object
 
         if (distance <= radius) {
-            result.push(busStop);
+            result.push(venue);
         }
     });
 
