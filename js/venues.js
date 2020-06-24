@@ -11,7 +11,7 @@ var venuesLayer = [];
  */
 function initVenues(lat, lon) {
     current_position = [lat, lon];
-    scene = $('#markers');
+    scene = $('#markers')[0];
     console.log(scene);
     getVenues();
 }
