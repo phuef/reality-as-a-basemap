@@ -144,11 +144,11 @@ function submitRadius() {
 function toggleBusstops() {
   if (!document.getElementById("busstops").checked) {
     map.removeLayer(busstopsLayer);
-    $('[type="busstop"]').css("visibility", false);
+    $('[type="busstop"]').attr("visible", false);
   }
   else {
     map.addLayer(busstopsLayer);
-    $('[type="busstop"]').css("visibility", true);
+    $('[type="busstop"]').attr("visible", true);
   }
 }
 function toggleBuslines() {
@@ -162,11 +162,11 @@ function toggleBuslines() {
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
-    $('[type="venue"]').css("visibility", false);
+    $('[type="venue"]').attr("visible", false);
   }
   else {
     map.addLayer(venuesLayer);
-    $('[type="venue"]').css("visibility", true);
+    $('[type="venue"]').attr("visible", true);
   }
 }
 
