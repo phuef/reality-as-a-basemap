@@ -170,7 +170,7 @@ function toggleVenues() {
   else {
     map.addLayer(venuesLayer);
     venues.forEach((venue) => {
-      scene.appendChild(venue);
+      console.log(venue);
     });
   }
 }
