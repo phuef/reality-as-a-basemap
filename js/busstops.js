@@ -1,7 +1,7 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene = null;
 
-var busstopsLayer=[];
+var busstopsLayer = [];
 /**
  * This function gets called by the main script every time the user changes his position.
  * It makes the user's position globally available to the script, sets the A-Frame scene object 
@@ -61,6 +61,7 @@ function busStopsToAR(busStops) {
         $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_busstop', true); //Handle hovering event
+        $(marker).attr('type', 'busstop');
         //Add the marker to the scene
         scene.appendChild(marker);
 
@@ -76,7 +77,7 @@ function busStopsToAR(busStops) {
  * @param {Array} busStops 
  */
 function busStopsToMap(busStops) {
-    var busstopsArray=[];
+    var busstopsArray = [];
     busStops.forEach((busStop) => {
         //Define a new marker for each bus stop
         var marker = L.ExtraMarkers.icon({

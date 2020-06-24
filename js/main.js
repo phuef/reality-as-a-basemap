@@ -2,7 +2,7 @@ var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = 1000;
-var oldRadius=null;
+var oldRadius = null;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -64,13 +64,13 @@ function locate() {
  * @desc Function to initiate everything
  *
  */
-function init(){
-    locate();
-    radiusCircle(radius);
-    // hier werden die anderen Methoden aufgerufen
-    initVenues(lat, lon);
-    initBusstops(lat, lon);
-    initBuslines(lat, lon);
+function init() {
+  locate();
+  radiusCircle(radius);
+  // hier werden die anderen Methoden aufgerufen
+  initVenues(lat, lon);
+  initBusstops(lat, lon);
+  initBuslines(lat, lon);
 }
 
 if (window.DeviceOrientationEvent) {
@@ -89,91 +89,95 @@ if (window.DeviceOrientationEvent) {
  * @desc changes  the shown elements when the devices orientation changes
  *
  */
-var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
-  var checked= document.getElementById("checkboxSwitchView").checked;
-  if(checked){}
-    else{
+var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) {
+  var checked = document.getElementById("checkboxSwitchView").checked;
+  if (checked) { }
+  else {
     //var scene = document.querySelector('a-scene');
-    if (frontToBack<30 && frontToBack>-30){
-        //scene.setAttribute('display', "none");
-        document.getElementById("scene").style.display="none";
-        document.getElementById("slider").style.display="none";
-        document.getElementById("mapview").style.display="flex";
-        //document.querySelector('a-image').style.display="none";
-        if (!mapview)
-        {
-          map.locate({setView: true, maxZoom: 20});
-        }
-        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.position= 'fixed';
-        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.right= '0';
-        //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.top= '0';
-        mapview=true;
+    if (frontToBack < 30 && frontToBack > -30) {
+      //scene.setAttribute('display', "none");
+      document.getElementById("scene").style.display = "none";
+      document.getElementById("slider").style.display = "none";
+      document.getElementById("mapview").style.display = "flex";
+      //document.querySelector('a-image').style.display="none";
+      if (!mapview) {
+        map.locate({ setView: true, maxZoom: 20 });
+      }
+      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.position= 'fixed';
+      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.right= '0';
+      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.top= '0';
+      mapview = true;
     }
-    else{
-        document.getElementById("mapview").style.display="none";
-        document.getElementById("scene").style.display="flex";
-        //scene.setAttribute('display', 'flex');
-        document.getElementById("slider").style.display="flex";
-        //document.querySelector('a-image').style.display="flex";
-        mapview = false;
+    else {
+      document.getElementById("mapview").style.display = "none";
+      document.getElementById("scene").style.display = "flex";
+      //scene.setAttribute('display', 'flex');
+      document.getElementById("slider").style.display = "flex";
+      //document.querySelector('a-image').style.display="flex";
+      mapview = false;
     }
   }
 }
 
-function radiusCircle(radius){
-    if(oldRadius!=null){
-      map.removeLayer(oldRadius);
-    }
-    if(document.getElementById("radiusShown").checked){
-      oldRadius = L.circle([lat,lon], {
-        color: 'grey',
-        fillColor: 'grey',
-        fillOpacity: 0.4,
-        radius: radius
-        }).addTo(map);
-      }
+function radiusCircle(radius) {
+  if (oldRadius != null) {
+    map.removeLayer(oldRadius);
+  }
+  if (document.getElementById("radiusShown").checked) {
+    oldRadius = L.circle([lat, lon], {
+      color: 'grey',
+      fillColor: 'grey',
+      fillOpacity: 0.4,
+      radius: radius
+    }).addTo(map);
+  }
 }
 
-function submitRadius(){
-   radius = document.getElementById('radius').value;
-   var showRadius= document.getElementById('showRadius');
-   showRadius.innerHTML = radius;
-   console.log(radius);
-   radiusCircle(radius);
+function submitRadius() {
+  radius = document.getElementById('radius').value;
+  var showRadius = document.getElementById('showRadius');
+  showRadius.innerHTML = radius;
+  console.log(radius);
+  radiusCircle(radius);
 }
 
-function toggleBusstops(){
-  if(!document.getElementById("busstops").checked)
-   {
-     map.removeLayer(busstopsLayer);
-   }
-   else{
-     map.addLayer(busstopsLayer);
-   }
+function toggleBusstops() {
+  if (!document.getElementById("busstops").checked) {
+    map.removeLayer(busstopsLayer);
+    var busstops = $('[type="busstop"]');
+    busstops.forEach((busstop) => {
+      $(busstop).attr("visible", false);
+    });
+  }
+  else {
+    map.addLayer(busstopsLayer);
+    var busstops = $('[type="busstop"]');
+    busstops.forEach((busstop) => {
+      $(busstop).attr("visible", true);
+    });
+  }
 }
-function toggleBuslines(){
-  if(!document.getElementById("buslines").checked)
-   {
-     map.removeLayer(buslinesLayer);
-   }
-   else{
-     map.addLayer(buslinesLayer);
-   }
+function toggleBuslines() {
+  if (!document.getElementById("buslines").checked) {
+    map.removeLayer(buslinesLayer);
+  }
+  else {
+    map.addLayer(buslinesLayer);
+  }
 }
-function toggleVenues(){
-  if(!document.getElementById("venues").checked)
-   {
-     map.removeLayer(venuesLayer);
-   }
-   else{
-     map.addLayer(venuesLayer);
-   }
+function toggleVenues() {
+  if (!document.getElementById("venues").checked) {
+    map.removeLayer(venuesLayer);
+  }
+  else {
+    map.addLayer(venuesLayer);
+  }
 }
 
 var layers = [];
-map.eachLayer(function(layer) {
-    if( layer instanceof L.TileLayer )
-        layers.push(layer);
+map.eachLayer(function (layer) {
+  if (layer instanceof L.TileLayer)
+    layers.push(layer);
 });
 console.log(layers);
 function openNav() {
@@ -184,21 +188,21 @@ function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
 
-function switchBaselayer(layer){
-  if (document.getElementById(layer).checked){
+function switchBaselayer(layer) {
+  if (document.getElementById(layer).checked) {
     switch (layer) {
-      case "topo":map.addLayer(topoMap);
-      map.removeLayer(satelliteMap); break;
+      case "topo": map.addLayer(topoMap);
+        map.removeLayer(satelliteMap); break;
 
       case "satellite": map.addLayer(satelliteMap);
-                        map.removeLayer(topoMap);
-      break;
+        map.removeLayer(topoMap);
+        break;
       default:
 
     }
   }
 }
-function toggleRadius(){
+function toggleRadius() {
   radiusCircle(radius);
 }
 
@@ -206,7 +210,7 @@ var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
