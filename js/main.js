@@ -145,15 +145,14 @@ function toggleBusstops() {
   if (!document.getElementById("busstops").checked) {
     map.removeLayer(busstopsLayer);
     var busstops = $('[type="busstop"]');
-    $(busstops).each((busstop) => {
+    $(busstops).forEach((busstop) => {
       $(busstop).attr("visible", false);
     });
   }
   else {
     map.addLayer(busstopsLayer);
     var busstops = $('[type="busstop"]');
-    console.log(busstops);
-    busstops.forEach((busstop) => {
+    $(busstops).forEach((busstop) => {
       $(busstop).attr("visible", true);
     });
   }
