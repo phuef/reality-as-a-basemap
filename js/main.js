@@ -137,8 +137,8 @@ function submitRadius() {
   radius = document.getElementById('radius').value;
   var showRadius = document.getElementById('showRadius');
   showRadius.innerHTML = radius;
-  console.log(radius);
   radiusCircle(radius);
+  changeVenues(radius);
 }
 
 function toggleBusstops() {

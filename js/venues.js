@@ -128,3 +128,7 @@ function enableVenuesInAR() {
 function disableVenuesInAR() {
     $('[type="venue"]').remove();
 }
+
+function changeVenues(radius) {
+    console.log(radius);
+}
