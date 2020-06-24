@@ -163,7 +163,7 @@ function toggleBuslines() {
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
-    venues = $('[type="venue"]');
+    venues = $('[type="venue"]').toArray();
     $('[type="venue"]').remove();
   }
   else {
