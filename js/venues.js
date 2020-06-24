@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene, venues = null;
+var current_position, scene, venueMarkers = null;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -124,12 +124,12 @@ function filterVenues(venues) {
 }
 
 function enableVenuesInAR() {
-    venues.forEach((venue) => {
-        scene.appendChild(venue);
+    venueMarkers.forEach((marker) => {
+        scene.appendChild(marker);
     });
 }
 
 function disableVenuesInAR() {
-    venues = $('[type="venue"]').toArray();
+    venueMarkers = $('[type="venue"]').toArray();
     $('[type="venue"]').remove();
 }
