@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene = null;
+var current_position, scene, venues = null;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -64,7 +64,7 @@ function venuesToAR(venues) {
         $(marker).attr('cursor_venue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
 
-        console.log(marker);
+        venues.push(marker);
         //Add the marker to the scene
         scene.appendChild(marker);
     });
@@ -121,4 +121,15 @@ function filterVenues(venues) {
     });
 
     return result;
+}
+
+function enableVenuesInAR() {
+    venues.forEach((venue) => {
+        scene.appendChild(venue);
+    });
+}
+
+function disableVenuesInAR() {
+    venues = $('[type="venue"]').toArray();
+    $('[type="venue"]').remove();
 }
