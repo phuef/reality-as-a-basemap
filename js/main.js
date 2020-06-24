@@ -162,11 +162,11 @@ function toggleBuslines() {
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
-    $('[type="venue"]').attr("src", "");
+    $('#markers').attr("visible", false);
   }
   else {
     map.addLayer(venuesLayer);
-    $('[type="venue"]').attr("src", 'img/star-icon.png');
+    $('#markers').attr("visible", true);
   }
 }
 
