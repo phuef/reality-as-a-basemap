@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene, venueMarkers = [];
+var current_position, scene, venues = null;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -29,7 +29,7 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            var venues = filterVenues(data.response.venues); //Extract venues
+            venues = filterVenues(data.response.venues); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -63,8 +63,6 @@ function venuesToAR(venues) {
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
-
-        venueMarkers.push(marker);
         //Add the marker to the scene
         scene.appendChild(marker);
     });
@@ -124,12 +122,9 @@ function filterVenues(venues) {
 }
 
 function enableVenuesInAR() {
-    venueMarkers.forEach((marker) => {
-        scene.appendChild(marker);
-    });
+    venuesToAR(venues);
 }
 
 function disableVenuesInAR() {
-    venueMarkers = $('[type="venue"]').toArray();
     $('[type="venue"]').remove();
 }
