@@ -3,6 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = 1000;
 var oldRadius = null;
+var scene = $('a-scene')[0];
 var venues = null;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
@@ -168,7 +169,9 @@ function toggleVenues() {
   }
   else {
     map.addLayer(venuesLayer);
-    console.log(venues);
+    venues.forEach((venue) => {
+      scene.appendChild(venue);
+    });
   }
 }
 
