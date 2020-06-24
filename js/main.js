@@ -163,10 +163,14 @@ function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
     $('[type="venue"]').attr('visible', false);
+    $('[type="venue"]').attr('cursor_venue', false);
+
   }
   else {
     map.addLayer(venuesLayer);
     $('[type="venue"]').attr('visible', true);
+    $('[type="venue"]').attr('cursor_venue', true);
+
   }
 }
 
