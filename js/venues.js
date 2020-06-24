@@ -63,6 +63,8 @@ function venuesToAR(venues) {
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
+
+        console.log(marker);
         //Add the marker to the scene
         scene.appendChild(marker);
     });
