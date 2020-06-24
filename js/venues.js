@@ -55,7 +55,7 @@ function venuesToAR(venues) {
         //Create a new marker in AR
         var entity = document.createElement('a-entity');
         $(entity).attr('type', 'venue');
-        //$(entity).attr('cursor_venue', true); //Handle hovering event
+        $(entity).attr('cursor_venue'); //Handle hovering event
         scene.appendChild(entity);
         var marker = document.createElement('a-image');
         //Set the necessary attributes for the marker
