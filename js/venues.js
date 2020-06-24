@@ -130,5 +130,5 @@ function disableVenuesInAR() {
 }
 
 function changeVenues(radius) {
-
+    venuesToAR(filterVenues(venues, radius));
 }
