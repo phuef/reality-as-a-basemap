@@ -1,6 +1,6 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene = null;
-var venuesLayer=[];
+var venuesLayer = [];
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -63,6 +63,7 @@ function venuesToAR(venues) {
         $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
+        $(marker).attr('type', 'venue');
         //Add the marker to the scene
         scene.appendChild(marker);
     });
@@ -75,7 +76,7 @@ function venuesToAR(venues) {
  * @param {Array} venues
  */
 function venuesToMap(venues) {
-    var venuesArray=[];
+    var venuesArray = [];
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
