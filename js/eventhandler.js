@@ -60,3 +60,6 @@ AFRAME.registerComponent('cursor_busline', {
 function navigate(lat, lon) {
     alert('Navigation not implemented yet.');
 }
+
+var radius = $('#radius')[0];
+console.log(radius);
