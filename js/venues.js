@@ -54,6 +54,7 @@ function venuesToAR(venues) {
         var name = venue.name;
         //Create a new marker in AR
         var entity = document.createElement('a-entity');
+        $(entity).attr('type', 'venue');
         scene.appendChild(entity);
         var marker = document.createElement('a-image');
         //Set the necessary attributes for the marker
@@ -65,7 +66,6 @@ function venuesToAR(venues) {
         $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
-        $(marker).attr('type', 'venue');
         //Add the marker to the scene
         entity.appendChild(marker);
     });
