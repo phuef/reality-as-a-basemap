@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene, venueMarkers = null;
+var current_position, scene, venueMarkers = [];
 
 /**
  * This function gets called by the main script every time the user changes his position.
