@@ -1,6 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene = null;
-var venuesLayer = [];
 
 /**
  * This function gets called by the main script every time the user changes his position.

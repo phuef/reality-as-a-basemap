@@ -3,6 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = 1000;
 var oldRadius = null;
+var venues = null;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -162,10 +163,12 @@ function toggleBuslines() {
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
+    venues = $('[type="venue"]');
     $('[type="venue"]').remove();
   }
   else {
     map.addLayer(venuesLayer);
+    console.log(venues);
   }
 }
 
