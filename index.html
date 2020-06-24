@@ -47,35 +47,48 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-  <div class="container fixed-top justify-content-space-between" id="ui1">
     <input type="checkbox" id="checkboxSwitchView">
 
-
-  </div>
-  <div id="mapview">
-    <div class="container fixed-bottom justify-content-center" id="ui2">
-      <button id="returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img
-          src="img/crosshairs-gps.png"></button>
+<button id= "settingsButton" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="menu" class="overlay-content">
+    <button type="button" class="collapsible">Change Radius</button>
+    <div class="content">
+      <input type="range" id="radius" name="radius"  min="0" max="100" oninput="submitRadius()">
+      <p id="showRadiusP"><span id="showRadius">50</span> m</p>
+      <input type="checkbox" id="radiusShown" onclick="toggleRadius()" name="radiusShown" checked="checked">
+      <label for="radiusShown"> Show Radius</label>
     </div>
-    <button id="settings" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
-    <div id="myNav" class="overlay">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <div class="overlay-content">
-        <a href="#">Radius</a>
-        <input type="range" id="radius" name="radius" min="0" max="100" oninput="submitRadius()">
-        <p id="showRadiusP"><span id="showRadius">50</span> m</p>
+    <button type="button" class="collapsible">Choose Features</button>
+      <div class="content">
+          <input type="checkbox" id="venues" onclick="toggleVenues()" name="Venues" checked="checked">
+          <label for="venues"> Venues</label><br>
+          <input type="checkbox" id="busstops" onclick="toggleBusstops()" name="Busstops" checked="checked">
+          <label for="busstops"> Busstops</label><br>
+          <input type="checkbox" id="buslines" onclick="toggleBuslines()" name="Buslines" checked="checked">
+          <label for="buslines"> Buslines</label><br>
       </div>
+    <button type="button" class="collapsible">Choose Basemap</button>
+    <div class="content">
+       <input type="radio" id="satellite" name="basemaps" onclick="switchBaselayer(this.value)" checked="checked" value="satellite">
+       <label for="satellite">Satellite</label><br>
+       <input type="radio" id="topo" name="basemaps" onclick="switchBaselayer(this.value)" value="topo">
+       <label for="topo">Topographic</label><br>
     </div>
+  </div>
+</div>
+  <!--</div>-->
+  <div id="mapview">
+    <button id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
     <div id="map"></div>
   </div>
   <div id="scene">
     <a-scene vr-mode-ui="enabled: false" cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
       raycaster="objects: [clickhandler];" embedded arjs arjs="sourceType: webcam; debugUIEnabled: false;">
       <div id="infobox" class="container fixed-top"></div>
-      <div id="dummerSlider" class="container fixed-bottom justify-content-center">
         <!-- Range Slider -->
         <input type="range" class="slider" id="slider"></input>
-      </div>
       <a-camera gps-camera rotation-reader>
         <a-cursor id="cursor"></a-cursor>
       </a-camera>

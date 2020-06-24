@@ -1,7 +1,7 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position = [51.93209429246291, 7.603869438171386];
-var scene = null;
+var current_position, scene = null;
 
+var busstopsLayer=[];
 /**
  * This function gets called by the main script every time the user changes his position.
  * It makes the user's position globally available to the script, sets the A-Frame scene object 
@@ -10,7 +10,7 @@ var scene = null;
  * @param {Number} lon - Longitude of the current position
  */
 function initBusstops(lat, lon) {
-    //current_position = [lat, lon];
+    current_position = [lat, lon];
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
 }
@@ -76,6 +76,7 @@ function busStopsToAR(busStops) {
  * @param {Array} busStops 
  */
 function busStopsToMap(busStops) {
+    var busstopsArray=[];
     busStops.forEach((busStop) => {
         //Define a new marker for each bus stop
         var marker = L.ExtraMarkers.icon({
@@ -91,10 +92,11 @@ function busStopsToMap(busStops) {
         var popup = generateBusStopPopup(busStop);
 
         //Create a new Leaflet marker and bind a popup to it
-        L.marker([b_lat, b_lon], { icon: marker })
-            .bindPopup(popup)
-            .addTo(map);
+        busstopsArray.push(L.marker([b_lat, b_lon], { icon: marker })
+            .bindPopup(popup))
+
     });
+    busstopsLayer = new L.LayerGroup(busstopsArray).addTo(map);
 }
 
 /**
