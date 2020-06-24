@@ -64,7 +64,7 @@ function venuesToAR(venues) {
         $(marker).attr('cursor_venue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
 
-        venues.push(marker);
+        venueMarkers.push(marker);
         //Add the marker to the scene
         scene.appendChild(marker);
     });
