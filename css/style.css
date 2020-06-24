@@ -116,6 +116,9 @@ label:hover{
   width: 50%;
 }
 
+#cursor {
+  color: black
+}
 .collapsible {
   background-color: rgba(0,0,0, 0);
   cursor: pointer;

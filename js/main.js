@@ -1,47 +1,47 @@
 var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
-var radius= 50;
+var radius = 1000;
 var oldRadius=null;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; '+mapLink,
-    maxZoom:20
+  attribution: '&copy; ' + mapLink,
+  maxZoom: 20,
 });
-var topoMap= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+var topoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
 });
 
 var map = L.map('map', {
   layers: [satelliteMap]
 })
 
-var initialised=false;
+var initialised = false;
 
 /**
  * @desc deletes the old marker and creates a new one for the updated location
  *
  */
 function onLocationFound(e) {
-    if (current_position) {
-        map.removeLayer(current_position);
-    }
-    current_position= L.marker(e.latlng).addTo(map);
-    var latLngs = [ current_position.getLatLng() ];
-    lat=latLngs[0].lat;
-    lon=latLngs[0].lng;
-    if(!initialised){
-        init();
-        initialised=true;
-    }
+  if (current_position) {
+    map.removeLayer(current_position);
+  }
+  current_position = L.marker(e.latlng).addTo(map);
+  var latLngs = [current_position.getLatLng()];
+  lat = latLngs[0].lat;
+  lon = latLngs[0].lng;
+  if (!initialised) {
+    init();
+    initialised = true;
+  }
 
 }
 
 function onLocationError(e) {
-    console.log(e.message);
-    //alert(e.message);
+  console.log(e.message);
+  //alert(e.message);
 }
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
@@ -50,8 +50,8 @@ map.on('locationerror', onLocationError);
  * @desc Function to relocate to the current position on the map
  *
  */
-function locate(){
-  if(mapview){
+function locate() {
+  if (mapview) {
     map.locate();
   }
 }
@@ -74,16 +74,16 @@ function init(){
 }
 
 if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", function(event) {
-        // alpha: rotation around z-axis
-        var rotateDegrees = event.alpha;
-        // gamma: left to right
-        var leftToRight = event.gamma;
-        // beta: front back motion
-        var frontToBack = event.beta;
+  window.addEventListener("deviceorientation", function (event) {
+    // alpha: rotation around z-axis
+    var rotateDegrees = event.alpha;
+    // gamma: left to right
+    var leftToRight = event.gamma;
+    // beta: front back motion
+    var frontToBack = event.beta;
 
-        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
-    }, true);
+    handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+  }, true);
 }
 /**
  * @desc changes  the shown elements when the devices orientation changes

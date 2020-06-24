@@ -47,7 +47,6 @@
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
-  <!-- <div class="container fixed-top justify-content-space-between" id="ui1"> -->
     <input type="checkbox" id="checkboxSwitchView">
 
 <button id= "settingsButton" onclick="openNav()" type="button"><img src="img/cog-outline.png"></button>
@@ -91,7 +90,7 @@
         <!-- Range Slider -->
         <input type="range" class="slider" id="slider"></input>
       <a-camera gps-camera rotation-reader>
-        <a-cursor color="green"></a-cursor>
+        <a-cursor id="cursor"></a-cursor>
       </a-camera>
     </a-scene>
   </div>

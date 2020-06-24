@@ -30,7 +30,7 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            var venues = data.response.venues; //Extract venues
+            var venues = filterVenues(data.response.venues); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -60,8 +60,8 @@ function venuesToAR(venues) {
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('name', name); //Name of the venue
-        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation
-        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation
+        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
+        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
         //Add the marker to the scene
         scene.appendChild(marker);
@@ -95,4 +95,28 @@ function venuesToMap(venues) {
             .bindPopup(popup))
     });
     venuesLayer = new L.LayerGroup(venuesArray).addTo(map);
+}
+
+/**
+ * This function filters the downloaded venues, so only the nearest five ones are shown.
+ * @param {Array} venues
+ */
+function filterVenues(venues) {
+    var result = [];
+    venues.forEach((venue) => {
+        //The user's current position
+        var lat1 = current_position[0];
+        var lon1 = current_position[1];
+        //The bus stop's location
+        var lat2 = venue.location.lat;
+        var lon2 = venue.location.lng;
+
+        var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
+
+        if (distance <= radius) {
+            result.push(venue);
+        }
+    });
+
+    return result;
 }
