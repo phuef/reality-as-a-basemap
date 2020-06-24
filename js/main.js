@@ -168,7 +168,7 @@ function toggleVenues() {
   else {
     map.addLayer(venuesLayer);
     $('[type="venue"]').attr('visible', true);
-    //$('[type="venue"]').attr('cursor_venue');
+    $('[type="venue"]').attr('cursor_venue');
   }
 }
 
