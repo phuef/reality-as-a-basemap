@@ -42,8 +42,6 @@ AFRAME.registerComponent('cursor_busline', {
             var lat = $(e.target).attr('lat');
             var lon = $(e.target).attr('lon');
 
-            console.log(id, direction, delay);
-
             infobox.innerHTML = '<i class="fas fa-star fa-3x"></i><br>'
                 + id + '<br><br>'
                 + '<i class="fas fa-map-signs fa-2x"></i>'

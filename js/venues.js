@@ -53,10 +53,6 @@ function venuesToAR(venues) {
         //Store relevant attributes
         var name = venue.name;
         //Create a new marker in AR
-        var entity = document.createElement('a-entity');
-        $(entity).attr('type', 'venue');
-        $(entity).attr('cursor_venue', true); //Handle hovering event
-        scene.appendChild(entity);
         var marker = document.createElement('a-image');
         //Set the necessary attributes for the marker
         $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
@@ -66,8 +62,10 @@ function venuesToAR(venues) {
         $(marker).attr('name', name); //Name of the venue
         $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('cursor_venue', true); //Handle hovering event
+        $(marker).attr('type', 'venue');
         //Add the marker to the scene
-        entity.appendChild(marker);
+        scene.appendChild(marker);
     });
     //Visualize venues in 2D
     venuesToMap(venues);
