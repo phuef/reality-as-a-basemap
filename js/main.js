@@ -163,7 +163,7 @@ function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     map.removeLayer(venuesLayer);
     $('[type="venue"]').attr('visible', false);
-    $('[type="venue"]').each((e) => {
+    $('[type="venue"]').each((i, e) => {
       console.log(e);
     });
   }
