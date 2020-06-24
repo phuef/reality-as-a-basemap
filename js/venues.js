@@ -29,7 +29,7 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            venues = filterVenues(data.response.venues); //Extract venues
+            venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -101,7 +101,7 @@ function venuesToMap(venues) {
  * This function filters the downloaded venues, so only the nearest five ones are shown.
  * @param {Array} venues
  */
-function filterVenues(venues) {
+function filterVenues(venues, radius) {
     var result = [];
     venues.forEach((venue) => {
         //The user's current position
@@ -130,5 +130,5 @@ function disableVenuesInAR() {
 }
 
 function changeVenues(radius) {
-    console.log(radius);
+
 }
