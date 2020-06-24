@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene = null;
+var current_position, scene, busStops = null;
 
 var busstopsLayer = [];
 /**
@@ -26,7 +26,7 @@ function getBusStops() {
         url: url,
         data: {},
         success: function (data) {
-            var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
+            busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -61,7 +61,7 @@ function busStopsToAR(busStops) {
         $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_busstop', true); //Handle hovering event
-        $(marker).attr('type', 'busstop');
+        $(marker).attr('type', 'busStop');
         //Add the marker to the scene
         scene.appendChild(marker);
 
@@ -124,4 +124,12 @@ function filterBusStops(busStops) {
     });
 
     return result;
+}
+
+function enableBusStopsInAR() {
+    busStopsToAR(busStops);
+}
+
+function disableBusStopsInAR() {
+    $('[type="busStop"]').remove();
 }

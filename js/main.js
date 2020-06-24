@@ -144,11 +144,11 @@ function submitRadius() {
 function toggleBusstops() {
   if (!document.getElementById("busstops").checked) {
     map.removeLayer(busstopsLayer);
-    $('[type="busstop"]').attr("visible", false);
+    disableBusStopsInAR();
   }
   else {
     map.addLayer(busstopsLayer);
-    $('[type="busstop"]').attr("visible", true);
+    enableBusStopsInAR();
   }
 }
 function toggleBuslines() {
