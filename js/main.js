@@ -152,6 +152,7 @@ function toggleBusstops() {
   else {
     map.addLayer(busstopsLayer);
     var busstops = $('[type="busstop"]');
+    console.log(busstops);
     busstops.forEach((busstop) => {
       $(busstop).attr("visible", true);
     });
