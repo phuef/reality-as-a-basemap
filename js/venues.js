@@ -30,7 +30,6 @@ function getVenues() {
         data: {},
         success: function (data) {
             var venues = filterVenues(data.response.venues); //Extract venues
-            console.log(venues);
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
