@@ -175,7 +175,6 @@ map.eachLayer(function(layer) {
     if( layer instanceof L.TileLayer )
         layers.push(layer);
 });
-console.log(layers);
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }

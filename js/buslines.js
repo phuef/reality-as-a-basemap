@@ -5,6 +5,7 @@ function initBuslines(lat, lon) {
     latitude = lat;
     longitude = lon;
     scene = $('a-scene')[0];
+    //getBuslines();
 }
 
 function getBuslines(busstop) {
@@ -69,7 +70,7 @@ function getLineString(fahrtbezeichner) {
         url: url,
         data: {},
         success: function (data) {
-            //LineStringToAR(data);
+            LineStringToAR(data);
             busLineToMap(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -80,6 +81,7 @@ function getLineString(fahrtbezeichner) {
 
 function LineStringToAR(linestring) {
     var arr = [];
+    console.log(linestring);
     var id = linestring.properties.linienid;
     var direction = linestring.properties.richtungstext;
     var delay = linestring.properties.delay;
