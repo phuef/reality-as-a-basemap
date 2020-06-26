@@ -11,7 +11,7 @@ function generateBusStopPopup(busStop) {
 function generateVenuePopup(venue) {
     var name = venue.name;
 
-    return (`<i class="fas fa-bus fa-3x"></i><br> ${name}<br><br>`);
+    return (`<i class="fas fa-info fa-3x"></i><br> ${name}<br><br>`);
 }
 
 function generateBusStopInfobox(busStop) {
