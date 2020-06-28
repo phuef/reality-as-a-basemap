@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene, venues = null;
+var current_position, scene, allVenues = null;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -29,7 +29,8 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            venues = filterVenues(data.response.venues, radius); //Extract venues
+            allVenues = data.response.venues;
+            var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -130,8 +131,7 @@ function disableVenuesInAR() {
 }
 
 function changeVenues(radius) {
-    console.log(venues);
-    console.log(filterVenues(venues, radius));
-    //venuesToAR(filterVenues(venues, radius));
-
+    disableVenuesInAR();
+    newVenues = filterVenues(allVenues, radius);
+    venuesToAR(newVenues);
 }

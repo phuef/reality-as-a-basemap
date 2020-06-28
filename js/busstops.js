@@ -1,5 +1,5 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene, busStops = null;
+var current_position, scene, allBusStops = null;
 
 var busstopsLayer = [];
 /**
@@ -26,7 +26,8 @@ function getBusStops() {
         url: url,
         data: {},
         success: function (data) {
-            busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
+            allBusStops = data.features;
+            var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -132,4 +133,10 @@ function enableBusStopsInAR() {
 
 function disableBusStopsInAR() {
     $('[type="busStop"]').remove();
+}
+
+function changeBusStops(radius) {
+    disableBusStopsInAR();
+    var newBusStops = filterBusStops(allBusStops, radius);
+    busStopsToAR(newBusStops);
 }

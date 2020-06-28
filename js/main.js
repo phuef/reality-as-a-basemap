@@ -139,6 +139,7 @@ function submitRadius() {
   showRadius.innerHTML = radius;
   radiusCircle(radius);
   changeVenues(radius);
+  changeBusStops(radius);
 }
 
 function toggleBusstops() {
