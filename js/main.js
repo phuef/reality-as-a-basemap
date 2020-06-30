@@ -135,7 +135,6 @@ function radiusCircle(radius) {
 }
 
 function submitRadius() {
-  console.log("triggered");
   radius = document.getElementById('radius').value;
   var showRadius = document.getElementById('showRadius');
   showRadius.innerHTML = radius;
