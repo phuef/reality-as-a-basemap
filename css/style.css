@@ -152,4 +152,5 @@ label:hover{
 
 #loader {
   margin: auto;
+  z-index: 2;
 }
