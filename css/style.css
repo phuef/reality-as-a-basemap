@@ -150,6 +150,10 @@ label:hover{
   justify-content: center;
 }
 
+#loader {
+  margin: auto;
+}
+
 @keyframes ldio-i137t53q8p {
   0% { opacity: 1 }
   100% { opacity: 0 }
