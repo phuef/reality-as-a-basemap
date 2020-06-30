@@ -133,6 +133,7 @@ function disableVenuesInMap() {
 }
 
 function changeVenues(radius) {
+    console.log(radius);
     disableVenuesInAR();
     disableVenuesInMap();
     var newVenues = filterVenues(allVenues, radius);
