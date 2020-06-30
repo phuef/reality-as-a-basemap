@@ -147,5 +147,9 @@ label:hover{
   height: 100%;
   background: black;
   opacity: 0.7;
-  z-index: 10;
+  z-index: 2;
+}
+
+#loader {
+  margin: auto;
 }
