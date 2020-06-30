@@ -31,7 +31,6 @@ function getVenues() {
         data: {},
         success: function (data) {
             allVenues = data.response.venues;
-            console.log(allVenues);
             var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
