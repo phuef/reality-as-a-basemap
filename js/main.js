@@ -145,7 +145,7 @@ function submitRadius() {
 
 function toggleBusstops() {
   if (!document.getElementById("busstops").checked) {
-    map.removeLayer(busstopsLayer);
+    map.removeLayer(busStopsLayer);
     disableBusStopsInAR();
   }
   else {
