@@ -55,7 +55,7 @@
     <div id="menu" class="overlay-content">
       <button type="button" class="collapsible">Change Radius</button>
       <div class="content">
-        <input type="range" id="radius" name="radius" min="100" max="1000" ondragend="submitRadius()">
+        <input type="range" id="radius" name="radius" min="100" max="1000" onmouseout="submitRadius()">
         <p id="showRadiusP"><span id="showRadius"></span> m</p>
         <input type="checkbox" id="radiusShown" onclick="toggleRadius()" name="radiusShown" checked="checked">
         <label for="radiusShown"> Show Radius</label>
