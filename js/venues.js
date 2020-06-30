@@ -94,7 +94,7 @@ function venuesToMap(venues) {
         var popup = generateVenuePopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
-        venuesLayer.push(L.marker([v_lat, v_lon], { icon: marker })
+        venuesLayer.addLayer(L.marker([v_lat, v_lon], { icon: marker })
             .bindPopup(popup))
     });
 
