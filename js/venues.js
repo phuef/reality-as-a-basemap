@@ -97,6 +97,8 @@ function venuesToMap(venues) {
             .bindPopup(popup))
     });
 
+    console.log(venuesLayer);
+
     venuesLayer.addTo(map);
 }
 
@@ -133,7 +135,6 @@ function disableVenuesInMap() {
 }
 
 function changeVenues(radius) {
-    console.log(radius);
     disableVenuesInAR();
     disableVenuesInMap();
     var newVenues = filterVenues(allVenues, radius);
