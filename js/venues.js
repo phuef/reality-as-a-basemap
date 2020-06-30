@@ -97,7 +97,7 @@ function venuesToMap(venues) {
             .bindPopup(popup))
     });
 
-    console.log(venuesLayer);
+    console.log(venuesLayer._layers.length);
 
     venuesLayer.addTo(map);
 }
