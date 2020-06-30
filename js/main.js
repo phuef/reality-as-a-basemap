@@ -3,7 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
-$('#showRadius').innerHTML = radius;
+$('#showRadius')[0].innerHTML = radius;
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
