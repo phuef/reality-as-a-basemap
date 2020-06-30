@@ -1,5 +1,6 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allVenues = null;
+var venuesLayer = new L.LayerGroup();
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -77,7 +78,7 @@ function venuesToAR(venues) {
  * @param {Array} venues
  */
 function venuesToMap(venues) {
-    var venuesArray = [];
+    venuesLayer.clearLayers();
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
@@ -93,10 +94,11 @@ function venuesToMap(venues) {
         var popup = generateVenuePopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
-        venuesArray.push(L.marker([v_lat, v_lon], { icon: marker })
+        venuesLayer.push(L.marker([v_lat, v_lon], { icon: marker })
             .bindPopup(popup))
     });
-    venuesLayer = new L.LayerGroup(venuesArray).addTo(map);
+
+    venuesLayer.addTo(map);
 }
 
 /**
@@ -132,7 +134,6 @@ function disableVenuesInAR() {
 }
 
 function changeVenues(radius) {
-    console.log(radius);
     disableVenuesInAR();
     var newVenues = filterVenues(allVenues, radius);
     venuesToAR(newVenues);
