@@ -132,6 +132,7 @@ function disableVenuesInAR() {
 }
 
 function changeVenues(radius) {
+    console.log(radius);
     disableVenuesInAR();
     var newVenues = filterVenues(allVenues, radius);
     venuesToAR(newVenues);
