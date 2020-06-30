@@ -4,6 +4,11 @@ var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
+
+document.getElementById("scene").style.display = "none";
+document.getElementById("slider").style.display = "none";
+document.getElementById("mapview").style.display = "flex";
+
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -44,6 +49,7 @@ function onLocationError(e) {
   console.log(e.message);
   //alert(e.message);
 }
+
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
