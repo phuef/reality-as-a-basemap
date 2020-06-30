@@ -78,7 +78,6 @@ function venuesToAR(venues) {
  * @param {Array} venues
  */
 function venuesToMap(venues) {
-    venuesLayer.clearLayers();
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
@@ -125,16 +124,18 @@ function filterVenues(venues, radius) {
     return result;
 }
 
-function enableVenuesInAR() {
-    venuesToAR(venues);
-}
-
 function disableVenuesInAR() {
     $('[type="venue"]').remove();
 }
 
+function disableVenuesInMap() {
+    venuesLayer.clearLayers();
+}
+
 function changeVenues(radius) {
     disableVenuesInAR();
+    disableVenuesInMap();
     var newVenues = filterVenues(allVenues, radius);
     venuesToAR(newVenues);
+    venuesToMap(newVenues);
 }
