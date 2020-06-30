@@ -149,7 +149,7 @@ function toggleBusstops() {
     disableBusStopsInAR();
   }
   else {
-    map.addLayer(busstopsLayer);
+    map.addLayer(busStopsLayer);
     enableBusStopsInAR();
   }
 }
