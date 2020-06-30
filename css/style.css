@@ -141,3 +141,8 @@ label:hover{
   display: none;
   overflow: hidden;
 }
+
+#loadview {
+  width: 100%;
+  height: 100%;
+}
