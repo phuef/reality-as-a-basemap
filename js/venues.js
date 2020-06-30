@@ -22,7 +22,8 @@ function getVenues() {
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
         '&v=20200528' +
-        '&ll=' + current_position[0] + ',' + current_position[1];
+        '&ll=' + current_position[0] + ',' + current_position[1] +
+        'radius=' + 1000;
 
     $.ajax({
         dataType: "json",
