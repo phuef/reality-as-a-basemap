@@ -34,6 +34,7 @@ function getVenues() {
             allVenues = data.response.venues;
             var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
+            venuesToMap(venues);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -69,8 +70,6 @@ function venuesToAR(venues) {
         //Add the marker to the scene
         scene.appendChild(marker);
     });
-    //Visualize venues in 2D
-    venuesToMap(venues);
 }
 
 /**

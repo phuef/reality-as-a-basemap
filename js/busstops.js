@@ -29,6 +29,7 @@ function getBusStops() {
             allBusStops = data.features;
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
+            busStopsToMap(busStops);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -70,7 +71,6 @@ function busStopsToAR(busStops) {
         //getBuslines(busStop);
     });
     //Add the bus stops to the 2D map
-    busStopsToMap(busStops);
 }
 
 /**
