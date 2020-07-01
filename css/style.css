@@ -46,6 +46,20 @@
   z-index: 2;
 }
 
+
+.ui-button {
+    border: none;
+    background-color: rgb(0,191,255);
+    background-color: rgba(0,191,255, 0.8);
+    outline: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+button:focus {
+    border: none;
+}
+
 .overlay {
   height: 100%;
   width: 0;
