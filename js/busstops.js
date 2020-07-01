@@ -140,4 +140,5 @@ function changeBusStops(radius) {
     disableBusStopsInMap();
     var newBusStops = filterBusStops(allBusStops, radius);
     busStopsToAR(newBusStops);
+    busStopsToMap(newBusStops);
 }

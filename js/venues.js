@@ -137,4 +137,5 @@ function changeVenues(radius) {
     disableVenuesInMap();
     var newVenues = filterVenues(allVenues, radius);
     venuesToAR(newVenues);
+    venuesToMap(newVenues);
 }
