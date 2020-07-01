@@ -1,7 +1,7 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene = null;
+var current_position, scene, allBusStops = null;
+var busStopsLayer = new L.LayerGroup();
 
-var busstopsLayer=[];
 /**
  * This function gets called by the main script every time the user changes his position.
  * It makes the user's position globally available to the script, sets the A-Frame scene object
@@ -26,7 +26,8 @@ function getBusStops() {
         url: url,
         data: {},
         success: function (data) {
-            var busStops = filterBusStops(data.features); //filter bus stops by selecting only the nearest ones
+            allBusStops = data.features;
+            var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -61,6 +62,7 @@ function busStopsToAR(busStops) {
         $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_busstop', true); //Handle hovering event
+        $(marker).attr('type', 'busStop');
         //Add the marker to the scene
         scene.appendChild(marker);
 
@@ -76,7 +78,6 @@ function busStopsToAR(busStops) {
  * @param {Array} busStops
  */
 function busStopsToMap(busStops) {
-    var busstopsArray=[];
     busStops.forEach((busStop) => {
         //Define a new marker for each bus stop
         var marker = L.ExtraMarkers.icon({
@@ -92,11 +93,12 @@ function busStopsToMap(busStops) {
         var popup = generateBusStopPopup(busStop);
 
         //Create a new Leaflet marker and bind a popup to it
-        busstopsArray.push(L.marker([b_lat, b_lon], { icon: marker })
+        busStopsLayer.addLayer(L.marker([b_lat, b_lon], { icon: marker })
             .bindPopup(popup))
 
     });
-    busstopsLayer = new L.LayerGroup(busstopsArray).addTo(map);
+
+    busStopsLayer.addTo(map);
 }
 
 /**
@@ -123,4 +125,19 @@ function filterBusStops(busStops) {
     });
 
     return result;
+}
+
+function disableBusStopsInAR() {
+    $('[type="busStop"]').remove();
+}
+
+function disableBusStopsInMap() {
+    busStopsLayer.clearLayers();
+}
+
+function changeBusStops(radius) {
+    disableBusStopsInAR();
+    disableBusStopsInMap();
+    var newBusStops = filterBusStops(allBusStops, radius);
+    busStopsToAR(newBusStops);
 }

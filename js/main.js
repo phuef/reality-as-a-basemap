@@ -1,8 +1,16 @@
 var current_position; //the current position on the map as a marker
 var lat, lon; // latitude and longitude of the current position
 var mapview = false;
-var radius = 500;
-var oldRadius=null;
+var radius = $('#radius').val();
+var oldRadius = null;
+$('#showRadius')[0].innerHTML = radius;
+
+navigator.geolocation.getCurrentPosition(function (position) {
+  lat = position.coords.latitude;
+  lon = position.coords.longitude;
+  init();
+});
+
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -134,22 +142,24 @@ function radiusCircle(radius){
       }
 }
 
-function submitRadius(){
-   radius = document.getElementById('radius').value;
-   var showRadius= document.getElementById('showRadius');
-   showRadius.innerHTML = radius;
-   console.log(radius);
-   radiusCircle(radius);
+function submitRadius() {
+  radius = document.getElementById('radius').value;
+  var showRadius = document.getElementById('showRadius');
+  showRadius.innerHTML = radius;
+  radiusCircle(radius);
+  changeVenues(radius);
+  changeBusStops(radius);
 }
 
-function toggleBusstops(){
-  if(!document.getElementById("busstops").checked)
-   {
-     map.removeLayer(busstopsLayer);
-   }
-   else{
-     map.addLayer(busstopsLayer);
-   }
+function toggleBusstops() {
+  if (!document.getElementById("busstops").checked) {
+    map.removeLayer(busStopsLayer);
+    disableBusStopsInAR();
+  }
+  else {
+    map.addLayer(busStopsLayer);
+    enableBusStopsInAR();
+  }
 }
 function toggleBuslines(){
   if(!document.getElementById("buslines").checked)
@@ -160,14 +170,15 @@ function toggleBuslines(){
      map.addLayer(buslinesLayer);
    }
 }
-function toggleVenues(){
-  if(!document.getElementById("venues").checked)
-   {
-     map.removeLayer(venuesLayer);
-   }
-   else{
-     map.addLayer(venuesLayer);
-   }
+function toggleVenues() {
+  if (!document.getElementById("venues").checked) {
+    map.removeLayer(venuesLayer);
+    disableVenuesInAR();
+  }
+  else {
+    map.addLayer(venuesLayer);
+    enableVenuesInAR();
+  }
 }
 
 var layers = [];

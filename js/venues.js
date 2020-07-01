@@ -1,6 +1,6 @@
 //Make the current position and the A-Frame scene object globally available
-var current_position, scene = null;
-var venuesLayer=[];
+var current_position, scene, allVenues = null;
+var venuesLayer = new L.LayerGroup();
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -23,14 +23,16 @@ function getVenues() {
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
         '&v=20200528' +
-        '&ll=' + current_position[0] + ',' + current_position[1];
+        '&ll=' + current_position[0] + ',' + current_position[1] +
+        '&radius=' + 1000;
 
     $.ajax({
         dataType: "json",
         url: url,
         data: {},
         success: function (data) {
-            var venues = filterVenues(data.response.venues); //Extract venues
+            allVenues = data.response.venues;
+            var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -63,6 +65,7 @@ function venuesToAR(venues) {
         $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
         $(marker).attr('cursor_venue', true); //Handle hovering event
+        $(marker).attr('type', 'venue');
         //Add the marker to the scene
         scene.appendChild(marker);
     });
@@ -75,7 +78,6 @@ function venuesToAR(venues) {
  * @param {Array} venues
  */
 function venuesToMap(venues) {
-    var venuesArray=[];
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
@@ -91,17 +93,18 @@ function venuesToMap(venues) {
         var popup = generateVenuePopup(venue);
 
         //Create a new Leaflet marker and bind a popup to it
-        venuesArray.push(L.marker([v_lat, v_lon], { icon: marker })
+        venuesLayer.addLayer(L.marker([v_lat, v_lon], { icon: marker })
             .bindPopup(popup))
     });
-    venuesLayer = new L.LayerGroup(venuesArray).addTo(map);
+
+    venuesLayer.addTo(map);
 }
 
 /**
  * This function filters the downloaded venues, so only the nearest five ones are shown.
  * @param {Array} venues
  */
-function filterVenues(venues) {
+function filterVenues(venues, radius) {
     var result = [];
     venues.forEach((venue) => {
         //The user's current position
@@ -119,4 +122,19 @@ function filterVenues(venues) {
     });
 
     return result;
+}
+
+function disableVenuesInAR() {
+    $('[type="venue"]').remove();
+}
+
+function disableVenuesInMap() {
+    venuesLayer.clearLayers();
+}
+
+function changeVenues(radius) {
+    disableVenuesInAR();
+    disableVenuesInMap();
+    var newVenues = filterVenues(allVenues, radius);
+    venuesToAR(newVenues);
 }
