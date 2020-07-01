@@ -38,7 +38,7 @@ function busLineToMap(busLine) {
 
     var popup = busLineToPopup(busLine);
 
-      buslinesLayer.addLayer(L.geoJSON(busLine, {
+    buslinesLayer.addLayer(L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
             line.bindPopup(popup);
         },
@@ -70,7 +70,7 @@ function getLineString(fahrtbezeichner) {
         url: url,
         data: {},
         success: function (data) {
-            LineStringToAR(data);
+            //LineStringToAR(data);
             busLineToMap(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
