@@ -76,9 +76,17 @@ function init() {
   locate();
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
-  initVenues(lat, lon);
-  initBusstops(lat, lon);
-  initBuslines(lat, lon);
+  var venues = initVenues(lat, lon);
+  var busstops = initBusstops(lat, lon);
+  var buslines = initBuslines(lat, lon);
+  var siteLoaded=false;
+  while(!siteLoaded){
+    if (venues && busstops && buslines){
+      siteLoaded=true;
+      alert("site is loaded");
+      //...
+    }
+  }
 }
 
 if (window.DeviceOrientationEvent) {
@@ -139,6 +147,7 @@ function radiusCircle(radius) {
       radius: radius
     }).addTo(map);
   }
+  return true;
 }
 
 function submitRadius() {

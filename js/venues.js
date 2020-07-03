@@ -13,6 +13,7 @@ function initVenues(lat, lon) {
     current_position = [lat, lon];
     scene = $('a-scene')[0];
     getVenues();
+    return true;
 }
 
 /**
@@ -63,8 +64,8 @@ function venuesToAR(venues) {
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('name', name); //Name of the venue
-        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
-        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation
+        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation
         $(marker).attr('cursor_venue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
         //Add the marker to the scene
