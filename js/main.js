@@ -80,13 +80,13 @@ function init() {
   initBusstops(lat, lon);
   //var buslines = initBuslines(lat, lon);
   var siteLoaded=false;
-/*  while(!siteLoaded){
+  while(!siteLoaded){
     if (busstopsMap && busstopsAR && venuesAR && venuesMap){
       siteLoaded=true;
       alert("site is loaded");
       //...
     }
-  }*/
+  }
 }
 
 if (window.DeviceOrientationEvent) {
