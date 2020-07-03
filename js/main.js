@@ -99,7 +99,6 @@ function log(){
   console.log(venuesAR);
   if (busstopsMap && busstopsAR && venuesAR && venuesMap){
     siteLoaded=true;
-    alert("site is loaded");
     clearInterval(interval);
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("mainSite").style.display = "flex";
