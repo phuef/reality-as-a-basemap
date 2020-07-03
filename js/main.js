@@ -101,8 +101,6 @@ function log(){
     siteLoaded=true;
     clearInterval(interval);
     document.getElementById("loadingScreen").style.display = "none";
-    document.getElementById("mainSite").style.display = "flex";
-
 
     //...
   }
