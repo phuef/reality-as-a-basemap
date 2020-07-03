@@ -200,22 +200,6 @@ function switchBaselayer(layer){
 function toggleRadius(){
   radiusCircle(radius);
 }
-document.querySelector('body').addEventListener('click', (event) => {
-           let mediaStream = document.querySelector('video');
-           // this is the runnning camera stream
-           mediaStream = mediaStream.srcObject;
-
-           const track = mediaStream.getVideoTracks()[0];
-           const capabilities = track.getCapabilities();
-
-           // Check whether zoom is supported or not.
-           if (!('zoom' in capabilities)) {
-               return Promise.reject('Zoom is not supported by ' + track.label);
-           }
-
-           // 5 as example value
-           track.applyConstraints({ advanced: [{ zoom: 5 }] });
-       });
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
