@@ -3,6 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
+var siteLoaded=false;
 $('#showRadius')[0].innerHTML = radius;
 
 navigator.geolocation.getCurrentPosition(function (position) {
@@ -79,13 +80,28 @@ function init() {
   initVenues(lat, lon);
   initBusstops(lat, lon);
   //var buslines = initBuslines(lat, lon);
-  var siteLoaded=false;
-  while(!siteLoaded){
+  /*while(!siteLoaded){
     if (busstopsMap && busstopsAR && venuesAR && venuesMap){
       siteLoaded=true;
       alert("site is loaded");
       //...
     }
+  }*/
+
+}
+
+var interval = setInterval(log, 2000);
+
+function log(){
+  console.log(busstopsMap);
+  console.log(busstopsAR);
+  console.log(venuesMap);
+  console.log(venuesAR);
+  if (busstopsMap && busstopsAR && venuesAR && venuesMap){
+    siteLoaded=true;
+    alert("site is loaded");
+    clearInterval(interval);
+    //...
   }
 }
 
