@@ -55,7 +55,7 @@
   <div id="menu" class="overlay-content">
     <button type="button" class="collapsible">Change Radius</button>
     <div class="content">
-      <input type="range" id="radius" name="radius"  min="0" max="1000" oninput="submitRadius()">
+      <input type="range" id="radius" name="radius"  min="100" max="1000" oninput="submitRadius()">
       <p id="showRadiusP"><span id="showRadius">500</span> m</p>
       <input type="checkbox" id="radiusShown" onclick="toggleRadius()" name="radiusShown" checked="checked">
       <label for="radiusShown"> Show Radius</label>
@@ -69,16 +69,16 @@
           <input type="checkbox" id="buslines" onclick="toggleBuslines()" name="Buslines" checked="checked">
           <label for="buslines"> Buslines</label><br>
       </div>
-    <button type="button" class="collapsible">Choose Basemap</button>
-    <div class="content">
-       <input type="radio" id="satellite" name="basemaps" onclick="switchBaselayer(this.value)" checked="checked" value="satellite">
-       <label for="satellite">Satellite</label><br>
-       <input type="radio" id="topo" name="basemaps" onclick="switchBaselayer(this.value)" value="topo">
-       <label for="topo">Topographic</label><br>
+      <button type="button" class="collapsible">Choose Basemap</button>
+      <div class="content">
+        <input type="radio" id="satellite" name="basemaps" onclick="switchBaselayer(this.value)" checked="checked"
+          value="satellite">
+        <label for="satellite">Satellite</label><br>
+        <input type="radio" id="topo" name="basemaps" onclick="switchBaselayer(this.value)" value="topo">
+        <label for="topo">Topographic</label><br>
+      </div>
     </div>
   </div>
-</div>
-  <!--</div>-->
   <div id="mapview">
     <button class="ui-button" id= "returnToPositionButton" onclick="map.locate({setView: true, maxZoom: 20})" type="button"><img src="img/crosshairs-gps.png"></button>
     <div id="map"></div>
@@ -92,6 +92,7 @@
       <a-camera gps-camera rotation-reader>
         <a-cursor id="cursor"></a-cursor>
       </a-camera>
+      <div id="markers"></div>
     </a-scene>
   </div>
 </body>
