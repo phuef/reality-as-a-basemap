@@ -76,17 +76,17 @@ function init() {
   locate();
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
-  var venues = initVenues(lat, lon);
-  var busstops = initBusstops(lat, lon);
-  var buslines = initBuslines(lat, lon);
+  initVenues(lat, lon);
+  initBusstops(lat, lon);
+  //var buslines = initBuslines(lat, lon);
   var siteLoaded=false;
-  while(!siteLoaded){
+/*  while(!siteLoaded){
     if (busstopsMap && busstopsAR && venuesAR && venuesMap){
       siteLoaded=true;
       alert("site is loaded");
       //...
     }
-  }
+  }*/
 }
 
 if (window.DeviceOrientationEvent) {

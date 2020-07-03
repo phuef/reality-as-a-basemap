@@ -15,7 +15,6 @@ function initVenues(lat, lon) {
     current_position = [lat, lon];
     scene = $('a-scene')[0];
     getVenues();
-    return true;
 }
 
 /**

@@ -14,7 +14,6 @@ function initBusstops(lat, lon) {
     current_position = [lat, lon];
     scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
     getBusStops(); //Download nearest bus stops from Conterra's Bus API
-    return true;
 }
 
 /**
@@ -32,7 +31,6 @@ function getBusStops() {
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
             busStopsToMap(busStops);
-            return true;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -71,7 +69,7 @@ function busStopsToAR(busStops) {
         scene.appendChild(marker);
 
         //Get the buslines for the bus stop
-        getBuslines(busStop);
+        //getBuslines(busStop);
     });
     busstopsAR = true;
 }
