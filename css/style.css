@@ -11,6 +11,9 @@
   position:absolute;
   text-align: center;
 }
+#mainSite{
+  display: none;
+}
 #loadingGif{
  position: fixed;
  top: 50%;

@@ -102,6 +102,9 @@ function log(){
     alert("site is loaded");
     clearInterval(interval);
     document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("mainSite").style.display = "flex";
+
+
     //...
   }
 }
