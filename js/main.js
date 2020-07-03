@@ -81,7 +81,7 @@ function init() {
   var buslines = initBuslines(lat, lon);
   var siteLoaded=false;
   while(!siteLoaded){
-    if (venues && busstops && buslines){
+    if (busstopsMap && busstopsAR && venuesAR && venuesMap){
       siteLoaded=true;
       alert("site is loaded");
       //...

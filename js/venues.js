@@ -1,6 +1,8 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allVenues = null;
 var venuesLayer = new L.LayerGroup();
+var venuesAR = false;
+var venuesMap = false;
 
 /**
  * This function gets called by the main script every time the user changes his position.
@@ -71,6 +73,7 @@ function venuesToAR(venues) {
         //Add the marker to the scene
         scene.appendChild(marker);
     });
+    venuesAR = true;
 }
 
 /**
@@ -98,6 +101,7 @@ function venuesToMap(venues) {
     });
 
     venuesLayer.addTo(map);
+    venuesMap = true;
 }
 
 /**

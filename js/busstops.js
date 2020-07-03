@@ -1,7 +1,8 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allBusStops = null;
 var busStopsLayer = new L.LayerGroup();
-
+var busstopsAR = false;
+var busstopsMap = false;
 /**
  * This function gets called by the main script every time the user changes his position.
  * It makes the user's position globally available to the script, sets the A-Frame scene object
@@ -31,6 +32,7 @@ function getBusStops() {
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
             busStopsToMap(busStops);
+            return true;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -71,7 +73,7 @@ function busStopsToAR(busStops) {
         //Get the buslines for the bus stop
         getBuslines(busStop);
     });
-    //Add the bus stops to the 2D map
+    busstopsAR = true;
 }
 
 /**
@@ -100,6 +102,7 @@ function busStopsToMap(busStops) {
     });
 
     busStopsLayer.addTo(map);
+    busstopsMap = true;
 }
 
 /**
