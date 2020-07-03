@@ -26,6 +26,7 @@ var topoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/
 var map = L.map('map', {
   layers: [satelliteMap]
 })
+map.locate({ setView: true, maxZoom: 20 });
 
 var initialised = false;
 
