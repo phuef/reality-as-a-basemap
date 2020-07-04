@@ -5,7 +5,6 @@ function initBuslines(lat, lon) {
     latitude = lat;
     longitude = lon;
     scene = $('a-scene')[0];
-    getBuslines();
 }
 
 function getBusLineOfBusStop(busstop) {
