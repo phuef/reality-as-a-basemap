@@ -68,7 +68,8 @@ function busStopsToAR(busStops) {
         scene.appendChild(marker);
 
         //Get the buslines for the bus stop
-        getBusLineOfBusStop(busStop);
+        //getBusLineOfBusStop(busStop);
+        console.log(busStop);
     });
     //Add the bus stops to the 2D map
 }

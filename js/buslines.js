@@ -35,7 +35,7 @@ function getLineString(fahrtbezeichner) {
         data: {},
         success: function (data) {
             busLineToMap(data);
-            filterBusLine(data);
+            busLines.push(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -44,7 +44,7 @@ function getLineString(fahrtbezeichner) {
 }
 
 function filterBusLine(busLine) {
-    console.log(busLine);
+
 }
 
 function busLineToMap(busLine) {
