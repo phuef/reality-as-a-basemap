@@ -44,7 +44,8 @@ function getLineString(fahrtbezeichner) {
 }
 
 function filterBusLine(busLine) {
-    console.log(radius);
+    var circle = turf.circle([longitude, latitude], radius);
+    console.log(circle);
 }
 
 function busLineToMap(busLine) {
