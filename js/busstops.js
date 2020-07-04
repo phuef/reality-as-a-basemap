@@ -75,7 +75,8 @@ function busStopsToAR(busStops) {
             closestBusStop = busStop;
         }
     });
-    getBusLineOfBusStop(closestBusStop);
+    console.log(closestBusStop);
+    //getBusLineOfBusStop(closestBusStop);
 }
 
 /**
