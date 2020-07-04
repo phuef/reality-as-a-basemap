@@ -74,8 +74,9 @@ function busStopsToAR(busStops) {
         if (busStop.properties.distance <= minDistance) {
             closestBusStop = busStop;
         }
+        getBusLineOfBusStop(busStop);
     });
-    getBusLineOfBusStop(closestBusStop);
+    //getBusLineOfBusStop(closestBusStop);
 }
 
 /**
