@@ -21,7 +21,6 @@ function getBuslines(busstop) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
                 getLineString(fahrtbezeichner);
             }
-            map.addLayer(buslinesLayer);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -44,7 +43,7 @@ function busLineToMap(busLine) {
         },
         style: lineStyle
     }));
-
+    map.addLayer(buslinesLayer);
 }
 
 /**
