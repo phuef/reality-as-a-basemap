@@ -7,7 +7,7 @@ function initBuslines(lat, lon) {
     scene = $('a-scene')[0];
 }
 
-function getBusLineOfBusStop(busstop) {
+function getBusLineOfBusStop(busStop) {
     console.log(busStop);
     var nr = busstop.properties.nr;
     var conterra_url = "https://rest.busradar.conterra.de/prod/haltestellen" + "/" + nr + "/abfahrten?sekunden=" + 1600;
