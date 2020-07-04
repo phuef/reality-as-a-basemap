@@ -8,7 +8,7 @@ function initBuslines(lat, lon) {
     getBuslines();
 }
 
-function getBuslines(busstop) {
+function getBusLineOfBusStop(busstop) {
     var nr = busstop.properties.nr;
     var conterra_url = "https://rest.busradar.conterra.de/prod/haltestellen" + "/" + nr + "/abfahrten?sekunden=" + 1600;
 
@@ -21,6 +21,22 @@ function getBuslines(busstop) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
                 getLineString(fahrtbezeichner);
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+
+function getLineString(fahrtbezeichner) {
+    var url = "https://rest.busradar.conterra.de/prod/fahrten/" + fahrtbezeichner;
+    $.ajax({
+        dataType: "json",
+        url: url,
+        data: {},
+        success: function (data) {
+            console.log(data);
+            busLineToMap(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -60,22 +76,6 @@ function busLineToPopup(busLine) {
         + '</h7><br><i class="far fa-clock fa-2x"></i><h7>' + delay + ' </h7>';
 
     return html;
-}
-
-function getLineString(fahrtbezeichner) {
-    var url = "https://rest.busradar.conterra.de/prod/fahrten/" + fahrtbezeichner;
-    $.ajax({
-        dataType: "json",
-        url: url,
-        data: {},
-        success: function (data) {
-            //LineStringToAR(data);
-            busLineToMap(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        }
-    });
 }
 
 function LineStringToAR(linestring) {
