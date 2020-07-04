@@ -35,13 +35,17 @@ function getLineString(fahrtbezeichner) {
         url: url,
         data: {},
         success: function (data) {
-            console.log(data);
             busLineToMap(data);
+            filterBusLine(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
         }
     });
+}
+
+function filterBusLine(busLine) {
+    console.log(busLine);
 }
 
 function busLineToMap(busLine) {
@@ -76,53 +80,4 @@ function busLineToPopup(busLine) {
         + '</h7><br><i class="far fa-clock fa-2x"></i><h7>' + delay + ' </h7>';
 
     return html;
-}
-
-function LineStringToAR(linestring) {
-    var arr = [];
-    console.log(linestring);
-    var id = linestring.properties.linienid;
-    var direction = linestring.properties.richtungstext;
-    var delay = linestring.properties.delay;
-
-    linestring.geometry.coordinates.forEach((coordinate) => {
-
-        var lat1 = latitude;
-        var lon1 = longitude;
-        var lat2 = coordinate[1];
-        var lon2 = coordinate[0];
-
-        var distance = getDistance(lat1, lon1, lat2, lon2);
-        var direction = getDirection(lat1, lon1, lat2, lon2);
-        var xz = getXZ(direction, distance);
-
-        arr.push([xz[0], 1, xz[1]]);
-    });
-
-    createLine(arr, id, direction, delay);
-};
-
-function createLine(arr, id, direction, delay) {
-    var result = [];
-    for (i = 0; i < arr.length; i++) {
-        var line = "start: " + arr[i] + "; end: " + arr[i + 1] + "; color: green";
-        result.push(line);
-    }
-
-    drawToAR(result, id, direction, delay);
-}
-
-function drawToAR(lines, id, direction, delay) {
-    var entity = document.createElement('a-entity');
-    lines.forEach((line, index) => {
-        $(entity).attr("line__" + index, line);
-        $(entity).attr('look-at', '[gps-camera]');
-        //$(entity).attr('scale', '50 50');
-        $(entity).attr('id', id);
-        $(entity).attr('direction', direction);
-        $(entity).attr('delay', delay);
-        $(entity).attr('cursor_busline', true);
-    });
-
-    scene.appendChild(entity);
 }
