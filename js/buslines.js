@@ -28,7 +28,6 @@ function getBusLineOfBusStop(busStop) {
 }
 
 function getLineString(fahrtbezeichner) {
-    var busLines = [];
     var url = "https://rest.busradar.conterra.de/prod/fahrten/" + fahrtbezeichner;
     $.ajax({
         dataType: "json",
@@ -36,14 +35,12 @@ function getLineString(fahrtbezeichner) {
         data: {},
         success: function (data) {
             busLineToMap(data);
-            busLines.push(data);
-            console.log(busLines);
+            filterBusLine(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
         }
     });
-    console.log(busLines[0]);
 }
 
 function filterBusLine(busLine) {
