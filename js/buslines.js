@@ -69,7 +69,7 @@ function getLineString(fahrtbezeichner) {
         url: url,
         data: {},
         success: function (data) {
-            LineStringToAR(data);
+            //LineStringToAR(data);
             busLineToMap(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
