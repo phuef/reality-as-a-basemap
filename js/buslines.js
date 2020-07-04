@@ -16,7 +16,6 @@ function getBusLineOfBusStop(busStop) {
         url: conterra_url,
         data: {},
         success: function (data) {
-            console.log(data);
             if (data.length > 0) {
                 var fahrtbezeichner = data[0].fahrtbezeichner;
                 getLineString(fahrtbezeichner);
