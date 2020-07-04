@@ -5,7 +5,7 @@ function initBuslines(lat, lon) {
     latitude = lat;
     longitude = lon;
     scene = $('a-scene')[0];
-    //getBuslines();
+    getBuslines();
 }
 
 function getBuslines(busstop) {
@@ -38,7 +38,7 @@ function busLineToMap(busLine) {
 
     var popup = busLineToPopup(busLine);
 
-      buslinesLayer.addLayer(L.geoJSON(busLine, {
+    buslinesLayer.addLayer(L.geoJSON(busLine, {
         onEachFeature: (feature, line) => {
             line.bindPopup(popup);
         },
