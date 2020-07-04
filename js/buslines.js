@@ -44,7 +44,7 @@ function getLineString(fahrtbezeichner) {
 }
 
 function filterBusLine(busLine) {
-
+    console.log(busLine);
 }
 
 function busLineToMap(busLine) {
