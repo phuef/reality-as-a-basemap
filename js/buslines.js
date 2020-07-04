@@ -42,6 +42,7 @@ function getLineString(fahrtbezeichner) {
             console.log(textStatus, errorThrown);
         }
     });
+    console.log(busLines);
     filterBusLine(busLines[0]);
 }
 
