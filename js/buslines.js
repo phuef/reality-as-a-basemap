@@ -47,7 +47,7 @@ function filterBusLine(busLine) {
     var circle = turf.circle([longitude, latitude], radius / 1000);
     var bbox = turf.bbox(circle);
     var filtered = JSON.stringify(turf.bboxClip(busLine, bbox));
-    console.log(filtered);
+    turf.buffer(filtered, 0.002, { units: 'kilometres' });
 }
 
 function busLineToMap(busLine) {
