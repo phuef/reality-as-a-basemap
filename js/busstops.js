@@ -44,9 +44,8 @@ function getBusStops() {
  * @param {GeoJSON} busStops - Nearest bus stops to visualize in AR
  */
 function busStopsToAR(busStops) {
-    console.log(busStops[0]);
-    //var minDistance = busStops[0].properties.distance;
-    //var closestBusStop = busStops[0];
+    var minDistance = busStops[0].properties.distance;
+    var closestBusStop = busStops[0];
     busStops.forEach((busStop) => {
         //Store the position for each bus stop
         var b_lat = busStop.geometry.coordinates[1];
