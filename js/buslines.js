@@ -48,7 +48,7 @@ function filterBusLine(busLine) {
     var bbox = turf.bbox(circle);
     console.log(JSON.stringify(turf.bboxPolygon(bbox)));
     var filtered = JSON.stringify(turf.bboxClip(busLine, bbox));
-    console.log(filtered);
+    //console.log(filtered);
 }
 
 function busLineToMap(busLine) {
