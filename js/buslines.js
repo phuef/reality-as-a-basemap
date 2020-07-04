@@ -48,7 +48,11 @@ function filterBusLine(busLine) {
     var bbox = turf.bbox(circle);
     var filtered = turf.bboxClip(busLine, bbox);
     var buffered = turf.buffer(filtered, 0.002, { units: 'kilometres' });
-    console.log(JSON.stringify(buffered));
+    var inside = [7.607940025627613, 51.93378282786479];
+    var outside = [7.607843466103077, 51.93379378411867];
+    if (turf.booleanPointInPolygon(inside, buffered)) {
+        console.log("Ist drinne!");
+    }
 }
 
 function busLineToMap(busLine) {
