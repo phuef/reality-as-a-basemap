@@ -1,6 +1,9 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allVenues = null;
-var venuesLayer = new L.markerClusterGroup();
+var venuesLayer = new L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+    disableClusteringAtZoom: 17
+});
 var venuesAR = false;
 var venuesMap = false;
 
