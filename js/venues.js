@@ -1,7 +1,18 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allVenues = null;
 var venuesLayer = new L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+        var markers = cluster.getAllChildMarkers();
+        var n = 0;
+        console.log(markers);
+        n += markers.length;
+
+        return L.divIcon({ html: n, className: 'myvenuescluster', iconSize: L.point(40, 40) });
+    },
+    //Disable all of the defaults:
     spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
     disableClusteringAtZoom: 17
 });
 var venuesAR = false;

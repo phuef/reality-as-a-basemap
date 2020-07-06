@@ -1,6 +1,20 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allBusStops = null;
-var busStopsLayer = new L.LayerGroup();
+var busStopsLayer = new L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+        var markers = cluster.getAllChildMarkers();
+        var n = 0;
+        console.log(markers);
+        n += markers.length;
+
+        return L.divIcon({ html: n, className: 'mybusstopscluster', iconSize: L.point(40, 40) });
+    },
+    //Disable all of the defaults:
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
+    disableClusteringAtZoom: 17
+});
 var busstopsAR = false;
 var busstopsMap = false;
 /**
@@ -26,13 +40,13 @@ function getBusStops() {
         dataType: "json",
         url: url,
         data: {},
-        success: function (data) {
+        success: function(data) {
             allBusStops = data.features;
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
             busStopsToMap(busStops);
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function(jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
             console.log(textStatus, errorThrown);
             alert("Data acquisition failed (See console for details).");
