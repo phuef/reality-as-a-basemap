@@ -1,6 +1,6 @@
 //Make the current position and the A-Frame scene object globally available
 var current_position, scene, allVenues = null;
-var venuesLayer = new L.LayerGroup();
+var venuesLayer = new L.markerClusterGroup();
 var venuesAR = false;
 var venuesMap = false;
 
@@ -32,13 +32,13 @@ function getVenues() {
         dataType: "json",
         url: url,
         data: {},
-        success: function (data) {
+        success: function(data) {
             allVenues = data.response.venues;
             var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
             venuesToMap(venues);
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function(jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
             console.log(textStatus, errorThrown);
             alert("Data acquisition failed (See console for details).");
