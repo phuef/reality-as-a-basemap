@@ -36,7 +36,7 @@
 #scene{
   height: 100%;
   width: 100%;
-  border-style: none;
+  border-style: solid;
   border-color: green;
   border-width: 25px;
 }
