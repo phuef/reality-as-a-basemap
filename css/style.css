@@ -36,9 +36,9 @@
 #scene{
   height: 100%;
   width: 100%;
-  border-style: solid;
+  border-style: none;
   border-color: green;
-  border-width: 0;
+  border-width: 50px;
 }
 #slider{
   position: fixed;
