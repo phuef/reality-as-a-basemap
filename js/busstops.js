@@ -14,13 +14,13 @@ function getBusStops() {
         dataType: "json", //Download the data in JSON format
         url: url, //The specified url
         //If the API call is successful...
-        success: function (data) {
+        success: (data) => {
             busStops = data.features; //Store all bus stops
             let filteredBusStops = filterBusStops(busStops); //Filter the bus stops by radius
             displayBusStops(filteredBusStops);
         },
         //If the API call fails...
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: (jqXHR, textStatus, errorThrown) => {
             console.log(textStatus, errorThrown); //Print the error message in console
             alert("Data acquisition failed (See console for details)."); //Throw an alert 
         }
@@ -93,6 +93,7 @@ function displayBusStopsInAR(busStops) {
         //Add the marker to the AR-view
         scene.append(marker);
 
+        //Download the bus lines for the bus stop
         getBusLinesForBusStop(busStop);
     });
 }

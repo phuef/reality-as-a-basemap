@@ -148,7 +148,7 @@ function submitRadius() {
   changeBusStops(radius);
 }
 
-function toggleBusstops() {
+function toggleBuStops() {
   if (!document.getElementById("busstops").checked) {
     disableBusStops();
   }
@@ -156,14 +156,12 @@ function toggleBusstops() {
     enableBusStops();
   }
 }
-function toggleBuslines() {
+function toggleBusRoutes() {
   if (!document.getElementById("buslines").checked) {
-    map.removeLayer(buslinesLayer);
-    disableBusLinesInAR();
+    disableBusRoutes();
   }
   else {
-    map.addLayer(buslinesLayer);
-    enableBusLinesInAR();
+    enableBusRoutes();
   }
 }
 function toggleVenues() {

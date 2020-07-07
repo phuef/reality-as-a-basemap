@@ -19,13 +19,13 @@ function getVenues() {
         dataType: "json", //Download the data in JSON format
         url: url, //The specified url
         //If the API call is successful...
-        success: function (data) {
+        success: (data) => {
             venues = data.response.venues; //Store all venues
             let filteredVenues = filterVenues(data.response.venues, radius); //Filter the venues by radius
             displayVenues(filteredVenues); //Display the venues
         },
         //If the API call fails...
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: (jqXHR, textStatus, errorThrown) => {
             console.log(textStatus, errorThrown); //Print the error message in console
             alert("Data acquisition failed (See console for details)."); //Throw an alert 
         }

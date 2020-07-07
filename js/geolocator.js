@@ -16,7 +16,7 @@ function onPosition(position) {
 
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    onPositionChange(position);
+    userOnBusRoute(position);
 }
 
 function onPositionError(error) {
