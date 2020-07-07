@@ -1,6 +1,14 @@
-//Make the current position and the A-Frame scene object globally available
-var current_position, scene, allVenues = null;
+var venues = null;
 var venuesLayer = new L.LayerGroup();
+
+function getFoursquareVersion() {
+    return '20200707';
+}
+
+function displayVenues(venues) {
+    displayVenuesInAR(venues);
+    displayVenuesOnMap(venues);
+}
 
 /**
  * This function calls Foursquare API to download nearby venues in JSON format.
@@ -9,19 +17,17 @@ function getVenues() {
     const url = 'https://api.foursquare.com/v2/venues/search?' +
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
-        '&v=20200528' +
+        '&v=' + getFoursquareVersion() +
         '&ll=' + lat + ',' + lon +
-        '&radius=' + 1000;
+        '&radius=' + foursquareRadius;
 
     $.ajax({
         dataType: "json",
         url: url,
-        data: {},
         success: function (data) {
-            allVenues = data.response.venues;
-            var venues = filterVenues(data.response.venues, radius); //Extract venues
-            venuesToAR(venues); //Visualize venues in AR
-            venuesToMap(venues);
+            venues = data.response.venues;
+            var filteredVenues = filterVenues(data.response.venues, radius);
+            displayVenues(filteredVenues);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
@@ -35,7 +41,7 @@ function getVenues() {
  * This function visualizes nearby venues as markers in AR
  * @param {GeoJSON} venues - Nearby venues to visualize in AR
  */
-function venuesToAR(venues) {
+function displayVenuesInAR(venues) {
     venues.forEach((venue) => {
         //Store the position for each venue
         var v_lat = venue.location.lat;
@@ -52,7 +58,7 @@ function venuesToAR(venues) {
         $(marker).attr('name', name); //Name of the venue
         $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
         $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
-        $(marker).attr('cursor_venue', true); //Handle hovering event
+        $(marker).attr('cursoronvenue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
         //Add the marker to the scene
         scene.appendChild(marker);
@@ -63,7 +69,7 @@ function venuesToAR(venues) {
  * This function visualizes the venues as markers on the 2D map
  * @param {Array} venues
  */
-function venuesToMap(venues) {
+function displayVenuesOnMap(venues) {
     venues.forEach((venue) => {
         //Define a new marker for each venue
         var marker = L.ExtraMarkers.icon({
@@ -90,17 +96,14 @@ function venuesToMap(venues) {
  * This function filters the downloaded venues, so only the nearest five ones are shown.
  * @param {Array} venues
  */
-function filterVenues(venues, radius) {
+function filterVenues() {
     var result = [];
-    venues.forEach((venue) => {
-        //The user's current position
-        var lat1 = current_position[0];
-        var lon1 = current_position[1];
-        //The bus stop's location
-        var lat2 = venue.location.lat;
-        var lon2 = venue.location.lng;
 
-        var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
+    venues.forEach((venue) => {
+        var v_lat = venue.location.lat;
+        var v_lon = venue.location.lng;
+
+        var distance = getDistance(lat, lon, v_lat, v_lon); //Calculate the distance between the user's position and the bus stop
 
         if (distance <= radius) {
             result.push(venue);

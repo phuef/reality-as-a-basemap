@@ -16,7 +16,7 @@ AFRAME.registerComponent('cursor_busstop', {
 });
 
 //Register the event handler for the venues. Show information within an infobox on hover.
-AFRAME.registerComponent('cursor_venue', {
+AFRAME.registerComponent('cursoronvenue', {
     init: function () {
         var infobox = $('#infobox')[0];
         this.el.addEventListener('mouseenter', (e) => {
