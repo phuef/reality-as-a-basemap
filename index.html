@@ -96,8 +96,8 @@
     <div id="map"></div>
   </div>
   <!-- AR View -->
-  <div id="scene">
-    <a-scene vr-mode-ui="enabled: false" cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+  <div id="sceneview">
+    <a-scene id="scene" vr-mode-ui="enabled: false" cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
       raycaster="objects: [clickhandler];" embedded arjs arjs="sourceType: webcam; debugUIEnabled: false;">
       <!-- Infobox for the AR-Point-Features -->
       <div id="infobox" class="container fixed-top"></div>

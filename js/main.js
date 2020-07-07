@@ -5,7 +5,7 @@ var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
-var scene = $('a-scene').first().first();
+var scene = $('#scene').first();
 
 $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
@@ -102,7 +102,7 @@ var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) 
     //var scene = document.querySelector('a-scene');
     if (frontToBack < 30 && frontToBack > -30) {
       //scene.setAttribute('display', "none");
-      document.getElementById("scene").style.display = "none";
+      document.getElementById("sceneview").style.display = "none";
       document.getElementById("slider").style.display = "none";
       document.getElementById("mapview").style.display = "flex";
       //document.querySelector('a-image').style.display="none";
@@ -116,7 +116,7 @@ var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) 
     }
     else {
       document.getElementById("mapview").style.display = "none";
-      document.getElementById("scene").style.display = "flex";
+      document.getElementById("sceneview").style.display = "flex";
       //scene.setAttribute('display', 'flex');
       document.getElementById("slider").style.display = "flex";
       //document.querySelector('a-image').style.display="flex";
