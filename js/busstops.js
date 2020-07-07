@@ -79,7 +79,7 @@ function displayBusStopsInAR(busStops) {
         let marker = $('<a-image>');
 
         //Set the necessary attributes for the marker
-        $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
+        $(marker).attr('gps-entity-place', `latitude: ${b_lat}; longitude: ${b_lon}`); //The marker's location
         $(marker).attr('src', 'img/star-icon.png'); //Image for the marker
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
