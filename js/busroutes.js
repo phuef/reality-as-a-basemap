@@ -1,5 +1,5 @@
 //Declare variables
-var busRoutes = null; //variable for storing all bus routes
+var busRoutes = []; //variable for storing all bus routes
 var busRoutesLayer = new L.LayerGroup(); //variable for storing the bus routes as a layer, which should be drawn to the Leaflet map
 var busRoutesEnabled = true; //Store if Bus Routes are enabled in AR or not
 
