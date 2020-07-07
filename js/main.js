@@ -5,7 +5,7 @@ var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
-var scene = $('a-scene').first();
+var scene = $('a-scene');
 
 $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
