@@ -1,9 +1,13 @@
+body {
+  margin : 0px; 
+  overflow: hidden;
+}
+
 #map {
   height: 100%;
   width: 100%;
   z-index: 1;
 }
-
 
 #settingsButton{
   position: fixed;
@@ -28,11 +32,13 @@
   left: 0;
   z-index: 2;
 }
+
 #mapview{
   height: 100%;
   width: 100%;
   display:none;
 }
+
 #scene{
   height: 100%;
   width: 100%;
@@ -40,6 +46,7 @@
   border-color: green;
   border-width: 50px;
 }
+
 #slider{
   position: fixed;
   left: 50%;
@@ -48,7 +55,6 @@
   margin: 0 auto;
   z-index: 2;
 }
-
 
 .ui-button {
     border: none;
@@ -59,6 +65,7 @@
     width: 50px;
     border-radius: 50%;
 }
+
 button:focus {
     border: none;
 }
@@ -116,12 +123,15 @@ button:focus {
 label:hover{
   color: white;
 }
+
 #showRadius{
   color: white;
 }
+
 #showRadiusP{
   color: white;
 }
+
 #myNav{
   z-index: 2000;
 }
@@ -136,6 +146,7 @@ label:hover{
 #cursor {
   color: black
 }
+
 .collapsible {
   background-color: rgba(0,0,0, 0);
   cursor: pointer;

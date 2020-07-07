@@ -5,11 +5,8 @@ var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
 
-navigator.geolocation.getCurrentPosition((position) => {
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
-  init();
-  setInterval(updatePosition, 5000);
+$(document).ready(() => {
+  setInterval(updatePosition, positionUpdateRate);
 });
 
 function updatePosition() {
@@ -72,10 +69,6 @@ function locate() {
     map.locate();
   }
 }
-
-
-// call init every 5 seconds... forever
-//setInterval(init, 5000);
 
 /**
  * @desc Function to initiate everything
