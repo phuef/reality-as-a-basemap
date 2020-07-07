@@ -48,12 +48,9 @@ function filterBusLine(busLine) {
     var bbox = turf.bbox(circle);
     var filtered = turf.bboxClip(busLine, bbox);
     var buffered = turf.buffer(filtered, 0.002, { units: 'kilometres' });
-    var inside = [7.607940025627613, 51.93378282786479];
     L.marker([inside[1], inside[0]]).addTo(map);
-    var outside = [7.607843466103077, 51.93379378411867];
     if (turf.booleanPointInPolygon(inside, buffered)) {
         var body = $('body')[0];
-        console.log(body);
         $(body).attr('style', 'border: 50px solid green');
     }
 }
