@@ -111,7 +111,6 @@ var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) 
       document.getElementById("scene").style.display = "none";
       document.getElementById("slider").style.display = "none";
       document.getElementById("mapview").style.display = "flex";
-      document.getElementById('body').style.border = "none";
       //document.querySelector('a-image').style.display="none";
       if (!mapview) {
         map.locate({ setView: true, maxZoom: 20 });
