@@ -11,6 +11,7 @@ $(document).ready(() => {
 
 function updatePosition() {
   navigator.geolocation.getCurrentPosition((position) => {
+    console.log(position);
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     onPositionChange(position);
