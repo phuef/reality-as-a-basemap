@@ -3,19 +3,6 @@ var current_position, scene, allBusStops = null;
 var busStopsLayer = new L.LayerGroup();
 
 /**
- * This function gets called by the main script every time the user changes his position.
- * It makes the user's position globally available to the script, sets the A-Frame scene object
- * and downloads busstops through Conterra's Bus API for Muenster.
- * @param {Number} lat - Latitude of the current position
- * @param {Number} lon - Longitude of the current position
- */
-function initBusstops(lat, lon) {
-    current_position = [lat, lon];
-    scene = $('a-scene')[0]; //Store the A-Frame scene object to add objects later on
-    getBusStops(); //Download nearest bus stops from Conterra's Bus API
-}
-
-/**
  * This function calls Conterra's Bus API to download all bus stops for Muenster in JSON format.
  */
 function getBusStops() {
@@ -26,10 +13,11 @@ function getBusStops() {
         url: url,
         data: {},
         success: function (data) {
-            allBusStops = data.features;
+            console.log(data);
+            /* allBusStops = data.features;
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
-            busStopsToMap(busStops);
+            busStopsToMap(busStops); */
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails

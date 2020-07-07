@@ -12,6 +12,7 @@ $(document).ready(() => {
 
 function getData() {
   getVenues();
+  getBusStops();
 }
 
 //initialize leaflet
