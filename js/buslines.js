@@ -61,6 +61,7 @@ function onPositionChange(position) {
     var lat = position.coords.latitude;
     var circle = turf.circle([lon, lat], radius / 1000);
     var bbox = turf.bbox(circle);
+    console.log(busLines);
     busLines.forEach((busLine) => {
 
 
