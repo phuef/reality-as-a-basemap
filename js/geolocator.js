@@ -7,7 +7,13 @@ function updatePosition() {
 }
 
 function onPosition(position) {
-    console.log(position);
+    if (!positionInitialised) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        getData();
+        positionInitialised = true;
+    }
+
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     onPositionChange(position);
