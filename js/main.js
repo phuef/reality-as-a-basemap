@@ -9,15 +9,6 @@ $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
 });
 
-function updatePosition() {
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position);
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    onPositionChange(position);
-  });
-}
-
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
