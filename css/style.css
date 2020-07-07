@@ -36,6 +36,8 @@
 #scene{
   height: 100%;
   width: 100%;
+  border-color: green;
+  border-width: 25px;
 }
 #slider{
   position: fixed;
@@ -161,10 +163,5 @@ label:hover{
   height: 100%;
   z-index: 10;
   opacity: 0.7;
-  border-color: green;
-  border-width: 0;
-}
-
-.borderon {
-  border-width: 25px;
+  
 }
