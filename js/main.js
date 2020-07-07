@@ -8,6 +8,7 @@ $('#showRadius')[0].innerHTML = radius;
 navigator.geolocation.getCurrentPosition((position) => {
   lat = position.coords.latitude;
   lon = position.coords.longitude;
+  console.log(position);
   init();
   setInterval(updatePosition, 5000);
 });
@@ -16,6 +17,7 @@ function updatePosition() {
   navigator.geolocation.getCurrentPosition((position) => {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
+    console.log(position);
     onPositionChange(position);
   });
 }
