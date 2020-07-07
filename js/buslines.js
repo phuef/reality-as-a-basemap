@@ -52,7 +52,10 @@ function filterBusLine(busLine) {
     L.marker([inside[1], inside[0]]).addTo(map);
     var outside = [7.607843466103077, 51.93379378411867];
     if (turf.booleanPointInPolygon(inside, buffered)) {
-        console.log("Ist drinne!");
+        var sky = document.createElement('a-sky');
+        $(sky).attr('color', 'green');
+        $(sky).attr('opacity', '0.7');
+        scene.appendChild(sky);
     }
 }
 
