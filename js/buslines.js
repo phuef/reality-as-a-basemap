@@ -53,6 +53,7 @@ function onPositionChange(position) {
     busLinesAR.forEach((busLine) => {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
+            alert("Hurra. Du stehst auf einer Buslinie!");
             $(body).attr('style', 'border: 50px solid green');
         } else {
             //$(body).attr('style', 'border: none');
