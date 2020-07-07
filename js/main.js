@@ -5,14 +5,14 @@ var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
 
-navigator.geolocation.getCurrentPosition(function (position) {
+navigator.geolocation.getCurrentPosition((position) => {
   lat = position.coords.latitude;
   lon = position.coords.longitude;
   init();
 });
 
 navigator.geolocation.watchPosition((position) => {
-  alert(position);
+  onPositionChange(position);
 });
 
 //initialize leaflet

@@ -1,4 +1,5 @@
 var latitude, longitude, scene = null;
+var busLines = [];
 var buslinesLayer = new L.FeatureGroup();
 
 function initBuslines(lat, lon) {
@@ -35,7 +36,7 @@ function getLineString(fahrtbezeichner) {
         data: {},
         success: function (data) {
             busLineToMap(data);
-            filterBusLine(data);
+            busLines.push(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -43,16 +44,25 @@ function getLineString(fahrtbezeichner) {
     });
 }
 
-function filterBusLine(busLine) {
-    var circle = turf.circle([longitude, latitude], radius / 1000);
-    var bbox = turf.bbox(circle);
-    var filtered = turf.bboxClip(busLine, bbox);
-    var buffered = turf.buffer(filtered, 0.002, { units: 'kilometres' });
+function filterBusLine(position) {
+
+
     L.marker([inside[1], inside[0]]).addTo(map);
     if (turf.booleanPointInPolygon(inside, buffered)) {
         var body = $('body')[0];
         $(body).attr('style', 'border: 50px solid green');
     }
+
+    var filtered = turf.bboxClip(busLine, bbox);
+    var buffered = turf.buffer(filtered, 0.002, { units: 'kilometres' });
+}
+
+function onPositionChange(position) {
+    var lon = position.coords.longitude;
+    var lat = position.coords.latitude;
+    var circle = turf.circle([lon, lat], radius / 1000);
+    var bbox = turf.bbox(circle);
+    console.log(busLines);
 }
 
 function busLineToMap(busLine) {
