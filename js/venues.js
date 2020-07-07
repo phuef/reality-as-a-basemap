@@ -141,7 +141,10 @@ function disableVenues() {
     venuesLayer.clearLayers(); //Disable for the map
 }
 
-function changeVenues(radius) {
+/**
+ * Function to update venues.
+ */
+function changeVenues() {
     disableVenues();
     let filteredVenues = filterVenues();
     displayVenues(filteredVenues);
