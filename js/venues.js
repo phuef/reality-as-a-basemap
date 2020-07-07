@@ -3,19 +3,6 @@ var current_position, scene, allVenues = null;
 var venuesLayer = new L.LayerGroup();
 
 /**
- * This function gets called by the main script every time the user changes his position.
- * It makes the user's position globally available to the script, sets the A-Frame scene object
- * and downloads venues through Foursquare API.
- * @param {Number} lat - Latitude of the current position
- * @param {Number} lon - Longitude of the current position
- */
-function initVenues(lat, lon) {
-    current_position = [lat, lon];
-    scene = $('a-scene')[0];
-    getVenues();
-}
-
-/**
  * This function calls Foursquare API to download nearby venues in JSON format.
  */
 function getVenues() {
@@ -31,10 +18,11 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            allVenues = data.response.venues;
+            console.log(data);
+            /* allVenues = data.response.venues;
             var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
-            venuesToMap(venues);
+            venuesToMap(venues); */
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails

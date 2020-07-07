@@ -10,6 +10,10 @@ $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
 });
 
+function getData() {
+  getVenues();
+}
+
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
@@ -71,9 +75,6 @@ function init() {
   locate();
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
-  initVenues(lat, lon);
-  initBusstops(lat, lon);
-  initBuslines(lat, lon);
 }
 
 if (window.DeviceOrientationEvent) {
