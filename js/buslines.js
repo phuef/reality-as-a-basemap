@@ -54,6 +54,7 @@ function onPositionChange(position) {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
             $(container).addClass('borderon');
+            console.log(filtered);
         } else {
             $(container).removeClass('borderon');
         }
