@@ -172,9 +172,11 @@ function toggleBusstops() {
 function toggleBuslines() {
   if (!document.getElementById("buslines").checked) {
     map.removeLayer(buslinesLayer);
+    disableBusLinesInAR();
   }
   else {
     map.addLayer(buslinesLayer);
+    enableBusLinesInAR();
   }
 }
 function toggleVenues() {

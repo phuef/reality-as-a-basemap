@@ -1,6 +1,7 @@
 var latitude, longitude, scene = null;
 var busLinesAR = [];
 var buslinesLayer = new L.FeatureGroup();
+var enabled = true;
 
 function initBuslines(lat, lon) {
     latitude = lat;
@@ -45,23 +46,25 @@ function getLineString(fahrtbezeichner) {
 }
 
 function onPositionChange(position) {
-    //var pos = [position.coords.longitude, position.coords.latitude];
-    var pos = [7.607940025627613, 51.93378282786479];
-    var circle = turf.circle(pos, radius / 1000);
-    var bbox = turf.bbox(circle);
-    var container = $('#scene')[0];
-    var infobox = $('#lineinfo')[0];
+    if (enabled) {
+        //var pos = [position.coords.longitude, position.coords.latitude];
+        var pos = [7.607940025627613, 51.93378282786479];
+        var circle = turf.circle(pos, radius / 1000);
+        var bbox = turf.bbox(circle);
+        var container = $('#scene')[0];
+        var infobox = $('#lineinfo')[0];
 
-    busLinesAR.forEach((busLine) => {
-        var filtered = turf.bboxClip(busLine, bbox);
-        if (turf.booleanPointInPolygon(pos, filtered)) {
-            $(container).attr('style', 'border-style: solid');
-            infobox.innerHTML = generateBusLineInfobox(busLine);
-        } else {
-            //$(container).attr('border-style', 'none');
-            //infobox.innerHTML = "";
-        }
-    });
+        busLinesAR.forEach((busLine) => {
+            var filtered = turf.bboxClip(busLine, bbox);
+            if (turf.booleanPointInPolygon(pos, filtered)) {
+                $(container).attr('style', 'border-style: solid');
+                infobox.innerHTML = generateBusLineInfobox(busLine);
+            } else {
+                //$(container).attr('border-style', 'none');
+                //infobox.innerHTML = "";
+            }
+        });
+    }
 }
 
 function busLineToMap(busLine) {
@@ -96,4 +99,12 @@ function busLineToPopup(busLine) {
         + '</h7><br><i class="far fa-clock fa-2x"></i><h7>' + delay + ' </h7>';
 
     return html;
+}
+
+function enableBusLinesInAR() {
+    enabled = true;
+}
+
+function disableBusLinesInAR() {
+    enabled = false;
 }
