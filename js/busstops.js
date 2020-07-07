@@ -13,11 +13,10 @@ function getBusStops() {
         url: url,
         data: {},
         success: function (data) {
-            console.log(data);
-            /* allBusStops = data.features;
+            allBusStops = data.features;
             var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
             busStopsToAR(busStops); //Visualize the bus stops in AR
-            busStopsToMap(busStops); */
+            busStopsToMap(busStops);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails

@@ -18,11 +18,10 @@ function getVenues() {
         url: url,
         data: {},
         success: function (data) {
-            console.log(data);
-            /* allVenues = data.response.venues;
+            allVenues = data.response.venues;
             var venues = filterVenues(data.response.venues, radius); //Extract venues
             venuesToAR(venues); //Visualize venues in AR
-            venuesToMap(venues); */
+            venuesToMap(venues);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //Throw an error if the API call fails
