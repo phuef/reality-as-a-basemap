@@ -55,7 +55,7 @@ function onPositionChange(position) {
         if (turf.booleanPointInPolygon(pos, filtered)) {
             $(body).attr('style', 'border: 50px solid green');
         } else {
-            $(body).attr('style', 'none');
+            $(body).attr('style', 'border: none');
         }
     });
 }
