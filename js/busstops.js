@@ -35,7 +35,6 @@ function getBusStops() {
             //Throw an error if the API call fails
             console.log(textStatus, errorThrown);
             alert("Data acquisition failed (See console for details).");
-            getBusStops();
         }
     });
 }
