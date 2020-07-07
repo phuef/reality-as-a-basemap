@@ -46,13 +46,14 @@ function getLineString(fahrtbezeichner) {
 }
 
 function onPositionChange(position) {
+    var container = $('#scene')[0];
+    var infobox = $('#lineinfo')[0];
+
     if (enabled) {
         //var pos = [position.coords.longitude, position.coords.latitude];
         var pos = [7.607940025627613, 51.93378282786479];
         var circle = turf.circle(pos, radius / 1000);
         var bbox = turf.bbox(circle);
-        var container = $('#scene')[0];
-        var infobox = $('#lineinfo')[0];
 
         busLinesAR.forEach((busLine) => {
             var filtered = turf.bboxClip(busLine, bbox);
