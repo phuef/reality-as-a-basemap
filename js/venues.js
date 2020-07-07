@@ -49,7 +49,7 @@ function displayVenuesInAR(venues) {
         //Store relevant attributes
         var name = venue.name;
         //Create a new marker in AR
-        var marker = document.createElement('a-image');
+        var marker = $('a-image');
         //Set the necessary attributes for the marker
         $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
         $(marker).attr('src', 'img/star-icon.png'); //Image for the marker
