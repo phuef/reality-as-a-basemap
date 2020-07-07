@@ -13,7 +13,7 @@ $(document).ready(() => {
 
 function getData() {
   getVenues();
-  //getBusStops();
+  getBusStops();
 }
 
 //initialize leaflet
@@ -150,12 +150,10 @@ function submitRadius() {
 
 function toggleBusstops() {
   if (!document.getElementById("busstops").checked) {
-    map.removeLayer(busStopsLayer);
-    disableBusStopsInAR();
+    disableBusStops();
   }
   else {
-    map.addLayer(busStopsLayer);
-    changeBusStops(radius);
+    enableBusStops();
   }
 }
 function toggleBuslines() {
