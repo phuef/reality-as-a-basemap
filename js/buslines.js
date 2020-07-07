@@ -52,8 +52,9 @@ function filterBusLine(busLine) {
     L.marker([inside[1], inside[0]]).addTo(map);
     var outside = [7.607843466103077, 51.93379378411867];
     if (turf.booleanPointInPolygon(inside, buffered)) {
-        /* var container = $('#scene')[0];
-        $(container).addClass('border border-success'); */
+        var body = $('body')[0];
+        console.log(body);
+        $(body).attr('style', 'border: 10px solid green');
     }
 }
 
