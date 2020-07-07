@@ -1,13 +1,15 @@
-var venues = null;
-var venuesLayer = new L.LayerGroup();
+//Declare variables
+var venues = null; //variable for storing all venues
+var venuesLayer = new L.LayerGroup(); //variable for storing the venues as layer, which should be drawn to the Leaflet map
 
-function getFoursquareVersion() {
-    return '20200707';
-}
-
+/**
+ * Function to display venues in the AR-view and on the Leaflet map.
+ * @param {GeoJSON} venues 
+ */
 function displayVenues(venues) {
-    displayVenuesInAR(venues);
-    displayVenuesOnMap(venues);
+    console.log(venues);
+    displayVenuesInAR(venues); //Display venues in AR-view
+    displayVenuesOnMap(venues); //Display venues on map
 }
 
 /**
@@ -17,7 +19,7 @@ function getVenues() {
     const url = 'https://api.foursquare.com/v2/venues/search?' +
         'client_id=' + FOURSQUARE_ID +
         '&client_secret=' + FOURSQUARE_SECRET +
-        '&v=' + getFoursquareVersion() +
+        '&v=' + foursquareVersion +
         '&ll=' + lat + ',' + lon +
         '&radius=' + foursquareRadius;
 
@@ -113,11 +115,8 @@ function filterVenues() {
     return result;
 }
 
-function disableVenuesInAR() {
+function disableVenues() {
     $('[type="venue"]').remove();
-}
-
-function disableVenuesInMap() {
     venuesLayer.clearLayers();
 }
 
