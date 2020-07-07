@@ -65,10 +65,10 @@ function onPositionChange(position) {
                 infobox.innerHTML = "";
             }
         });
-    } else {
-        $(container).attr('style', 'border-style: none');
-        infobox.innerHTML = "";
-    }
+    } /* else {
+            $(container).attr('style', 'border-style: none');
+            infobox.innerHTML = "";
+        } */
 }
 
 function busLineToMap(busLine) {
@@ -111,4 +111,8 @@ function enableBusLinesInAR() {
 
 function disableBusLinesInAR() {
     enabled = false;
+    var container = $('#scene')[0];
+    var infobox = $('#lineinfo')[0];
+    $(container).attr('style', 'border-style: none');
+    infobox.innerHTML = "";
 }
