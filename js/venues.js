@@ -61,8 +61,7 @@ function displayVenuesInAR(venues) {
         $(marker).attr('cursoronvenue', true); //Handle hovering event
         $(marker).attr('type', 'venue');
         //Add the marker to the scene
-        console.log(scene);
-        scene.appendChild(marker);
+        scene.append(marker);
     });
 }
 
