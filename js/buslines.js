@@ -54,7 +54,7 @@ function filterBusLine(busLine) {
     if (turf.booleanPointInPolygon(inside, buffered)) {
         var sky = document.createElement('a-sky');
         $(sky).attr('color', 'green');
-        $(sky).attr('opacity', '0.7');
+        $(sky).attr('opacity', 0.5);
         scene.appendChild(sky);
     }
 }
