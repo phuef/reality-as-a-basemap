@@ -5,6 +5,7 @@ var radius = $('#radius').val();
 var oldRadius = null;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
+var scene = $('a-scene').first();
 
 $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
@@ -12,7 +13,7 @@ $(document).ready(() => {
 
 function getData() {
   getVenues();
-  getBusStops();
+  //getBusStops();
 }
 
 //initialize leaflet
