@@ -54,7 +54,7 @@ function filterBusLine(busLine) {
     if (turf.booleanPointInPolygon(inside, buffered)) {
         var body = $('body')[0];
         console.log(body);
-        $(body).attr('style', 'border: 10px solid green');
+        $(body).attr('style', 'border: 50px solid green');
     }
 }
 
