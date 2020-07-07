@@ -41,5 +41,7 @@ function generateVenueInfobox(venue) {
 function generateBusLineInfobox(busLine) {
     var id = busLine.properties.linienid;
 
+    console.log(busLine);
+
     return (`<h3>${id}</h3>`);
 }
