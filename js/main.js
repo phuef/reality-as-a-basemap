@@ -170,12 +170,10 @@ function toggleBuslines() {
 }
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
-    map.removeLayer(venuesLayer);
-    disableVenuesInAR();
+    disableVenues();
   }
   else {
-    map.addLayer(venuesLayer);
-    changeVenues(radius);
+    enableVenues();
   }
 }
 
