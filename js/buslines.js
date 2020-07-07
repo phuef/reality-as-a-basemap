@@ -45,7 +45,8 @@ function getLineString(fahrtbezeichner) {
 }
 
 function onPositionChange(position) {
-    var pos = [position.coords.longitude, position.coords.latitude];
+    //var pos = [position.coords.longitude, position.coords.latitude];
+    var pos = [7.607940025627613, 51.93378282786479];
     var circle = turf.circle(pos, radius / 1000);
     var bbox = turf.bbox(circle);
     var container = $('#highlight')[0];
@@ -54,7 +55,7 @@ function onPositionChange(position) {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
             $(container).addClass('borderon');
-            console.log(filtered);
+            console.log(busLine);
         } else {
             $(container).removeClass('borderon');
         }
