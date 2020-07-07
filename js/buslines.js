@@ -48,14 +48,14 @@ function onPositionChange(position) {
     var pos = [position.coords.longitude, position.coords.latitude];
     var circle = turf.circle(pos, radius / 1000);
     var bbox = turf.bbox(circle);
-    var body = $('body')[0];
+    var container = $('#highlight')[0];
 
     busLinesAR.forEach((busLine) => {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
-            $(body).attr('style', 'border: 50px solid green');
+            $(container).addClass('borderon');
         } else {
-            $(body).attr('style', 'border: none');
+            $(container).removeClass('borderon');
         }
     });
 }
