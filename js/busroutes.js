@@ -99,7 +99,7 @@ function userOnBusRoute() {
             var filtered = turf.bboxClip(busRoute, bbox);
             if (turf.booleanPointInPolygon(pos, filtered)) {
                 $(container).attr('style', 'border-style: solid');
-                infobox.innerHTML = generateBusLineInfobox(busRoute);
+                infobox.innerHTML = generateBusRouteInfobox(busRoute);
             } else {
                 $(container).attr('style', 'border-style: none');
                 infobox.innerHTML = "";
