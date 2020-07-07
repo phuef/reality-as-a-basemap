@@ -1,6 +1,6 @@
 //Declare variables
 var venues = null; //variable for storing all venues
-var venuesLayer = new L.LayerGroup(); //variable for storing the venues as layer, which should be drawn to the Leaflet map
+var venuesLayer = new L.LayerGroup(); //variable for storing the venues as a layer, which should be drawn to the Leaflet map
 
 /**
  * Function to download and visualize all venues within the specified radius via Foursquare's Search API.
@@ -43,7 +43,7 @@ function filterVenues() {
         let v_lat = venue.location.lat;
         let v_lon = venue.location.lng;
 
-        //Calculate the distance between the user's position and the bus stop
+        //Calculate the distance between the user's position and the venue
         let distance = getDistance(lat, lon, v_lat, v_lon);
 
         //If the venue lies within the radius push it to the resulting array
@@ -129,7 +129,7 @@ function displayVenuesOnMap(venues) {
  * Function to redisplay venues after they have been disabled.
  */
 function enableVenues() {
-    changeVenues(radius); //Enable venues for the AR-view
+    changeVenues(); //Enable venues for the AR-view
     map.addLayer(venuesLayer); //Enable venues for the map
 }
 

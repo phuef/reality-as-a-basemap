@@ -1,117 +1,49 @@
-//Make the current position and the A-Frame scene object globally available
-var current_position, scene, allBusStops = null;
-var busStopsLayer = new L.LayerGroup();
+//Declare variables
+var busStops = null; //variable for storing all bus stops
+var busStopsLayer = new L.LayerGroup(); //variable for storing the bus stops as a layer, which should be drawn to the Leaflet map
 
 /**
- * This function calls Conterra's Bus API to download all bus stops for Muenster in JSON format.
+ * Function to download and visualize all bus stops via Conterra's Bus API.
  */
 function getBusStops() {
-    const url = 'https://rest.busradar.conterra.de/prod/haltestellen';
+    //URL for the API call
+    let url = 'https://rest.busradar.conterra.de/prod/haltestellen';
 
+    //Execute the AJAX call
     $.ajax({
-        dataType: "json",
-        url: url,
-        data: {},
+        dataType: "json", //Download the data in JSON format
+        url: url, //The specified url
+        //If the API call is successful...
         success: function (data) {
-            allBusStops = data.features;
-            var busStops = filterBusStops(allBusStops); //filter bus stops by selecting only the nearest ones
-            busStopsToAR(busStops); //Visualize the bus stops in AR
-            busStopsToMap(busStops);
+            busStops = data.features; //Store all bus stops
+            let filteredBusStops = filterBusStops(busStops); //Filter the bus stops by radius
+            displayBusStops(filteredBusStops);
         },
+        //If the API call fails...
         error: function (jqXHR, textStatus, errorThrown) {
-            //Throw an error if the API call fails
-            console.log(textStatus, errorThrown);
-            alert("Data acquisition failed (See console for details).");
+            console.log(textStatus, errorThrown); //Print the error message in console
+            alert("Data acquisition failed (See console for details)."); //Throw an alert 
         }
     });
 }
 
 /**
- * This function visualizes the bus stops as markers in AR
- * @param {GeoJSON} busStops - Nearest bus stops to visualize in AR
+ * Function to filter bus stops by only returning the ones within the user-specified radius.
  */
-function busStopsToAR(busStops) {
-    var minDistance = busStops[0].properties.distance;
-    var closestBusStop = busStops[0];
+function filterBusStops() {
+    let result = [];
+
     busStops.forEach((busStop) => {
-        //Store the position for each bus stop
-        var b_lat = busStop.geometry.coordinates[1];
-        var b_lon = busStop.geometry.coordinates[0];
-        //Store relevant attributes
-        var name = busStop.properties.lbez;
-        var direction = busStop.properties.richtung;
-        //Create a new marker in AR
-        var marker = document.createElement('a-image');
-        //Set the necessary attributes for the marker
-        $(marker).attr('gps-entity-place', `latitude: ${b_lat}; longitude: ${b_lon}`); //The marker's location
-        $(marker).attr('src', 'img/busstop.png'); //Image for the marker
-        $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
-        $(marker).attr('scale', '20 20'); //The marker's size
-        $(marker).attr('name', name); //Name of the bus stop
-        $(marker).attr('direction', direction); //Driving direction of the buses (inwards/outwards)
-        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation
-        $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
-        $(marker).attr('cursor_busstop', true); //Handle hovering event
-        $(marker).attr('type', 'busStop');
-        //Add the marker to the scene
-        scene.appendChild(marker);
+        //Store the bus stop's location
+        let b_lat = busStop.geometry.coordinates[1];
+        let b_lon = busStop.geometry.coordinates[0];
 
-        //Get the buslines for the bus stop
-        //getBusLineOfBusStop(busStop);
-        if (busStop.properties.distance <= minDistance) {
-            closestBusStop = busStop;
-        }
-        getBusLineOfBusStop(busStop);
-    });
-    //getBusLineOfBusStop(closestBusStop);
-}
+        //Calculate the distance between the user's position and the bus stop
+        let distance = getDistance(lat, lon, b_lat, b_lon);
 
-/**
- * This function visualizes the bus stops as markers on the 2D map
- * @param {Array} busStops
- */
-function busStopsToMap(busStops) {
-    busStops.forEach((busStop) => {
-        //Define a new marker for each bus stop
-        var marker = L.ExtraMarkers.icon({
-            icon: 'fa-bus', //Font Awesome Icon
-            markerColor: 'green',
-            prefix: 'fas' //Font Awesome Prefix
-        });
+        //busStop.properties.distance = distance; //Store the distance within the GeoJSON object
 
-        //Bus stop location
-        var b_lat = busStop.geometry.coordinates[1];
-        var b_lon = busStop.geometry.coordinates[0];
-
-        var popup = generateBusStopPopup(busStop);
-
-        //Create a new Leaflet marker and bind a popup to it
-        busStopsLayer.addLayer(L.marker([b_lat, b_lon], { icon: marker })
-            .bindPopup(popup))
-
-    });
-
-    busStopsLayer.addTo(map);
-}
-
-/**
- * This function filters the downloaded bus stops, so only the nearest five ones are shown.
- * (Needs to be replaced by the radius later on!)
- * @param {Array} busStops
- */
-function filterBusStops(busStops) {
-    var result = [];
-    busStops.forEach((busStop) => {
-        //The user's current position
-        var lat1 = current_position[0];
-        var lon1 = current_position[1];
-        //The bus stop's location
-        var lat2 = busStop.geometry.coordinates[1];
-        var lon2 = busStop.geometry.coordinates[0];
-
-        var distance = getDistance(lat1, lon1, lat2, lon2); //Calculate the distance between the user's position and the bus stop
-        busStop.properties.distance = distance; //Store the distance within the GeoJSON object
-
+        //If the bus stop lies within the radius push it to the resulting array
         if (distance <= radius) {
             result.push(busStop);
         }
@@ -120,18 +52,102 @@ function filterBusStops(busStops) {
     return result;
 }
 
-function disableBusStopsInAR() {
-    $('[type="busStop"]').remove();
+/**
+ * Function to display bus stops in the AR-view and on the Leaflet map.
+ * @param {Array} busStops - Bus stops to be displayed
+ */
+function displayBusStops(busStops) {
+    displayBusStopsInAR(busStops); //Display bus stops in AR-view
+    displayBusStopsOnMap(busStops); //Display bus stops on map
 }
 
-function disableBusStopsInMap() {
-    busStopsLayer.clearLayers();
+/**
+ * Function to visualize bus stops as markers within the AR-view.
+ * @param {GeoJSON} busStops - Nearby bus stops to visualize in AR
+ */
+function displayBusStopsInAR(busStops) {
+    busStops.forEach((busStop) => {
+        //Store the position for each bus stop
+        let b_lat = busStop.geometry.coordinates[1];
+        let b_lon = busStop.geometry.coordinates[0];
+
+        //Store relevant attributes
+        let name = busStop.properties.lbez;
+        let direction = busStop.properties.richtung;
+
+        //Create a new marker in AR
+        let marker = $('<a-image>');
+
+        //Set the necessary attributes for the marker
+        $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
+        $(marker).attr('src', 'img/star-icon.png'); //Image for the marker
+        $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
+        $(marker).attr('scale', '20 20') //The marker's size
+        $(marker).attr('type', 'busStop'); //Type of the marker to distinguish different kinds of markers
+        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation 
+        $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('name', name); //The bus stop's name
+        $(marker).attr('direction', direction); //Driving direction of the bus stop
+        $(marker).attr('cursoronvenue', true); //Event handler for the hovering event
+
+        //Add the marker to the AR-view
+        scene.append(marker);
+
+        getBusLinesForBusStop(busStop);
+    });
 }
 
-function changeBusStops(radius) {
-    disableBusStopsInAR();
-    disableBusStopsInMap();
-    var newBusStops = filterBusStops(allBusStops, radius);
-    busStopsToAR(newBusStops);
-    busStopsToMap(newBusStops);
+/**
+ * Function to visualize bus stops as markers on the Leaflet map.
+ * @param {GeoJSON} busStops - Nearby bus stops to visualize on the map
+ */
+function displayBusStopsOnMap(busStops) {
+    busStops.forEach((busStop) => {
+        //Define a new marker for each bus stop
+        let markerOptions = L.ExtraMarkers.icon({
+            icon: 'fa-bus', //Font Awesome Icon
+            markerColor: 'green', //Color of the marker itself
+            prefix: 'fas' //Font Awesome Prefix
+        });
+
+        //Store the position for each bus stop
+        var b_lat = busStop.geometry.coordinates[1];
+        var b_lon = busStop.geometry.coordinates[0];
+
+        //Create a popup with information for the bus stop
+        var popup = generateBusStopPopup(busStop);
+
+        //Create a new Leaflet marker, bind the popup to it and add it to the LayerGroup
+        busStopsLayer.addLayer(L.marker([b_lat, b_lon], { icon: markerOptions })
+            .bindPopup(popup))
+
+    });
+
+    //Add the LayerGroup to the map
+    busStopsLayer.addTo(map);
+}
+
+/**
+ * Function to redisplay bus stops after they have been disabled.
+ */
+function enableBusStops() {
+    changeBusStops(); //Enable bus stops for the AR-view
+    map.addLayer(busStopsLayer); //Enable bus stops for the map
+}
+
+/**
+ * Function to hide all bus stops.
+ */
+function disableBusStops() {
+    $('[type="busStop"]').remove(); //Disable bus stops for the AR-view
+    busStopsLayer.clearLayers(); //Disable bus stops for the map
+}
+
+/**
+ * Function to update bus stops.
+ */
+function changeBusStops() {
+    disableBusStops(); //Disable all bus stops 
+    let filteredBusStops = filterBusStops(); //Filter the bus stops with the new radius
+    displayBusStops(filteredBusStops); //Display the new bus stops
 }
