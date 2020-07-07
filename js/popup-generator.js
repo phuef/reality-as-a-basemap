@@ -43,7 +43,7 @@ function generateBusStopInfobox(busStop) {
         + `<a class="btn btn-success" href="#" onclick="navigate(${lat},${lon})"><i class="fas fa-crosshairs"></i> Navigate</a>`);
 }
 
-function generatebusRouteInfobox(busRoute) {
+function generateBusRouteInfobox(busRoute) {
     var id = busRoute.properties.linienid;
 
     return (`<h3>${id}</h3>`);
