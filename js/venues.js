@@ -129,7 +129,7 @@ function displayVenuesOnMap(venues) {
  * Function to redisplay venues after they have been disabled.
  */
 function enableVenues() {
-    changeVenues(radius);
+    changeVenues(radius); //Enable venues for the AR-view
     map.addLayer(venuesLayer); //Enable venues for the map
 }
 
@@ -137,15 +137,15 @@ function enableVenues() {
  * Function to hide all venues.
  */
 function disableVenues() {
-    $('[type="venue"]').remove(); //Disable in AR-view
-    venuesLayer.clearLayers(); //Disable for the map
+    $('[type="venue"]').remove(); //Disable venues for the AR-view
+    venuesLayer.clearLayers(); //Disable venues for the map
 }
 
 /**
  * Function to update venues.
  */
 function changeVenues() {
-    disableVenues();
-    let filteredVenues = filterVenues();
-    displayVenues(filteredVenues);
+    disableVenues(); //Disable all venues 
+    let filteredVenues = filterVenues(); //Filter the venues with the new radius
+    displayVenues(filteredVenues); //Display the new venues
 }
