@@ -55,11 +55,11 @@ function onPositionChange(position) {
     busLinesAR.forEach((busLine) => {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
-            $(container).addClass('borderon');
-            infobox.innerHTML = generateBusLineInfobox(busLine);
+
+            $(infobox).innerHTML = generateBusLineInfobox(busLine);
         } else {
             $(container).removeClass('borderon');
-            infobox.innerHTML = "";
+            $(infobox).innerHTML = "";
         }
     });
 }
