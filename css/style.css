@@ -163,5 +163,10 @@ label:hover{
   height: 100%;
   z-index: 10;
   opacity: 0.7;
-  
+}
+
+#lineinfo {
+  width: 25%;
+  color: white;
+  background-color: red;
 }
