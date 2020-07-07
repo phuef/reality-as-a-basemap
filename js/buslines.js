@@ -56,10 +56,10 @@ function onPositionChange(position) {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
             $(container).attr('border-style', 'solid');
-            $(infobox).innerHTML = generateBusLineInfobox(busLine);
+            infobox.innerHTML = generateBusLineInfobox(busLine);
         } else {
             $(container).attr('border-style', 'none');
-            $(infobox).innerHTML = "";
+            infobox.innerHTML = "";
         }
     });
 }
