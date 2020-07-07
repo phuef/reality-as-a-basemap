@@ -50,13 +50,16 @@ function onPositionChange(position) {
     var circle = turf.circle(pos, radius / 1000);
     var bbox = turf.bbox(circle);
     var container = $('#scene')[0];
+    var infobox = $('#lineinfo')[0];
 
     busLinesAR.forEach((busLine) => {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
             $(container).addClass('borderon');
+            infobox.innerHTML = generateBusLineInfobox(busLine);
         } else {
             $(container).removeClass('borderon');
+            infobox.innerHTML = "";
         }
     });
 }

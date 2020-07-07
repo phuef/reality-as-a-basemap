@@ -37,3 +37,7 @@ function generateVenueInfobox(venue) {
         + `<i class="fas fa-walking fa-2x"></i> ${distance}<br><br>`
         + `<a class="btn btn-success" href="#" onclick="navigate(${lat},${lon})"><i class="fas fa-crosshairs"></i> Navigate</a>`);
 }
+
+function generateBusLineInfobox(busLine) {
+    console.log(busLine);
+}
