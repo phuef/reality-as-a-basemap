@@ -55,7 +55,7 @@ function onPositionChange(position) {
     busLinesAR.forEach((busLine) => {
         var filtered = turf.bboxClip(busLine, bbox);
         if (turf.booleanPointInPolygon(pos, filtered)) {
-            $(container).attr('border-width', '50px');
+            $(container).attr('style', 'border-width: 50px');
             infobox.innerHTML = generateBusLineInfobox(busLine);
         } else {
             //$(container).attr('border-style', 'none');
