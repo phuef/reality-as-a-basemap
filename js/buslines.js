@@ -54,6 +54,7 @@ function filterBusLine(busLine) {
     if (turf.booleanPointInPolygon(inside, buffered)) {
         var container = $('#scene')[0];
         $(container).addClass('border border-success');
+        $(container).attr('style', 'border-width: 5px');
     }
 }
 
