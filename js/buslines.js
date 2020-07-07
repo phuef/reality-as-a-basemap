@@ -58,8 +58,8 @@ function onPositionChange(position) {
             $(container).attr('border-style', 'solid');
             infobox.innerHTML = generateBusLineInfobox(busLine);
         } else {
-            $(container).attr('border-style', 'none');
-            infobox.innerHTML = "";
+            //$(container).attr('border-style', 'none');
+            //infobox.innerHTML = "";
         }
     });
 }
