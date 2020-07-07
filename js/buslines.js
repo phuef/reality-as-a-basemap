@@ -36,7 +36,7 @@ function getLineString(fahrtbezeichner) {
         data: {},
         success: function (data) {
             busLineToMap(data);
-            busLines.push(data);
+            busLines.push(turf.buffer(data, 0.002, { units: 'kilometres' }));
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus, errorThrown);
@@ -54,7 +54,6 @@ function filterBusLine(position) {
     }
 
     var filtered = turf.bboxClip(busLine, bbox);
-    var buffered = turf.buffer(filtered, 0.002, { units: 'kilometres' });
 }
 
 function onPositionChange(position) {
@@ -62,7 +61,10 @@ function onPositionChange(position) {
     var lat = position.coords.latitude;
     var circle = turf.circle([lon, lat], radius / 1000);
     var bbox = turf.bbox(circle);
-    console.log(busLines);
+    busLines.forEach((busLine) => {
+
+
+    })
 }
 
 function busLineToMap(busLine) {
