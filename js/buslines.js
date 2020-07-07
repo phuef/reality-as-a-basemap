@@ -56,7 +56,7 @@ function onPositionChange(position) {
             alert("Hurra. Du stehst auf einer Buslinie!");
             $(body).attr('style', 'border: 50px solid green');
         } else {
-            //$(body).attr('style', 'border: none');
+            $(body).attr('style', 'border: none');
         }
     });
 }
