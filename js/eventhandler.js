@@ -1,5 +1,5 @@
 //Register the event handler for the bus stops. Show information within an infobox on hover.
-AFRAME.registerComponent('cursor_busstop', {
+AFRAME.registerComponent('cursoronbusstop', {
     init: function () {
         var infobox = $('#infobox')[0];
         var cursor = $('#cursor')[0];

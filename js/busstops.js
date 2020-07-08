@@ -105,7 +105,7 @@ function displayBusStopsInAR(busStops) {
         $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('name', name); //The bus stop's name
         $(marker).attr('direction', direction); //Driving direction of the bus stop
-        $(marker).attr('cursoronvenue', true); //Event handler for the hovering event
+        $(marker).attr('cursoronbusstop', true); //Event handler for the hovering event
 
         //Add the marker to the AR-view
         scene.append(marker);
