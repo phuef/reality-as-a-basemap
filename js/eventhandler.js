@@ -1,6 +1,6 @@
 //Register the event handler for the bus stops. Show information within an infobox on hover.
 AFRAME.registerComponent('cursoronbusstop', {
-    init: () => {
+    init: function () {
         let infobox = $('#infobox')[0];
         let cursor = $('#cursor')[0];
         let defaultColor = $(cursor).attr('color');
