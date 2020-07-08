@@ -164,7 +164,7 @@ function submitRadius() {
   changeBusStops(radius);
 }
 
-function toggleBuStops() {
+function toggleBusStops() {
   if (!document.getElementById("busstops").checked) {
     disableBusStops();
   }
