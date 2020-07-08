@@ -189,7 +189,5 @@ label:hover{
 #busRouteInfo {
   width: 50%;
   color: white;
-  border-width: 5px;
-  border-color: white;
   background-color: red;
 }
