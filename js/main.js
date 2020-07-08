@@ -5,12 +5,17 @@ var radius = $('#radius').val();
 var oldRadius = null;
 var siteLoaded=false;
 $('#showRadius')[0].innerHTML = radius;
+var positionInitialised = false;
+var scene = $('#scene').first();
 
-navigator.geolocation.getCurrentPosition(function (position) {
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
-  init();
+$(document).ready(() => {
+  setInterval(updatePosition, positionUpdateRate);
 });
+
+function getData() {
+  getVenues();
+  getBusStops();
+}
 
 //initialize leaflet
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
@@ -66,10 +71,6 @@ function locate() {
   }
 }
 
-
-// call init every 5 seconds... forever
-//setInterval(init, 5000);
-
 /**
  * @desc Function to initiate everything
  *
@@ -78,35 +79,22 @@ function init() {
   locate();
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
-  initVenues(lat, lon);
-  initBusstops(lat, lon);
-  //var buslines = initBuslines(lat, lon);
-  /*while(!siteLoaded){
-    if (busstopsMap && busstopsAR && venuesAR && venuesMap){
-      siteLoaded=true;
-      alert("site is loaded");
-      //...
-    }
-  }*/
-
 }
-
 var interval = setInterval(log, 2000);
 
 function log(){
-  console.log(busstopsMap);
-  console.log(busstopsAR);
-  console.log(venuesMap);
-  console.log(venuesAR);
-  if (busstopsMap && busstopsAR && venuesAR && venuesMap){
-    siteLoaded=true;
-    clearInterval(interval);
-    document.getElementById("loadingScreen").style.display = "none";
+    console.log(busstopsMap);
+    console.log(busstopsAR);
+    console.log(venuesMap);
+    console.log(venuesAR);
+    if (busstopsMap && busstopsAR && venuesAR && venuesMap){
+        siteLoaded=true;
+        clearInterval(interval);
+        document.getElementById("loadingScreen").style.display = "none";
 
-    //...
-  }
+        //...
+    }
 }
-
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
     // alpha: rotation around z-axis
@@ -130,7 +118,7 @@ var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) 
     //var scene = document.querySelector('a-scene');
     if (frontToBack < 30 && frontToBack > -30) {
       //scene.setAttribute('display', "none");
-      document.getElementById("scene").style.display = "none";
+      document.getElementById("sceneview").style.display = "none";
       document.getElementById("slider").style.display = "none";
       document.getElementById("mapview").style.display = "flex";
       //document.querySelector('a-image').style.display="none";
@@ -144,7 +132,7 @@ var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) 
     }
     else {
       document.getElementById("mapview").style.display = "none";
-      document.getElementById("scene").style.display = "flex";
+      document.getElementById("sceneview").style.display = "flex";
       //scene.setAttribute('display', 'flex');
       document.getElementById("slider").style.display = "flex";
       //document.querySelector('a-image').style.display="flex";
@@ -165,7 +153,6 @@ function radiusCircle(radius) {
       radius: radius
     }).addTo(map);
   }
-  return true;
 }
 
 function submitRadius() {
@@ -177,32 +164,28 @@ function submitRadius() {
   changeBusStops(radius);
 }
 
-function toggleBusstops() {
+function toggleBuStops() {
   if (!document.getElementById("busstops").checked) {
-    map.removeLayer(busStopsLayer);
-    disableBusStopsInAR();
+    disableBusStops();
   }
   else {
-    map.addLayer(busStopsLayer);
-    changeBusStops(radius);
+    enableBusStops();
   }
 }
-function toggleBuslines() {
+function toggleBusRoutes() {
   if (!document.getElementById("buslines").checked) {
-    map.removeLayer(buslinesLayer);
+    disableBusRoutes();
   }
   else {
-    map.addLayer(buslinesLayer);
+    enableBusRoutes();
   }
 }
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
-    map.removeLayer(venuesLayer);
-    disableVenuesInAR();
+    disableVenues();
   }
   else {
-    map.addLayer(venuesLayer);
-    changeVenues(radius);
+    enableVenues();
   }
 }
 
