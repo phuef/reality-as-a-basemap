@@ -32,7 +32,7 @@ function onPosition(position) {
     lon = position.coords.longitude;
 
     //Visualize bus routes in AR
-    displayBusRouteInAR();
+    //displayBusRouteInAR();
 }
 
 /**
