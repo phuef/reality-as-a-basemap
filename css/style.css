@@ -185,4 +185,6 @@ label:hover{
   top: 0;
   right: 0;
   text-align: center;
+  border-radius: 5px;
+  border-color: white;
 }
