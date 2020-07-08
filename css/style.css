@@ -193,6 +193,7 @@ label:hover{
   text-align: center;
   font-size: large;
   border-style: solid;
-  border-width: 20px;
+  border-width: 5px;
   border-color: white;
+  border-radius: 10%;
 }
