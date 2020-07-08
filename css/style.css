@@ -177,14 +177,18 @@ label:hover{
   overflow: hidden;
 }
 
-#busRouteInfo {
+#busRouteInfoFrame {
   width: 25%;
-  color: white;
   background-color: green;
   position: fixed;
   top: 0;
   right: 0;
   text-align: center;
-  border-radius: 5px;
+}
+
+#busRouteInfo {
+  background-color: green;
   border-color: white;
+  border-width: 5px;
+  border-radius: 5px;
 }
