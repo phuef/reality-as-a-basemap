@@ -189,9 +189,8 @@ label:hover{
   width: 50%;
   color: white;
   margin: auto;
-  background-color: red;
   text-align: center;
   border-style: solid;
-  border-width: 10%;
+  border-width: 50%;
   border-color: white;
 }
