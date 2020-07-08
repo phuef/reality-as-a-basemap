@@ -98,7 +98,7 @@ function displayBusRouteInAR() {
         var position = [7.607940025627613, 51.93378282786479]; //Test position
 
         //Span a circle around the user's position according to the radius
-        var circle = turf.circle(pos, radius / 1000);
+        var circle = turf.circle(position, radius / 1000);
 
         //Calculate the bounding box for the circle
         var bbox = turf.bbox(circle);
