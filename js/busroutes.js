@@ -1,7 +1,9 @@
 //Declare variables
-var busRoutes = []; //variable for storing all bus routes
-var busRoutesLayer = new L.LayerGroup(); //variable for storing the bus routes as a layer, which should be drawn to the Leaflet map
-var busRoutesEnabled = true; //Store if Bus Routes are enabled in AR or not
+var busRoutes = []; //Variable for storing all bus routes
+var busRoutesLayer = new L.LayerGroup(); //Variable for storing the bus routes as a layer, which should be drawn to the Leaflet map
+var busRoutesEnabled = true; //Variable to toggle bus routes in AR
+var frame = $('#scene')[0]; //Container to visualize the feedback for a bus route
+var busRouteInfo = $('#busRouteInfo')[0]; //Infobox for the bus route
 
 /**
  * Function for downloading the corresponding bus lines for a given bus stop via Conterra's Bus API
@@ -85,41 +87,66 @@ function displayBusRouteOnMap(busRoute) {
     map.addLayer(busRoutesLayer);
 }
 
-function userOnBusRoute() {
-    var container = $('#scene')[0];
-    var infobox = $('#lineinfo')[0];
-
+/**
+ * Function to visualize a bus route in the AR-view. The user gets a visual feedback with further information when moving on a bus route.
+ */
+function displayBusRouteInAR() {
+    //Only activate the visualization if the feature is enabled
     if (busRoutesEnabled) {
-        //var pos = [position.coords.longitude, position.coords.latitude];
-        var pos = [7.607940025627613, 51.93378282786479];
+        //The user's position
+        //var position = [lon, lat]; 
+        var position = [7.607940025627613, 51.93378282786479]; //Test position
+
+        //Span a circle around the user's position according to the radius
         var circle = turf.circle(pos, radius / 1000);
+
+        //Calculate the bounding box for the circle
         var bbox = turf.bbox(circle);
 
+        //Test if the user is located on any bus route
         busRoutes.forEach((busRoute) => {
-            var filtered = turf.bboxClip(busRoute, bbox);
-            if (turf.booleanPointInPolygon(pos, filtered)) {
-                $(container).attr('style', 'border-style: solid');
-                infobox.innerHTML = generateBusRouteInfobox(busRoute);
-            } else {
-                $(container).attr('style', 'border-style: none');
-                infobox.innerHTML = "";
+            //Clip the bus route to the calculated bounding box
+            var clipped = turf.bboxClip(busRoute, bbox);
+
+            //If the user is standing on a relevant part of the bus route...
+            if (turf.booleanPointInPolygon(position, clipped)) {
+                //Show a feedback on the screen as a colored frame
+                $(frame).attr('style', 'border-style: solid');
+
+                //Display the information about the according bus route in the infobox
+                busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
+            }
+            //If the user is outside of a bus route...
+            else {
+                //Revert the frame's appearance
+                $(frame).attr('style', 'border-style: none');
+
+                //Clear the infobox
+                busRouteInfo.innerHTML = "";
             }
         });
     }
+    //Otherwise do nothing...
 }
 
+/**
+ * Function to activate the bus route visualization.
+ */
 function enableBusRoutes() {
-    busRoutesEnabled = true;
-    busRoutes.forEach((busRoute) => {
+    busRoutesEnabled = true; //Enable the bus route visualization in AR
+    map.addLayer(busRoutesLayer);
+    /* busRoutes.forEach((busRoute) => { //Redraw the 
         displayBusRouteOnMap(busRoute);
-    });
+    }); */
 }
 
+/**
+ * Function to disable the bus route visualization.
+ */
 function disableBusRoutes() {
-    busRoutesEnabled = false;
-    var container = $('#scene')[0];
-    var infobox = $('#lineinfo')[0];
-    $(container).attr('style', 'border-style: none');
-    infobox.innerHTML = "";
-    busRoutesLayer.clearLayers();
+    busRoutesEnabled = false; //Disable the bus route visualization in AR
+    busRoutesLayer.clearLayers(); //Disable the bus route visualization on the map
+    //Set the current visualization to default
+    $(frame).attr('style', 'border-style: none');
+    busRouteInfo.innerHTML = "";
 }
