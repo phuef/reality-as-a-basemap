@@ -155,7 +155,7 @@ label:hover{
 }
 
 #cursor {
-  color: black
+  color: white;
 }
 .collapsible {
   background-color: rgba(0,0,0, 0);
