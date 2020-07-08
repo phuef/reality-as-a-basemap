@@ -59,7 +59,7 @@ body {
   width: 100%;
   border-style: none;
   border-color: green;
-  border-width: 50px;
+  border-width: 10%;
 }
 #slider{
   position: fixed;
@@ -179,7 +179,7 @@ label:hover{
 
 #busRouteInfoFrame {
   width: 25%;
-  height: 25%;
+  height: 10%;
   background-color: green;
   position: fixed;
   top: 0;
