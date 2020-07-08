@@ -191,4 +191,7 @@ label:hover{
   margin: auto;
   background-color: red;
   text-align: center;
+  border-style: solid;
+  border-width: 10%;
+  border-color: white;
 }
