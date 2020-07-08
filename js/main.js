@@ -3,7 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
-var siteLoaded=false;
+var siteLoaded = false;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
 var scene = $('#scene').first();
@@ -82,18 +82,18 @@ function init() {
 }
 var interval = setInterval(log, 2000);
 
-function log(){
-    console.log(busstopsMap);
-    console.log(busstopsAR);
-    console.log(venuesMap);
-    console.log(venuesAR);
-    if (busstopsMap && busstopsAR && venuesAR && venuesMap){
-        siteLoaded=true;
-        clearInterval(interval);
-        document.getElementById("loadingScreen").style.display = "none";
+function log() {
+  /* console.log(busstopsMap);
+  console.log(busstopsAR);
+  console.log(venuesMap);
+  console.log(venuesAR); */
+  if (busstopsMap && busstopsAR && venuesAR && venuesMap) {
+    siteLoaded = true;
+    clearInterval(interval);
+    document.getElementById("loadingScreen").style.display = "none";
 
-        //...
-    }
+    //...
+  }
 }
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
