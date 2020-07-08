@@ -3,6 +3,7 @@ var busRoutes = []; //Variable for storing all bus routes
 var busRoutesLayer = new L.LayerGroup(); //Variable for storing the bus routes as a layer, which should be drawn to the Leaflet map
 var busRoutesEnabled = true; //Variable to toggle bus routes in AR
 var frame = $('#scene')[0]; //Container to visualize the feedback for a bus route
+var busRouteInfoFrame = $('#busRouteInfoFrame')[0];
 var busRouteInfo = $('#busRouteInfo')[0]; //Infobox for the bus route
 
 /**
@@ -115,14 +116,15 @@ function displayBusRouteInAR() {
 
                 //Display the information about the according bus route in the infobox
                 busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
+                busRouteInfoFrame.attr('visibility', 'visible');
             }
             //If the user is outside of a bus route...
             else {
                 //Revert the frame's appearance
                 $(frame).attr('style', 'border-style: none');
 
-                //Clear the infobox
-                busRouteInfo.innerHTML = "";
+                //Hide the infobox
+                busRouteInfoFrame.attr('visibility', 'hidden');
             }
         });
     }
@@ -148,5 +150,5 @@ function disableBusRoutes() {
     busRoutesLayer.clearLayers(); //Disable the bus route visualization on the map
     //Set the current visualization to default
     $(frame).attr('style', 'border-style: none');
-    busRouteInfo.innerHTML = "";
+    busRouteInfoFrame.attr('visibility', 'hidden');
 }
