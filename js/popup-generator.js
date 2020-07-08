@@ -60,6 +60,7 @@ function generateBusStopInfobox(busStop) {
  * @param {*} busRoute
  */
 function generateBusRouteInfobox(busRoute) {
+    console.log(busRoute);
     var id = busRoute.properties.linienid;
 
     return (`<h3>${id}</h3>`);
