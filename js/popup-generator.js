@@ -61,11 +61,9 @@ function generateBusStopInfobox(busStop) {
  */
 function generateBusRouteInfobox(busRoute) {
     console.log(busRoute);
-    let id = busRoute.properties.linienid;
-    let destination = busRoute.properties.richtungstext;
+    var id = busRoute.properties.linienid;
 
-    return (`<text>${id}</text><br><br>`
-        + `<i class="fas fa-flag-checkered fa-2x"> ${destination}</i>`);
+    return (`<text>${id}</text>`);
 }
 
 /**
