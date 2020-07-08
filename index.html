@@ -29,7 +29,8 @@
   <!-- Turf.js -->
   <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
   <!-- leaflet marker cluster -->
-  <link rel="stylesheet" href="js/dist/MarkerCluster.css"></link>
+  <link rel="stylesheet" href="js/dist/MarkerCluster.css">
+  </link>
   <script src="js/dist/leaflet.markercluster-src.js"></script>
   <!-- Popup Generator -->
   <script src="js/popup-generator.js"></script>
@@ -52,10 +53,10 @@
 </head>
 
 <body>
-<!-- loading Screen -->
-<div id="loadingScreen">
+  <!-- loading Screen -->
+  <div id="loadingScreen">
     <img id="loadingGif" src="img/loader.gif"></img>
-</div>
+  </div>
   <!-- Checkbox for locking the AR-View -->
   <input type="checkbox" id="checkboxSwitchView">
   <!-- Button for opening the settings menu -->
@@ -114,7 +115,7 @@
       <input type="range" class="slider" id="slider"></input>
       <!-- A-Frame Camera and Cursor objects -->
       <a-camera gps-camera rotation-reader>
-        <a-cursor id="cursor"></a-cursor>
+        <a-cursor id="cursor" color="white"></a-cursor>
       </a-camera>
     </a-scene>
   </div>
