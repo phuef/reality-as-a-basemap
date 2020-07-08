@@ -1,10 +1,10 @@
 //Declare variables
 var busStops = null; //variable for storing all bus stops
 var busStopsLayer = new L.markerClusterGroup({
-    iconCreateFunction: function(cluster) {
+    iconCreateFunction: function (cluster) {
         var markers = cluster.getAllChildMarkers();
         var n = 0;
-        console.log(markers);
+        //console.log(markers);
         n += markers.length;
 
         return L.divIcon({ html: n, className: 'mybusstopscluster', iconSize: L.point(40, 40) });
