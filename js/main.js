@@ -3,6 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
+var siteLoaded=false;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
 var scene = $('#scene').first();
@@ -30,6 +31,7 @@ var topoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/
 var map = L.map('map', {
   layers: [satelliteMap]
 })
+map.locate({ setView: true, maxZoom: 20 });
 
 var initialised = false;
 
@@ -78,7 +80,21 @@ function init() {
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
 }
+var interval = setInterval(log, 2000);
 
+function log(){
+    console.log(busstopsMap);
+    console.log(busstopsAR);
+    console.log(venuesMap);
+    console.log(venuesAR);
+    if (busstopsMap && busstopsAR && venuesAR && venuesMap){
+        siteLoaded=true;
+        clearInterval(interval);
+        document.getElementById("loadingScreen").style.display = "none";
+
+        //...
+    }
+}
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
     // alpha: rotation around z-axis
@@ -148,7 +164,7 @@ function submitRadius() {
   changeBusStops(radius);
 }
 
-function toggleBuStops() {
+function toggleBusStops() {
   if (!document.getElementById("busstops").checked) {
     disableBusStops();
   }

@@ -1,38 +1,53 @@
 body {
-  margin : 0px; 
+  margin : 0px;
   overflow: hidden;
 }
 
 #map {
-  height: 100%;
-  width: 100%;
-  z-index: 1;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
-#settingsButton{
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
+#loadingScreen {
+    height: 100%;
+    width: 100%;
+    z-index: 2001;
+    background-color: rgb(14, 107, 231);
+    position: absolute;
+    text-align: center;
 }
 
-#returnToPositionButton{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
+#loadingGif {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#checkboxSwitchView{
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
+#settingsButton {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
 }
 
+#returnToPositionButton {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#checkboxSwitchView {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
 #mapview{
   height: 100%;
   width: 100%;
@@ -46,7 +61,6 @@ body {
   border-color: green;
   border-width: 50px;
 }
-
 #slider{
   position: fixed;
   left: 50%;
@@ -56,16 +70,16 @@ body {
   z-index: 2;
 }
 
+
 .ui-button {
     border: none;
-    background-color: rgb(0,191,255);
-    background-color: rgba(0,191,255, 0.8);
+    background-color: rgb(0, 191, 255);
+    background-color: rgba(0, 191, 255, 0.8);
     outline: none;
     height: 50px;
     width: 50px;
     border-radius: 50%;
 }
-
 button:focus {
     border: none;
 }
@@ -123,15 +137,12 @@ button:focus {
 label:hover{
   color: white;
 }
-
 #showRadius{
   color: white;
 }
-
 #showRadiusP{
   color: white;
 }
-
 #myNav{
   z-index: 2000;
 }
@@ -146,7 +157,6 @@ label:hover{
 #cursor {
   color: black
 }
-
 .collapsible {
   background-color: rgba(0,0,0, 0);
   cursor: pointer;

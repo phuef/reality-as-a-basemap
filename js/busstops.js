@@ -1,6 +1,23 @@
 //Declare variables
 var busStops = null; //variable for storing all bus stops
-var busStopsLayer = new L.LayerGroup(); //variable for storing the bus stops as a layer, which should be drawn to the Leaflet map
+var busStopsLayer = new L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+        var markers = cluster.getAllChildMarkers();
+        var n = 0;
+        console.log(markers);
+        n += markers.length;
+
+        return L.divIcon({ html: n, className: 'mybusstopscluster', iconSize: L.point(40, 40) });
+    },
+    //Disable all of the defaults:
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
+    disableClusteringAtZoom: 17
+});
+var busstopsAR = false;
+var busstopsMap = false;
+
 
 /**
  * Function to download and visualize all bus stops via Conterra's Bus API.
@@ -22,7 +39,7 @@ function getBusStops() {
         //If the API call fails...
         error: (jqXHR, textStatus, errorThrown) => {
             console.log(textStatus, errorThrown); //Print the error message in console
-            alert("Data acquisition failed (See console for details)."); //Throw an alert 
+            alert("Data acquisition failed (See console for details)."); //Throw an alert
         }
     });
 }
@@ -84,8 +101,8 @@ function displayBusStopsInAR(busStops) {
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('type', 'busStop'); //Type of the marker to distinguish different kinds of markers
-        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation 
-        $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('lat', `${b_lat}`); //Seperate latitude for navigation
+        $(marker).attr('lon', `${b_lon}`); //Seperate longitude for navigation
         $(marker).attr('name', name); //The bus stop's name
         $(marker).attr('direction', direction); //Driving direction of the bus stop
         $(marker).attr('cursoronvenue', true); //Event handler for the hovering event
@@ -96,6 +113,7 @@ function displayBusStopsInAR(busStops) {
         //Download the bus lines for the bus stop
         getBusLinesForBusStop(busStop);
     });
+    busstopsAR = true;
 }
 
 /**
@@ -126,6 +144,7 @@ function displayBusStopsOnMap(busStops) {
 
     //Add the LayerGroup to the map
     busStopsLayer.addTo(map);
+    busstopsMap = true;
 }
 
 /**
@@ -148,7 +167,7 @@ function disableBusStops() {
  * Function to update bus stops.
  */
 function changeBusStops() {
-    disableBusStops(); //Disable all bus stops 
+    disableBusStops(); //Disable all bus stops
     let filteredBusStops = filterBusStops(); //Filter the bus stops with the new radius
     displayBusStops(filteredBusStops); //Display the new bus stops
 }

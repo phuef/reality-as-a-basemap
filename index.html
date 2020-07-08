@@ -28,6 +28,9 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet-extra-markers@1.2.1/dist/js/leaflet.extra-markers.min.js"></script>
   <!-- Turf.js -->
   <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+  <!-- leaflet marker cluster -->
+  <link rel="stylesheet" href="js/dist/MarkerCluster.css"></link>
+  <script src="js/dist/leaflet.markercluster-src.js"></script>
   <!-- Popup Generator -->
   <script src="js/popup-generator.js"></script>
   <!-- Event Handler (A-Frame's registerComponent has to be called before the body is initialized!)-->
@@ -49,6 +52,10 @@
 </head>
 
 <body>
+<!-- loading Screen -->
+<div id="loadingScreen">
+    <img id="loadingGif" src="img/loader.gif"></img>
+</div>
   <!-- Checkbox for locking the AR-View -->
   <input type="checkbox" id="checkboxSwitchView">
   <!-- Button for opening the settings menu -->

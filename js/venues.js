@@ -1,6 +1,22 @@
 //Declare variables
 var venues = null; //variable for storing all venues
-var venuesLayer = new L.LayerGroup(); //variable for storing the venues as a layer, which should be drawn to the Leaflet map
+var venuesLayer = new L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+        var markers = cluster.getAllChildMarkers();
+        var n = 0;
+        console.log(markers);
+        n += markers.length;
+
+        return L.divIcon({ html: n, className: 'myvenuescluster', iconSize: L.point(40, 40) });
+    },
+    //Disable all of the defaults:
+    spiderfyOnMaxZoom: false,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
+    disableClusteringAtZoom: 17
+});
+var venuesAR = false;
+var venuesMap = false;
 
 /**
  * Function to download and visualize all venues within the specified radius via Foursquare's Search API.
@@ -27,7 +43,7 @@ function getVenues() {
         //If the API call fails...
         error: (jqXHR, textStatus, errorThrown) => {
             console.log(textStatus, errorThrown); //Print the error message in console
-            alert("Data acquisition failed (See console for details)."); //Throw an alert 
+            alert("Data acquisition failed (See console for details)."); //Throw an alert
         }
     });
 }
@@ -86,14 +102,15 @@ function displayVenuesInAR(venues) {
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('type', 'venue'); //Type of the marker to distinguish different kinds of markers
-        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation 
-        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation 
+        $(marker).attr('lat', `${v_lat}`); //Seperate latitude for navigation
+        $(marker).attr('lon', `${v_lon}`); //Seperate longitude for navigation
         $(marker).attr('name', name); //The venue's name
         $(marker).attr('cursoronvenue', true); //Event handler for the hovering event
 
         //Add the marker to the AR-view
         scene.append(marker);
     });
+    venuesAR = true;
 }
 
 /**
@@ -123,6 +140,7 @@ function displayVenuesOnMap(venues) {
 
     //Add the LayerGroup to the map
     venuesLayer.addTo(map);
+    venuesMap = true;
 }
 
 /**
@@ -145,7 +163,7 @@ function disableVenues() {
  * Function to update venues.
  */
 function changeVenues() {
-    disableVenues(); //Disable all venues 
+    disableVenues(); //Disable all venues
     let filteredVenues = filterVenues(); //Filter the venues with the new radius
     displayVenues(filteredVenues); //Display the new venues
 }
