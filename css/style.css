@@ -179,6 +179,7 @@ label:hover{
 
 #busRouteInfoFrame {
   width: 25%;
+  height: 50%;
   background-color: green;
   position: fixed;
   top: 0;
@@ -187,7 +188,6 @@ label:hover{
 
 #busRouteInfo {
   width: 50%;
-  height: 25%;
   color: white;
   margin: auto;
   text-align: center;
