@@ -28,6 +28,10 @@ var topoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/
     attribution: ''
 });
 
+var worldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: ''
+});
+
 var map = L.map('map', {
     layers: [satelliteMap]
 })
@@ -203,11 +207,19 @@ function switchBaselayer(layer) {
             case "topo":
                 map.addLayer(topoMap);
                 map.removeLayer(satelliteMap);
+                map.removeLayer(worldStreetMap);
+                break;
+
+            case "worldStreet":
+                map.addLayer(worldStreetMap);
+                map.removeLayer(satelliteMap);
+                map.removeLayer(topoMap);
                 break;
 
             case "satellite":
                 map.addLayer(satelliteMap);
                 map.removeLayer(topoMap);
+                map.removeLayer(worldStreetMap);
                 break;
             default:
 
