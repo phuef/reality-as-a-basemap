@@ -124,9 +124,6 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
             if (!mapview) {
                 map.locate({ setView: true, maxZoom: 20 });
             }
-            //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.position= 'fixed';
-            //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.right= '0';
-            //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.top= '0';
             mapview = true;
         } else {
             document.getElementById("mapview").style.display = "none";
@@ -237,7 +234,8 @@ for (i = 0; i < coll.length; i++) {
     });
 }
 
-document.querySelector('body').addEventListener('click', (event) => {
+function zoomSlider() {
+    zoomlevel = document.getElementById('slider').value;
     let mediaStream = document.querySelector('video');
     // this is the runnning camera stream
     mediaStream = mediaStream.srcObject;
@@ -251,5 +249,5 @@ document.querySelector('body').addEventListener('click', (event) => {
     }
 
     // 5 as example value
-    track.applyConstraints({ advanced: [{ zoom: 5 }] });
-});
+    track.applyConstraints({ advanced: [{ zoom: zoomlevel }] });
+}

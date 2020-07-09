@@ -111,7 +111,7 @@
       <!-- Infobox for the AR-Line-Features -->
       <div id="lineinfo"></div>
       <!-- Slider for Zooming -->
-      <input type="range" class="slider" id="slider"></input>
+      <input type="range" class="slider" id="slider"  min="0" max="5" value="0" oninput="zoomSlider()"></input>
       <!-- A-Frame Camera and Cursor objects -->
       <a-camera gps-camera rotation-reader>
         <a-cursor id="cursor"></a-cursor>
