@@ -124,7 +124,7 @@ function displayBusRouteInAR() {
                 $(frame).attr('style', 'border-style: none');
 
                 //Hide the infobox
-                busRouteInfoFrame.attr('visibility', 'hidden');
+                $(busRouteInfoFrame).attr('visibility', 'hidden');
             }
         });
     }
@@ -150,5 +150,5 @@ function disableBusRoutes() {
     busRoutesLayer.clearLayers(); //Disable the bus route visualization on the map
     //Set the current visualization to default
     $(frame).attr('style', 'border-style: none');
-    busRouteInfoFrame.attr('visibility', 'hidden');
+    $(busRouteInfoFrame).attr('visibility', 'hidden');
 }
