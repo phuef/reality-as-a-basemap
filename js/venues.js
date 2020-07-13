@@ -76,15 +76,40 @@ function filterVenues() {
  * @param {Array} venues - Venues to be displayed
  */
 function displayVenues(venues) {
-    displayVenuesInAR(venues); //Display venues in AR-view
+    distinguishVenuesInAR(venues); //Display venues in AR-view
     displayVenuesOnMap(venues); //Display venues on map
+}
+
+function distinguishVenuesInAR(venues) {
+    var visible = [];
+    var occluded = [];
+
+    venues.forEach((venue) => {
+        var lineOfSight = turf.lineString([[lon, lat], [venue.location.lng, venue.location.lat]]);
+        var isVisible = true;
+
+        var intersect = turf.lineIntersect(lineOfSight, buildings);
+
+        if (intersect.features.length > 0) {
+            isVisible = false;
+        }
+
+        if (!isVisible) {
+            occluded.push(venue);
+        } else {
+            visible.push(venue);
+        }
+    });
+
+    displayVenuesInAR(visible, true);
+    displayVenuesInAR(occluded, false);
 }
 
 /**
  * Function to visualize venues as markers within the AR-view.
  * @param {GeoJSON} venues - Nearby venues to visualize in AR
  */
-function displayVenuesInAR(venues) {
+function displayVenuesInAR(venues, isVisible) {
     venues.forEach((venue) => {
         //Store the position for each venue
         let v_lat = venue.location.lat;
@@ -96,9 +121,14 @@ function displayVenuesInAR(venues) {
         //Create a new A-Frame image object as a marker
         let marker = $('<a-image>');
 
+        if (isVisible) {
+            $(marker).attr('src', 'img/venue.png'); //Image for the marker
+        } else {
+            $(marker).attr('src', 'img/venue_invisible.png'); //Image for the marker
+        }
+
         //Set the necessary attributes for the marker
         $(marker).attr('gps-entity-place', `latitude: ${v_lat}; longitude: ${v_lon}`); //The marker's location
-        $(marker).attr('src', 'img/star-icon.png'); //Image for the marker
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('type', 'venue'); //Type of the marker to distinguish different kinds of markers

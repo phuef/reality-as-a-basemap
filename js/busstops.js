@@ -74,7 +74,7 @@ function filterBusStops() {
  * @param {Array} busStops - Bus stops to be displayed
  */
 function displayBusStops(busStops) {
-    displayBusStopsInAR(busStops); //Display bus stops in AR-view
+    distinguishBusStopsInAR(busStops); //Display bus stops in AR-view
     displayBusStopsOnMap(busStops); //Display bus stops on map
 }
 
@@ -82,7 +82,32 @@ function displayBusStops(busStops) {
  * Function to visualize bus stops as markers within the AR-view.
  * @param {GeoJSON} busStops - Nearby bus stops to visualize in AR
  */
-function displayBusStopsInAR(busStops) {
+function distinguishBusStopsInAR(busStops) {
+    var visible = [];
+    var occluded = [];
+
+    busStops.forEach((busStop) => {
+        var lineOfSight = turf.lineString([[lon, lat], busStop.geometry.coordinates]);
+        var isVisible = true;
+
+        var intersect = turf.lineIntersect(lineOfSight, buildings);
+
+        if (intersect.features.length > 0) {
+            isVisible = false;
+        }
+
+        if (!isVisible) {
+            occluded.push(busStop);
+        } else {
+            visible.push(busStop);
+        }
+    });
+
+    displayBusStopsInAR(visible, true);
+    displayBusStopsInAR(occluded, false);
+}
+
+function displayBusStopsInAR(busStops, isVisible) {
     busStops.forEach((busStop) => {
         //Store the position for each bus stop
         let b_lat = busStop.geometry.coordinates[1];
@@ -95,9 +120,14 @@ function displayBusStopsInAR(busStops) {
         //Create a new marker in AR
         let marker = $('<a-image>');
 
+        if (isVisible) {
+            $(marker).attr('src', 'img/busstop.png'); //Image for the marker
+        } else {
+            $(marker).attr('src', 'img/busstop_invisible.png'); //Image for the marker
+        }
+
         //Set the necessary attributes for the marker
         $(marker).attr('gps-entity-place', `latitude: ${b_lat}; longitude: ${b_lon}`); //The marker's location
-        $(marker).attr('src', 'img/busstop.png'); //Image for the marker
         $(marker).attr('look-at', '[gps-camera]'); //Fix the marker to the correct position when looking at it in AR
         $(marker).attr('scale', '20 20') //The marker's size
         $(marker).attr('type', 'busStop'); //Type of the marker to distinguish different kinds of markers
