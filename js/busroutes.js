@@ -116,16 +116,16 @@ function displayBusRouteInAR() {
 
                 //Display the information about the according bus route in the infobox
                 busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
-                $(busRouteInfoFrame).attr('visibility', 'visible');
+                $(busRouteInfoFrame).attr('style', 'visibility: visible');
             }
             //If the user is outside of a bus route...
-            /* else {
+            else {
                 //Revert the frame's appearance
                 $(frame).attr('style', 'border-style: none');
 
                 //Hide the infobox
-                $(busRouteInfoFrame).attr('visibility', 'hidden');
-            } */
+                $(busRouteInfoFrame).attr('style', 'visibility: hidden');
+            }
         });
     }
     //Otherwise do nothing...
