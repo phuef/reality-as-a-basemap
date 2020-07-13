@@ -104,6 +104,8 @@ function displayBusRouteInAR() {
         //Calculate the bounding box for the circle
         var bbox = turf.bbox(circle);
 
+        var inside = false;
+
         //Test if the user is located on any bus route
         busRoutes.forEach((busRoute) => {
             //Clip the bus route to the calculated bounding box
@@ -117,15 +119,18 @@ function displayBusRouteInAR() {
                 //Display the information about the according bus route in the infobox
                 busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
                 $(busRouteInfoFrame).attr('style', 'visibility: visible');
+
+                inside = true;
             }
             //If the user is outside of a bus route...
-            /* else {
+            if (!inside) {
+
                 //Revert the frame's appearance
                 $(frame).attr('style', 'border-style: none');
 
                 //Hide the infobox
                 $(busRouteInfoFrame).attr('style', 'visibility: hidden');
-            } */
+            }
         });
     }
     //Otherwise do nothing...
