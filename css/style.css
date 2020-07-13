@@ -184,6 +184,7 @@ label:hover{
   position: fixed;
   top: 0;
   right: 0;
+  padding-top: 10px;
   visibility: hidden;
 }
 
@@ -191,7 +192,6 @@ label:hover{
   width: 50%;
   color: white;
   margin: auto;
-  padding-top: 5px;
   text-align: center;
   font-size: 1.5em;
   border-style: solid;
