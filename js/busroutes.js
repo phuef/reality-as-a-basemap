@@ -140,10 +140,10 @@ function displayBusRouteInAR() {
  */
 function enableBusRoutes() {
     busRoutesEnabled = true; //Enable the bus route visualization in AR
-    map.addLayer(busRoutesLayer);
-    /* busRoutes.forEach((busRoute) => { //Redraw the 
+    //Redraw the bus routes on the map
+    busRoutes.forEach((busRoute) => {
         displayBusRouteOnMap(busRoute);
-    }); */
+    });
 }
 
 /**
