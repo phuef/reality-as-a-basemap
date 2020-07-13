@@ -95,8 +95,8 @@ function displayBusRouteInAR() {
     //Only activate the visualization if the feature is enabled
     if (busRoutesEnabled) {
         //The user's position
-        var position = [lon, lat];
-        /* var position = [7.607940025627613, 51.93378282786479]; //Test position */
+        /* var position = [lon, lat]; */
+        var position = [7.607940025627613, 51.93378282786479]; //Test position
 
         //Span a circle around the user's position according to the radius
         var circle = turf.circle(position, radius / 1000);
@@ -124,7 +124,6 @@ function displayBusRouteInAR() {
             }
             //If the user is outside of a bus route...
             if (!inside) {
-
                 //Revert the frame's appearance
                 $(frame).attr('style', 'border-style: none');
 
