@@ -119,13 +119,13 @@ function displayBusRouteInAR() {
                 $(busRouteInfoFrame).attr('style', 'visibility: visible');
             }
             //If the user is outside of a bus route...
-            else {
+            /* else {
                 //Revert the frame's appearance
                 $(frame).attr('style', 'border-style: none');
 
                 //Hide the infobox
                 $(busRouteInfoFrame).attr('style', 'visibility: hidden');
-            }
+            } */
         });
     }
     //Otherwise do nothing...
