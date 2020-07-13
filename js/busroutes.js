@@ -2,7 +2,7 @@
 var busRoutes = []; //Variable for storing all bus routes
 var busRoutesLayer = new L.LayerGroup(); //Variable for storing the bus routes as a layer, which should be drawn to the Leaflet map
 var busRoutesEnabled = true; //Variable to toggle bus routes in AR
-var frame = $('#scene')[0]; //Container to visualize the feedback for a bus route
+var frame = $('#sceneview')[0]; //Container to visualize the feedback for a bus route
 var busRouteInfoFrame = $('#busRouteInfoFrame')[0];
 var busRouteInfo = $('#busRouteInfo')[0]; //Infobox for the bus route
 
@@ -113,8 +113,6 @@ function displayBusRouteInAR() {
             if (turf.booleanPointInPolygon(position, clipped)) {
                 //Show a feedback on the screen as a colored frame
                 $(frame).attr('style', 'border-style: solid');
-
-                console.log("PointinPolygon.");
 
                 //Display the information about the according bus route in the infobox
                 busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
