@@ -114,6 +114,8 @@ function displayBusRouteInAR() {
                 //Show a feedback on the screen as a colored frame
                 $(frame).attr('style', 'border-style: solid');
 
+                console.log("PointinPolygon.");
+
                 //Display the information about the according bus route in the infobox
                 busRouteInfo.innerHTML = generateBusRouteInfobox(busRoute);
                 $(busRouteInfoFrame).attr('visibility', 'visible');
