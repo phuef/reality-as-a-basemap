@@ -74,28 +74,33 @@ function filterBusStops() {
  * @param {Array} busStops - Bus stops to be displayed
  */
 function displayBusStops(busStops) {
-    distinguishBusStopsInAR(busStops); //Display bus stops in AR-view
+    distinguishBusStopsInAR(busStops); //Distinguish between visible and occluded objects in AR
     displayBusStopsOnMap(busStops); //Display bus stops on map
 }
 
 /**
- * Function to visualize bus stops as markers within the AR-view.
- * @param {GeoJSON} busStops - Nearby bus stops to visualize in AR
+ * Function to dinstinguish between visible and occluded bus stops in AR via buildings in GeoJSON format.
+ * @param {GeoJSON} busStops - Bus stops to distinguish
  */
 function distinguishBusStopsInAR(busStops) {
-    var visible = [];
-    var occluded = [];
+    var visible = []; //Visible bus stops
+    var occluded = []; //Occluded bus stops
 
     busStops.forEach((busStop) => {
+        //Calculate the line of sight between the user's location and the bus stop
         var lineOfSight = turf.lineString([[lon, lat], busStop.geometry.coordinates]);
-        var isVisible = true;
 
+        var isVisible = true; //Flag to determine whether the bus stop is visible or occluded
+
+        //Calculate the intersection between the line of sight and the buildings
         var intersect = turf.lineIntersect(lineOfSight, buildings);
 
+        //If the line of sight is intersected by a building change the flag
         if (intersect.features.length > 0) {
             isVisible = false;
         }
 
+        //Push the bus stop to the according array
         if (!isVisible) {
             occluded.push(busStop);
         } else {
@@ -103,10 +108,16 @@ function distinguishBusStopsInAR(busStops) {
         }
     });
 
+    //Visualize the bus stops in AR
     displayBusStopsInAR(visible, true);
     displayBusStopsInAR(occluded, false);
 }
 
+/**
+ * Function to visualize bus stops in AR view as markers.
+ * @param {Array} busStops - Bus stops to visualize
+ * @param {Boolean} isVisible - //Parameter to decide if the bus stops are visible or occluded
+ */
 function displayBusStopsInAR(busStops, isVisible) {
     busStops.forEach((busStop) => {
         //Store the position for each bus stop
@@ -120,10 +131,11 @@ function displayBusStopsInAR(busStops, isVisible) {
         //Create a new marker in AR
         let marker = $('<a-image>');
 
+        //Create different markers for visible and occluded bus stops
         if (isVisible) {
             $(marker).attr('src', 'img/busstop.png'); //Image for the marker
         } else {
-            $(marker).attr('src', 'img/busstop_invisible.png'); //Image for the marker
+            $(marker).attr('src', 'img/busstop_occluded.png'); //Image for the marker
         }
 
         //Set the necessary attributes for the marker
@@ -143,7 +155,8 @@ function displayBusStopsInAR(busStops, isVisible) {
         //Download the bus lines for the bus stop
         getBusLinesForBusStop(busStop);
     });
-    busstopsAR = true;
+
+    busstopsAR = true; //Flag for the loader
 }
 
 /**
@@ -174,7 +187,8 @@ function displayBusStopsOnMap(busStops) {
 
     //Add the LayerGroup to the map
     busStopsLayer.addTo(map);
-    busstopsMap = true;
+
+    busstopsMap = true; //Flag for the loader
 }
 
 /**

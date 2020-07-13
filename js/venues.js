@@ -76,24 +76,33 @@ function filterVenues() {
  * @param {Array} venues - Venues to be displayed
  */
 function displayVenues(venues) {
-    distinguishVenuesInAR(venues); //Display venues in AR-view
+    distinguishVenuesInAR(venues); //Distinguish between visible and occluded objects in AR
     displayVenuesOnMap(venues); //Display venues on map
 }
 
+/**
+ * Function to dinstinguish between visible and occluded venues in AR via buildings in GeoJSON format.
+ * @param {GeoJSON} venues - venues to distinguish
+ */
 function distinguishVenuesInAR(venues) {
-    var visible = [];
-    var occluded = [];
+    var visible = []; //Visible venues
+    var occluded = []; //Occluded venues
 
     venues.forEach((venue) => {
+        //Calculate the line of sight between the user's location and the venue
         var lineOfSight = turf.lineString([[lon, lat], [venue.location.lng, venue.location.lat]]);
-        var isVisible = true;
 
+        var isVisible = true; //Flag to determine whether the venue is visible or occluded
+
+        //Calculate the intersection between the line of sight and the buildings
         var intersect = turf.lineIntersect(lineOfSight, buildings);
 
+        //If the line of sight is intersected by a building change the flag
         if (intersect.features.length > 0) {
             isVisible = false;
         }
 
+        //Push the venue to the according array
         if (!isVisible) {
             occluded.push(venue);
         } else {
@@ -101,6 +110,7 @@ function distinguishVenuesInAR(venues) {
         }
     });
 
+    //Visualize the venues in AR
     displayVenuesInAR(visible, true);
     displayVenuesInAR(occluded, false);
 }
@@ -121,10 +131,11 @@ function displayVenuesInAR(venues, isVisible) {
         //Create a new A-Frame image object as a marker
         let marker = $('<a-image>');
 
+        //Create different markers for visible and occluded venues
         if (isVisible) {
             $(marker).attr('src', 'img/venue.png'); //Image for the marker
         } else {
-            $(marker).attr('src', 'img/venue_invisible.png'); //Image for the marker
+            $(marker).attr('src', 'img/venue_occluded.png'); //Image for the marker
         }
 
         //Set the necessary attributes for the marker
