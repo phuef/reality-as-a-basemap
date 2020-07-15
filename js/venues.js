@@ -95,7 +95,7 @@ function distinguishVenuesInAR(venues) {
         var isVisible = true; //Flag to determine whether the venue is visible or occluded
 
         //Calculate the intersection between the line of sight and the buildings
-        var intersect = turf.lineIntersect(lineOfSight, buildings_large);
+        var intersect = turf.lineIntersect(lineOfSight, buildings_small);
 
         //If the line of sight is intersected by a building change the flag
         if (intersect.features.length > 0) {
