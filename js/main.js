@@ -3,7 +3,7 @@ var lat, lon; // latitude and longitude of the current position
 var mapview = false;
 var radius = $('#radius').val();
 var oldRadius = null;
-var siteLoaded = false;
+var siteLoaded=false;
 $('#showRadius')[0].innerHTML = radius;
 var positionInitialised = false;
 var scene = $('#scene').first();
@@ -26,6 +26,10 @@ var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/servi
 });
 var topoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
   attribution: ''
+});
+
+var worldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: ''
 });
 
 var map = L.map('map', {
@@ -83,17 +87,13 @@ function init() {
 var interval = setInterval(log, 2000);
 
 function log() {
-  /* console.log(busstopsMap);
-  console.log(busstopsAR);
-  console.log(venuesMap);
-  console.log(venuesAR); */
   if (busstopsMap && busstopsAR && venuesAR && venuesMap) {
     siteLoaded = true;
     clearInterval(interval);
     document.getElementById("loadingScreen").style.display = "none";
 
-    //...
-  }
+        //...
+    }
 }
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
@@ -111,34 +111,29 @@ if (window.DeviceOrientationEvent) {
  * @desc changes  the shown elements when the devices orientation changes
  *
  */
-var handleOrientationEvent = function (frontToBack, leftToRight, rotateDegrees) {
-  var checked = document.getElementById("checkboxSwitchView").checked;
-  if (checked) { }
-  else {
-    //var scene = document.querySelector('a-scene');
-    if (frontToBack < 30 && frontToBack > -30) {
-      //scene.setAttribute('display', "none");
-      document.getElementById("sceneview").style.display = "none";
-      document.getElementById("slider").style.display = "none";
-      document.getElementById("mapview").style.display = "flex";
-      //document.querySelector('a-image').style.display="none";
-      if (!mapview) {
-        map.locate({ setView: true, maxZoom: 20 });
-      }
-      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.position= 'fixed';
-      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.right= '0';
-      //document.querySelectorAll('.leaflet-control-layers,.leaflet-control').style.top= '0';
-      mapview = true;
+var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
+    var checked = document.getElementById("checkboxSwitchView").checked;
+    if (checked) {} else {
+        //var scene = document.querySelector('a-scene');
+        if (frontToBack < 30 && frontToBack > -30) {
+            //scene.setAttribute('display', "none");
+            document.getElementById("sceneview").style.display = "none";
+            document.getElementById("slider").style.display = "none";
+            document.getElementById("mapview").style.display = "flex";
+            //document.querySelector('a-image').style.display="none";
+            if (!mapview) {
+                map.locate({ setView: true, maxZoom: 20 });
+            }
+            mapview = true;
+        } else {
+            document.getElementById("mapview").style.display = "none";
+            document.getElementById("sceneview").style.display = "flex";
+            //scene.setAttribute('display', 'flex');
+            document.getElementById("slider").style.display = "flex";
+            //document.querySelector('a-image').style.display="flex";
+            mapview = false;
+        }
     }
-    else {
-      document.getElementById("mapview").style.display = "none";
-      document.getElementById("sceneview").style.display = "flex";
-      //scene.setAttribute('display', 'flex');
-      document.getElementById("slider").style.display = "flex";
-      //document.querySelector('a-image').style.display="flex";
-      mapview = false;
-    }
-  }
 }
 
 function radiusCircle(radius) {
@@ -203,18 +198,29 @@ function closeNav() {
 }
 
 function switchBaselayer(layer) {
-  if (document.getElementById(layer).checked) {
-    switch (layer) {
-      case "topo": map.addLayer(topoMap);
-        map.removeLayer(satelliteMap); break;
+    if (document.getElementById(layer).checked) {
+        switch (layer) {
+            case "topo":
+                map.addLayer(topoMap);
+                map.removeLayer(satelliteMap);
+                map.removeLayer(worldStreetMap);
+                break;
 
-      case "satellite": map.addLayer(satelliteMap);
-        map.removeLayer(topoMap);
-        break;
-      default:
+            case "worldStreet":
+                map.addLayer(worldStreetMap);
+                map.removeLayer(satelliteMap);
+                map.removeLayer(topoMap);
+                break;
 
+            case "satellite":
+                map.addLayer(satelliteMap);
+                map.removeLayer(topoMap);
+                map.removeLayer(worldStreetMap);
+                break;
+            default:
+
+        }
     }
-  }
 }
 function toggleRadius() {
   radiusCircle(radius);
@@ -233,4 +239,22 @@ for (i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
+}
+
+function zoomSlider() {
+    zoomlevel = document.getElementById('slider').value;
+    let mediaStream = document.querySelector('video');
+    // this is the runnning camera stream
+    mediaStream = mediaStream.srcObject;
+
+    const track = mediaStream.getVideoTracks()[0];
+    const capabilities = track.getCapabilities();
+
+    // Check whether zoom is supported or not.
+    if (!('zoom' in capabilities)) {
+        return Promise.reject('Zoom is not supported by ' + track.label);
+    }
+
+    // 5 as example value
+    track.applyConstraints({ advanced: [{ zoom: zoomlevel }] });
 }

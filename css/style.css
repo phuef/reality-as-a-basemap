@@ -199,3 +199,21 @@ label:hover{
   border-color: white;
   border-radius: 10%;
 }
+
+.myvenuescluster {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: orange;
+    text-align: center;
+    font-size: 24px;
+}
+
+.mybusstopscluster {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1a624c;
+    text-align: center;
+    font-size: 24px;
+}
