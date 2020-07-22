@@ -1,3 +1,5 @@
+//Buildings data set in GeoJSON Format to calculate the occlusion of objects
+//Note: This is only the data for Muenster Hiltrup-Ost
 const buildings_small = {
     "type": "FeatureCollection",
     "name": "Gebaeude_komplett",
