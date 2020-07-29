@@ -4,8 +4,20 @@ colors, different icons and visual feedback on the screen.
 Typical basemap functionalities include panning and zooming and selection of features and background maps etc.
 
 When starting the application, you are asked to allow the phone to retrieve its position and access to the camera. A loading screen is shown until all features are fully loaded.
-The application consists of two separate views. The AR-view, appearing when holding the phone vertically and the 2D-view, appearing when holding the phone horizontally. The current view can be fixed, by checking the checkbox in the top left corner. This design is not self-explanatory, but easy to understand, once you activated the checkbox.
-In the 2D-view you are able to move and change the background map. Once the current view is changed to a different location, you can return to the current position via the button in the lower left corner, that can only be seen in 2D-view. Information about features in the 2D-view can be accessed via a Popup when clicking on the markers and lines. The features aggregate according to the scale. The settings button in the lower right corner, provides the possibility to change the radius around the current position and to limit features from being displayed beyond this radius – in both 2D- and AR-view. It also allows the user to toggle the features, in this case bus stops, bus lines and venues/points of interest. Like mentioned above, the basemap can be changed in the settings menu also.
-In the AR-view the features are being displayed on the location of their actual position, according to their coordinates. Depending on their state of occlusion, features are either displayed as colored icons, when no building prevents the view, or grey icons, when they are actually occluded by real-world buildings. The cursor, that is fixed in the middle of the screen changes color, when a feature is hovered. Then an infobox is shown with additional information about the feature. When you are standing on a line, a visual feedback is displayed by two green bars on top and on the bottom of the screen and the line number of the next bus line departing is shown in the upper right corner. The slider on the bottom of the screen can be used for zooming in the AR-view.
+The application consists of two separate views. The AR-view, appearing when holding the phone vertically and the 2D-view, appearing when holding the phone horizontally. 
+The current view can be fixed, by checking the checkbox in the top left corner. 
+This design is not self-explanatory, but easy to understand, once you activated the checkbox.
+In the 2D-view you are able to move and change the background map. 
+Once the current view is changed to a different location, you can return to the current position via the button in the lower left corner, that can only be seen in 2D-view. 
+Information about features in the 2D-view can be accessed via a Popup when clicking on the markers and lines. 
+The features aggregate according to the scale. 
+The settings button in the lower right corner, provides the possibility to change the radius around the current position and to limit features from being displayed beyond
+this radius – in both 2D- and AR-view. It also allows you to toggle the features, in this case bus stops, bus lines and venues/points of interest. 
+Like mentioned above, the basemap can be changed in the settings menu also.
+In the AR-view the features are being displayed on the location of their actual position, according to their coordinates. 
+Depending on their state of occlusion, features are either displayed as colored icons, when no building prevents the view, or grey icons, when they are actually 
+occluded by real-world buildings. The cursor, that is fixed in the middle of the screen changes color, when a feature is hovered. Then an infobox is shown with additional 
+information about the feature. When you are standing on a line, a visual feedback is displayed by two green bars on top and on the bottom of the screen and the line number 
+of the next bus line departing is shown in the upper right corner. The slider on the bottom of the screen can be used for zooming in the AR-view.
 
 Live demo at http://ar-master.netlify.app
