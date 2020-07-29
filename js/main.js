@@ -12,12 +12,17 @@ $(document).ready(() => {
   setInterval(updatePosition, positionUpdateRate);
 });
 
+
+/**
+ * @desc retrieves the data
+ *
+ */
 function getData() {
   getVenues();
   getBusStops();
 }
 
-//initialize leaflet
+//initialize leaflet with links for different basemaps
 var mapLink = '<a href="http://www.esri.com/">Esri</a>';
 
 var satelliteMap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -58,10 +63,16 @@ function onLocationFound(e) {
 
 }
 
+/**
+ * @desc throws an error when no location is available
+ *
+ */
 function onLocationError(e) {
   console.log(e.message);
   //alert(e.message);
 }
+
+//eventhandler for the location
 map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 
@@ -84,17 +95,21 @@ function init() {
   radiusCircle(radius);
   // hier werden die anderen Methoden aufgerufen
 }
-var interval = setInterval(log, 2000);
+var interval = setInterval(isLoaded, 2000);
 
-function log() {
+/**
+ * @desc function checking if everything is loaded. If yes the loader disappears
+ *
+ */
+function isLoaded() {
   if (busstopsMap && busstopsAR && venuesAR && venuesMap) {
     siteLoaded = true;
     clearInterval(interval);
     document.getElementById("loadingScreen").style.display = "none";
-
-        //...
     }
 }
+
+// add an eventlistener for tilting the device (to switch between the views)
 if (window.DeviceOrientationEvent) {
   window.addEventListener("deviceorientation", function (event) {
     // alpha: rotation around z-axis
@@ -114,13 +129,10 @@ if (window.DeviceOrientationEvent) {
 var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     var checked = document.getElementById("checkboxSwitchView").checked;
     if (checked) {} else {
-        //var scene = document.querySelector('a-scene');
         if (frontToBack < 30 && frontToBack > -30) {
-            //scene.setAttribute('display', "none");
             document.getElementById("sceneview").style.display = "none";
             document.getElementById("slider").style.display = "none";
             document.getElementById("mapview").style.display = "flex";
-            //document.querySelector('a-image').style.display="none";
             if (!mapview) {
                 map.locate({ setView: true, maxZoom: 20 });
             }
@@ -128,14 +140,17 @@ var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
         } else {
             document.getElementById("mapview").style.display = "none";
             document.getElementById("sceneview").style.display = "flex";
-            //scene.setAttribute('display', 'flex');
             document.getElementById("slider").style.display = "flex";
-            //document.querySelector('a-image').style.display="flex";
             mapview = false;
         }
     }
 }
 
+/**
+ * @desc deletes old radius circle and adds the new one
+ *
+ *@param radius - chosen radius in meter
+ */
 function radiusCircle(radius) {
   if (oldRadius != null) {
     map.removeLayer(oldRadius);
@@ -150,6 +165,10 @@ function radiusCircle(radius) {
   }
 }
 
+/**
+ * @desc started when the radius is changed, updating radius circle and features
+ *
+ */
 function submitRadius() {
   radius = document.getElementById('radius').value;
   var showRadius = document.getElementById('showRadius');
@@ -159,6 +178,10 @@ function submitRadius() {
   changeBusStops(radius);
 }
 
+/**
+ * @desc hides or shows busstop features, whether the checkbox is checked
+ *
+ */
 function toggleBusStops() {
   if (!document.getElementById("busstops").checked) {
     disableBusStops();
@@ -167,6 +190,11 @@ function toggleBusStops() {
     enableBusStops();
   }
 }
+
+/**
+ * @desc hides or shows busroutes features, whether the checkbox is checked
+ *
+ */
 function toggleBusRoutes() {
   if (!document.getElementById("buslines").checked) {
     disableBusRoutes();
@@ -175,6 +203,11 @@ function toggleBusRoutes() {
     enableBusRoutes();
   }
 }
+
+/**
+ * @desc hides or shows venuesfeatures, whether the checkbox is checked
+ *
+ */
 function toggleVenues() {
   if (!document.getElementById("venues").checked) {
     disableVenues();
@@ -189,14 +222,27 @@ map.eachLayer(function (layer) {
   if (layer instanceof L.TileLayer)
     layers.push(layer);
 });
+
+/**
+ * @desc displays the menu
+ *
+ */
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }
-
+/**
+ * @desc hide the menu
+ *
+ */
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
 
+/**
+ * @desc changes the basemap to the one chosen in the radio button
+ *
+ *@param layer - inout from radio button
+ */
 function switchBaselayer(layer) {
     if (document.getElementById(layer).checked) {
         switch (layer) {
@@ -222,6 +268,11 @@ function switchBaselayer(layer) {
         }
     }
 }
+
+/**
+ * @desc deletes old radius circle and adds the new one
+ *
+ */
 function toggleRadius() {
   radiusCircle(radius);
 }
@@ -241,6 +292,10 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+/**
+ * @desc function to connect the slider to camera zoom
+ *
+ */
 function zoomSlider() {
     zoomlevel = document.getElementById('slider').value;
     let mediaStream = document.querySelector('video');
@@ -255,6 +310,5 @@ function zoomSlider() {
         return Promise.reject('Zoom is not supported by ' + track.label);
     }
 
-    // 5 as example value
     track.applyConstraints({ advanced: [{ zoom: zoomlevel }] });
 }
